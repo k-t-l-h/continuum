@@ -1,9 +1,10 @@
-class WebTestGeneration: public AbstractTestGeneration
+class CTestGeneration: public AbstractTestGeneration
 {
   public:
-    WebTestGeneration();
-    WebTestGeneration(Queue* rque, Queue* wque)
-    ~WebTestGeneration();
+    CTestGeneration();
+    CTestGeneration(Queue* rque, Queue* wque);
+
+    ~CTestGeneration();
 
     TestCase convert(JsonObject request);
     int sendToWorker(TestCase tcase, Queue* wque);
