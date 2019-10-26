@@ -12,6 +12,10 @@ public:
 
     virtual void WorkCycle();
 
+    virtual
+
+
+
 private:
 
     Queue *queue;
