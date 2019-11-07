@@ -1,16 +1,14 @@
+//парсер для тестов
+//фабричный метод
 class AbstractTestGeneration
 {
-  public:
-    virtual AbstractTestGeneration();
-    virtual AbstractTestGeneration(JsonObject request, Queue* wque)
-    virtual ~AbctractTestGeneration();
+    public:
+      virtual AbstractTestGeneration() =0; //конструктор
+      virtual AbstractTestGeneration(JsonObject request, Queue* wque) =0;
+      virtual ~AbctractTestGeneration() =0; //декструктор
 
-    virtual TestCase convert(JsonObject request) =0;
-    virtual int sendToWorker(TestCase tcase, Queue* wque) =0;
-
-  private:
-    Queue* wque;
-
-    TestCase tcase;
-    JsonObject request;
+      //преобразование заявки
+      virtual TestCase convert(JsonObject request) =0;
+      //возврат тест-кейса
+      virtual int sendToWorker(TestCase tcase, Queue* wque) =0;
 };
