@@ -15,7 +15,7 @@ public:
     void push(T);
     T pop();
 private:
-    std::mutex;
+    std::mutex qmutex;
 };
 
 
