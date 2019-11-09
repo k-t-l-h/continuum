@@ -10,5 +10,4 @@ public:
 
 };
 
-
 #endif TEST_CASE_CLASS_H

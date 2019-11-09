@@ -5,8 +5,8 @@ public:
   WebTestGeneration(JsonObject request, Queque* wque);
   ~WebTestGeneration();
 
-  TestCase convert(JsonObject request);
-  int sendToWorker(TestCase tcase, Queque* wque);
+  TestCase convert(JsonObject request) override;
+  int sendToWorker(TestCase tcase, Queque* wque) override;
 
 private:
   Queque* wque;

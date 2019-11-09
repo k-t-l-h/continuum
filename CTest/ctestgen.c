@@ -6,8 +6,8 @@ class CTestGeneration: public AbstractTestGeneration
 
     ~CTestGeneration();
 
-    TestCase convert(JsonObject request);
-    int sendToWorker(TestCase tcase, Queue* wque);
+    TestCase convert(JsonObject request) override;
+    int sendToWorker(TestCase tcase, Queue* wque) override;
 
   private:
     Queue* wque;

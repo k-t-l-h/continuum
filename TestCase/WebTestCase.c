@@ -1,3 +1,7 @@
+#define HTTP 12384
+#define OPTIONS 26452
+
+#define
 class WebTestCase: public TestCase
 {
 public:
