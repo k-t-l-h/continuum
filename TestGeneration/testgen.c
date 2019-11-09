@@ -8,7 +8,7 @@ class AbstractTestGeneration
       virtual ~AbctractTestGeneration() =0; //декструктор
 
       //преобразование заявки
-      virtual TestCase convert(JsonObject request) =0;
+      virtual void convert(JsonObject &request) =0;
       //возврат тест-кейса
-      virtual int sendToWorker(TestCase tcase, Queue* wque) =0;
+      virtual int sendToWorker(TestCase &tcase) =0;
 };
