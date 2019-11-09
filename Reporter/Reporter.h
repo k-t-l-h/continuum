@@ -5,22 +5,42 @@
 #ifndef CONTINUUM_REPORTER_H
 #define CONTINUUM_REPORTER_H
 
+#include <string>
+#include "../Queue/Queue.h"
+#include "../DataBase/DataBase.h"
 
+template <class T>
 class Reporter {
 
 public:
 
-    Reporter(Queue *, db *);
+    explicit Reporter(Queue<T> &queue, DataBase &db);
 
-    ~Reporter();
+    Reporter(const Reporter&) = delete;
+
+    Reporter& operator=(const Reporter&) = delete;
+
+    ~Reporter() = default;
+
+    Queue<T> GetQueue() const;
+
+    Queue<T>& GetQueue();
+
+    DataBase GetDB() const;
+
+    DataBase& GetDB();
 
     virtual void WorkCycle();
 
+    void PutInDB(const T& elem);
+
+    void Notify();
+
 private:
 
-    Queue *q;
+    Queue<T> &queue;
 
-    db *;
+    DataBase &db;
 
 };
 
