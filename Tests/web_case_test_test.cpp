@@ -33,6 +33,13 @@ TEST_F(WebTestCase, CreateTestII)
 
 TEST_F(WebTestCase, CreateTestIII)
 {
+	std::string fileName = "test.csv";
+	int I = get_i(fileName);
+	std::string A = get_adress(fileName);
+	int P = get_protocol(fileName);
+	int M = get_method(fileName);
+	int  R= get_ref(fileName);
+
 	WebTestCase c(I, A, P, M, R);
 	ASSERT_EQ(c.id, I);
 	ASSERT_EQ(c.host, A);
