@@ -1,56 +1,67 @@
-  
 #include "../Container/Container.cpp"
+#include "../TestCase/TestCase.cpp"
 
 #include "gtest/gtest.h"
+#include <boost/thread/thread.hpp>
 
 using ::testing::AtLeast;
 
-TEST_F(Container, ContainerBusy)
+class TestContainer : public ::testing::Test
+{
+protected:
+	void SetUp()
+	{
+		container = new Container();
+	}
+	
+	void TearDown()
+	{
+		delete container;
+	}
+	Container *container;
+}
+
+TEST_F(TestContainer, ContainerBusy)
 {
 	// some testcase
 	TestCase test();
-	Container cont();
 	
-	cont.DoTest(test);
-	ASSERT_EQ(cont.Is_free(), false);
+	boost::thread t(container.DoTest(test));
+	ASSERT_FALSE(container.IsFree());
+	t.join()
 }
 
-TEST_F(Container, ContainerFree)
+TEST_F(TestContainer, ContainerFree)
 {
-	Container cont();
-	ASSERT_EQ(cont.Is_free(), true);
+	ASSERT_TRUE(container.IsFree());
 }
 
-TEST_F(Container, HasHost)
+TEST_F(TestContainer, HasHost)
 {
-	Container cont();
-	ASSERT_EQ(cont.GetContainerHost() != nullptr, true);
+	ASSERT_TRUE(container.GetContainerHost() != nullptr);
 }
 
-TEST_F(Container, CorrectTestSent)
+TEST_F(TestContainer, CorrectTestSent)
 {
 	// correct testcase
 	TestCase test();
-	Container cont();
-	ASSERT_EQ(cont.DoTest(test), OK);
+	ASSERT_EQ(container.DoTest(test), OK);
 }
 
-TEST_F(Container, IncorrectTestNotSent)
+TEST_F(TestContainer, IncorrectTestNotSent)
 {
 	// incorrect testcase
 	TestCase test();
-	Container cont();
-	ASSERT_EQ(cont.DoTest(test), ERROR);
+	
+	ASSERT_EQ(container.DoTest(test), ERROR);
 }
 
-TEST_F(Container, RightAnswer)
+TEST_F(TestContainer, RightAnswer)
 {
 	// correct answer
 	JsonObject answer;
 	TestCase test();
-	Container cont();
-	cont.DoTest(test);
-	while(!cont.Is_free())
-		sleep(5);
-	ASSERT_EQ(cont.GetAnswer, answer);
+	
+	container.DoTest(test);
+	ASSERT_EQ(container.GetAnswer(), answer);
 }

@@ -15,11 +15,16 @@ public:
     Container();
     ~Container();
 
-    bool Is_free();
-    std::string GetContainerHost();
-    JsonObject GetAnswer();
-    int DoTest(TestCase);
+    const bool IsFree();
+    const std::string GetContainerHost();
+    const JsonObject GetAnswer();
+    int DoTest(TestCase &test);
 private:
+	int ValidateTest();
+	int SendTestToDocker();
+	int WaitForTestEnd();
+	int GenerateAnswer();
+	
     bool free;
     std::string host;
     JsonObject answer;

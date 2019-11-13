@@ -10,11 +10,12 @@
 
 
 template<class T>
-class Queue: std::queue {
+class Queue {
 public:
     void push(T);
     T pop();
 private:
+	std::queue<T> queue;
     std::mutex qmutex;
 };
 
