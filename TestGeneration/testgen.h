@@ -5,7 +5,7 @@ class AbstractTestGeneration
 {
     public:
       virtual AbstractTestGeneration() =0; //конструктор
-      virtual AbstractTestGeneration(const JsonObject &req, Queue<TestCase*> &wque)) =0;
+      virtual AbstractTestGeneration(const JsonObject req, Queue<TestCase> &wque)) =0;
       virtual ~AbctractTestGeneration() =0; //декструктор
 
       //преобразование заявки
@@ -13,6 +13,5 @@ class AbstractTestGeneration
       //возврат тест-кейса
       virtual int sendToWorker() =0;
 };
-
 
 #endif //TEST_GENERATION_H

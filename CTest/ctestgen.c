@@ -2,7 +2,7 @@ class CTestGeneration: public AbstractTestGeneration
 {
   public:
     CTestGeneration() = delete;
-    CTestGeneration(const JsonObject &request, Queue<TestCase*> &wque);
+    CTestGeneration(const JsonObject request, Queue<TestCase> &wque);
     CTestGeneration(const CTestGeneration&) = delete;
     CTestGeneration operator=(const CTestGeneration&) = delete;
     ~CTestGeneration();

@@ -5,7 +5,7 @@ class WebTestGeneration: public AbstractTestGeneration
 {
 public:
   WebTestGeneration() = delete;
-  WebTestGeneration(const JsonObject &request, const Queue<TestCase*> &wque);
+  WebTestGeneration(const JsonObject request, Queue<TestCase> &wque);
   WebTestGeneration(const CTestGeneration&) = delete;
   WebTestGeneration operator=(const CTestGeneration&) = delete;
   ~WebTestGeneration();
