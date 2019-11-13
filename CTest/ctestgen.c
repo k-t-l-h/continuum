@@ -1,17 +1,18 @@
 class CTestGeneration: public AbstractTestGeneration
 {
   public:
-    CTestGeneration();
-    CTestGeneration(Queue* rque, Queue* wque);
-
+    CTestGeneration() = delete;
+    CTestGeneration(const JsonObject &request, Queue<TestCase*> &wque);
+    CTestGeneration(const CTestGeneration&) = delete;
+    CTestGeneration operator=(const CTestGeneration&) = delete;
     ~CTestGeneration();
 
-    void convert(JsonObject &request) override;
-    int sendToWorker(TestCase &tcase, Queue* wque) override;
+    void convert() override;
+    int sendToWorker() override;
 
   private:
     Queue* wque;
 
-    TestCase tcase;
+    CTestCase tcase;
     JsonObject request;
 };

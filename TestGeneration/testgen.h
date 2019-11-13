@@ -3,19 +3,16 @@
 
 class AbstractTestGeneration
 {
-  public:
-    virtual AbstractTestGeneration();
-    virtual AbstractTestGeneration(JsonObject request, Queue* wque)
-    virtual ~AbctractTestGeneration();
+    public:
+      virtual AbstractTestGeneration() =0; //конструктор
+      virtual AbstractTestGeneration(const JsonObject &req, Queue<TestCase*> &wque)) =0;
+      virtual ~AbctractTestGeneration() =0; //декструктор
 
-    virtual TestCase convert(JsonObject request) =0;
-    virtual int sendToWorker(TestCase tcase, Queue* wque) =0;
-
-  private:
-    Queue* wque;
-
-    TestCase tcase;
-    JsonObject request;
+      //преобразование заявки
+      virtual void convert() =0;
+      //возврат тест-кейса
+      virtual int sendToWorker() =0;
 };
+
 
 #endif //TEST_GENERATION_H

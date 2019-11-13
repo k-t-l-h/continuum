@@ -4,13 +4,18 @@
 class WebTestGeneration: public AbstractTestGeneration
 {
 public:
-  TestCase convert(JsonObject request);
-  int sendToWorker(TestCase tcase, Queque* wque);
+  WebTestGeneration() = delete;
+  WebTestGeneration(const JsonObject &request, const Queue<TestCase*> &wque);
+  WebTestGeneration(const CTestGeneration&) = delete;
+  WebTestGeneration operator=(const CTestGeneration&) = delete;
+  ~WebTestGeneration();
+
+  void convert(JsonObject const &request) override;
+  int sendToWorker(TestCase &tcase) override;
 
 private:
   Queque* wque;
-
-  TestCase tcase;
+  WebTestCase tcase;
   JsonObject request;
 
 };
