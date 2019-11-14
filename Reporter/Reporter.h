@@ -8,13 +8,14 @@
 #include <string>
 #include "../Queue/Queue.h"
 #include "../DataBase/DataBase.h"
+#include "../JsonObject/JsonObject.h"
 
 template <class T>
 class Reporter {
 
 public:
 
-    explicit Reporter(Queue<T> &queue, DataBase &db);
+    explicit Reporter(Queue<JsonObject> &queue, DataBase &db);
 
     Reporter(const Reporter&) = delete;
 
@@ -22,19 +23,11 @@ public:
 
     ~Reporter() = default;
 
-    Queue<T> GetQueue() const;
+    void WorkCycle();
 
-    Queue<T>& GetQueue();
+    bool PutInDB(const JsonObject& elem);
 
-    DataBase GetDB() const;
-
-    DataBase& GetDB();
-
-    virtual void WorkCycle();
-
-    void PutInDB(const T& elem);
-
-    void Notify();
+    bool Notify();
 
 private:
 

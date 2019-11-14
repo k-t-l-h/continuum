@@ -11,10 +11,12 @@ struct MockQueue : Queue<T> {
 
 };
 
-TEST(MockCantainer, TestWorkCycle) {
+
+TEST(MockCantainer, TestWorkCycleCallEmpty) {
     int n = 5;
-    MockQueue<TestCase *> queue;
-    Manager manager(queue, n);
-    EXPECT_CALL(queue, empty()).Times(AtLeast(1));
+    MockQueue<TestCase *> QueueIn;
+    Queue<std::string> QueueOut;
+    Manager manager(QueueIn, QueueOut, n);
+    EXPECT_CALL(QueueIn, empty()).Times(AtLeast(1));
     manager.WorkCycle();
 }
