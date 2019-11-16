@@ -11,14 +11,17 @@ class TestContainer : public ::testing::Test
 protected:
 	void SetUp()
 	{
-		container = new Container();
+		rq = new Queue<JsonObject>();
+		container = new Container(rq);
 	}
 	
 	void TearDown()
 	{
 		delete container;
+		delete rq;
 	}
 	Container *container;
+	Queue<JsonObject> *rq;
 }
 
 TEST_F(TestContainer, ContainerBusy)
