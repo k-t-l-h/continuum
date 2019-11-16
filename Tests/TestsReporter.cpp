@@ -1,4 +1,4 @@
-#include "../Reporter/Reporter.cpp"
+#include "../Reporter/Reporter.h"
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"

@@ -10,11 +10,12 @@
 #include "../DataBase/DataBase.h"
 #include "../JsonObject/JsonObject.h"
 
+template <class T>
 class Reporter {
 
 public:
 
-    explicit Reporter(Queue<JsonObject> &queue, DataBase &db);
+    explicit Reporter(Queue<T> &queue, DataBase &db);
 
     Reporter(const Reporter&) = delete;
 
@@ -30,9 +31,9 @@ public:
 
 private:
 
-    Queue<JsonObject> &queue;
+    Queue<T> *queue;
 
-    DataBase &db;
+    DataBase *db;
 
 };
 
