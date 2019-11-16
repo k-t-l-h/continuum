@@ -18,6 +18,11 @@ public:
 
     ~Manager() = default;
 
+    std::vector<Container *>& GetContainers();
+
+    int GetCountContainers();
+
+
     void WorkCycle();
 
 private:
@@ -26,7 +31,7 @@ private:
 
     Queue<std::string> QueueOut;
 
-    std::vector<Container> Containers;
+    std::vector<Container *> Containers;
 
 };
 

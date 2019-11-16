@@ -11,7 +11,6 @@ struct MockQueue : Queue<T> {
 
 };
 
-
 TEST(MockCantainer, TestWorkCycleCallEmpty) {
     int n = 5;
     MockQueue<TestCase *> QueueIn;
@@ -20,3 +19,23 @@ TEST(MockCantainer, TestWorkCycleCallEmpty) {
     EXPECT_CALL(QueueIn, empty()).Times(AtLeast(1));
     manager.WorkCycle();
 }
+
+TEST(MockCantainer, TestWorkCycleCountContainers) {
+    int n = 5;
+    MockQueue<TestCase *> QueueIn;
+    Queue<std::string> QueueOut;
+    Manager manager(QueueIn, QueueOut, n);
+    EXPECT_TRUE(manager.GetCountContainers() == n);
+}
+
+TEST(MockCantainer, TestCreateContainers) {
+    int n = 5;
+    MockQueue<TestCase *> QueueIn;
+    Queue<std::string> QueueOut;
+    Manager manager(QueueIn, QueueOut, n);
+    std::vector<Container *> containers = manager.GetContainers();
+    for (int i = 0; i < n; ++i)
+        EXPECT_TRUE(containers[i]->IsFree() == true);
+}
+
+
