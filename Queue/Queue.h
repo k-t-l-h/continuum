@@ -14,6 +14,7 @@ class Queue {
 public:
     void push(T);
     T pop();
+	bool empty();
 private:
 	std::queue<T> queue;
     std::mutex qmutex;

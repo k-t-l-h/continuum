@@ -13,7 +13,7 @@
 
 class Container {
 public:
-    Container(Queue<JsonObject> *rqueue);
+    Container(Queue<JsonObject> *rq);
     ~Container();
 
     const bool IsFree();
@@ -22,15 +22,16 @@ public:
     int DoTest(TestCase &test);
 private:
 	int ClearAnswer();
-	int ValidateTest();
-	int SendTestToDocker();
+	int ValidateTest(TestCase &test);
+	int SendTestToDocker(TestCase &test);
 	int WaitForTestEnd();
 	int GenerateAnswer();
 	
 	
-    bool free;
+    bool free_state;
     std::string host;
     JsonObject answer;
+	Queue<JsonObject> *rqueue;
 };
 
 
