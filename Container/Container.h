@@ -20,14 +20,15 @@ public:
     const std::string GetContainerHost();
     const JsonObject GetAnswer();
     int DoTest(TestCase &test);
+	
 private:
 	int ClearAnswer();
-	int ValidateTest(TestCase &test);
-	int SendTestToDocker(TestCase &test);
+	int ValidateTest(const TestCase &test) const;
+	int SendTestToDocker(const TestCase &test);
 	int WaitForTestEnd();
 	int GenerateAnswer();
 	
-	
+private:
     bool free_state;
     std::string host;
     JsonObject answer;

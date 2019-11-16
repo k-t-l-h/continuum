@@ -7,6 +7,9 @@
 
 #include <mutex>
 #include <queue>
+#include <string>
+
+typedef std::string JsonObject 
 
 
 template<class T>

@@ -1,5 +1,5 @@
-#include "../Container/Container.cpp"
-#include "../TestCase/TestCase.cpp"
+#include "../Container/Container.h"
+#include "../TestCase/TestCase.h"
 
 #include "gtest/gtest.h"
 #include <boost/thread/thread.hpp>

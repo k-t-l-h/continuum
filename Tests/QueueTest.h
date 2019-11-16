@@ -1,4 +1,4 @@
-#include "../Queue/Queue.cpp"
+#include "../Queue/Queue.h"
 
 #include "gtest/gtest.h"
 #include <boost/thread/thread.hpp>
@@ -47,7 +47,7 @@ TEST_F(TestQueue, TestSafety)
 	int last = queue.pop();
 	for( int i = 1; i < 20; i++ ) {
 		int tmp = queue.pop();
-		if (last > tmp) {
+		if (last < tmp) {
 			flag = false;
 			break;
 		}
