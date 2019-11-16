@@ -29,7 +29,7 @@ private:
 
     Queue<TestCase *> QueueIn;
 
-    Queue<std::string> QueueOut;
+    Queue<JsonObject> QueueOut;
 
     std::vector<Container *> Containers;
 

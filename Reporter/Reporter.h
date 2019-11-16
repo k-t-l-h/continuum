@@ -10,7 +10,6 @@
 #include "../DataBase/DataBase.h"
 #include "../JsonObject/JsonObject.h"
 
-template <class T>
 class Reporter {
 
 public:
@@ -31,7 +30,7 @@ public:
 
 private:
 
-    Queue<T> &queue;
+    Queue<JsonObject> &queue;
 
     DataBase &db;
 
