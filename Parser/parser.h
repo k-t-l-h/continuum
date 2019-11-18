@@ -10,12 +10,19 @@ class Parser
       Parser operator=(const Parser&) = delete;
       ~Parser();
 
-      void work();
+      void workCycle();
 
     private:
       bool validateRequest();
-      int getRequestType();
-      
+
+      bool validateHost();
+      bool validateAdress();
+      bool validateMethod();
+      bool validateTarget();
+      bool validateRequest();
+      bool validateProtocol();
+      bool validateReference();
+
       Queue* pque;
       Queue* wque;
 };
