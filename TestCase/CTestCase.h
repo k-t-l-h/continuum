@@ -8,6 +8,9 @@ public:
   CTestCase(int id, std::string git_adress, std::string target);
   ~CTestCase();
 
+  CTestCase(const CTestCase&) = delete;
+  CTestCase operator=(const CTestCase&) = delete;
+
   int id;
   std::string git_adress;
   std::string target;
