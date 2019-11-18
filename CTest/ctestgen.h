@@ -10,12 +10,11 @@ class CTestGeneration: public AbstractTestGeneration
     CTestGeneration operator=(const CTestGeneration&) = delete;
     ~CTestGeneration();
 
-    void convert() override;
+    void convertToTestCase() override;
     int sendToWorker() override;
 
   private:
     Queue* wque;
-
     CTestCase tcase;
     JsonObject request;
 };
