@@ -9,10 +9,13 @@ class Parser
       Parser(const Parser&) = delete;
       Parser operator=(const Parser&) = delete;
       ~Parser();
-      //бесконечно смотрит очередь заявок
+
       void work();
 
     private:
+      bool validateRequest();
+      int getRequestType();
+      
       Queue* pque;
       Queue* wque;
 };
