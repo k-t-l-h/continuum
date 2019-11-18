@@ -10,8 +10,8 @@ public:
   WebTestGeneration operator=(const CTestGeneration&) = delete;
   ~WebTestGeneration();
 
-  void convert(JsonObject const &request) override;
-  int sendToWorker(TestCase &tcase) override;
+  void convert() override;
+  int sendToWorker() override;
 
 private:
   Queque* wque;
