@@ -8,10 +8,9 @@ class AbstractTestGeneration
       virtual AbstractTestGeneration(const JsonObject req, Queue<TestCase> &wque)) =0;
       virtual ~AbctractTestGeneration() =0; //декструктор
 
-      //преобразование заявки
-      virtual void convert() =0;
-      //возврат тест-кейса
-      virtual int sendToWorker() =0;
+      void convertToTestCase() =0;
+      int sendToWorker() =0;
+
 };
 
 #endif //TEST_GENERATION_H
