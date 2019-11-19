@@ -126,6 +126,6 @@ bool Parser::validateAdress(const std::string& s)
 
 bool Parser::validateTarget(const std::string& s)
 {
-  static const boost::regex e("([\_]*[a-zA-Z]+[a-zA-Z0-9\_]*)");
+  static const boost::regex e("([\\_]*[a-zA-Z]+[a-zA-Z0-9\\_]*)");
   return regex_match(s, e);
 };
