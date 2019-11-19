@@ -4,55 +4,83 @@
 #include <boost/property_tree/json_parser.hpp>
 
 #define BAD_REQUEST_TYPE "NO TYPE"
-#define DEF_ID ""
+#define DEF_ID "NO ID FOUND"
+#define DEF "DEFAULT ANSWER"
+#define CPP "CPP TEST"
+#define WEB "WEB TEST"
+
 
 namespace pt = boost::property_tree;
 namespace str = std::string;
 
-void Parser::workCycle( ) {
+void Parser::workCycle() {
 
   while(true){
-      //
-      get_request();
-  }
+      //получаем заявку и создаем
+      str request = get_request();
+      pt::ptree tree;
+      pt::read_json(request, tree);
 
+      if (validateRequestTree(tree))
+      {
+        switch (tree.get<str>("request.request_type")) {
+          case CPP:
+            CTestGeneration ctg = CTestGeneration(request, wque);
+            ctg.convertToTestCase();
+            ctg.sendToWorker();
+          break;
+          case WEB:
+            WebTestGeneration wtg = WebTestGeneration(request, wque);
+            wtg.convertToTestCase();
+            wtg.sendToWorker();
+          break;
+        }
+      }
+  }
 };
 
-bool Parser::validateRequest(const str &request)
-{
-  //cоздаем и заполняем дерево
-  pt::ptree tree;
-  pt::read_json(request, tree);
 
+str Parser::get_request()
+{
+  return wque.pop();
+};
+
+bool Parser::validateRequestTree(const pt::ptree tree)
+{
   //получаем тип заявки
-  str request_type = tree.get<str>("request.request_type", "null");
+  str request_type = tree.get<str>("request.request_type", BAD_REQUEST_TYPE);
   if (request_type == BAD_REQUEST_TYPE)
     return false; //нет типа заявки
 
-  str id = tree.get<str>("request.id", DEF_ID);
+  str id = tree.get<str>("request.id", DEF);
 
   if(id == DEF_ID)
     return false; //нет id
 
-
   switch (request_type) {
     //проверка валидности для веба
     case WEB:
-      if (validateHost())
+      str host = tree.get<str>("request.host", DEF);
+      if (validateHost(host))
         return false;
-      if (validateProtocol())
+      str p = tree.get<str>("request.protocol", DEF);
+      if (validateProtocol(p))
         return false;
-      if (validateMethod())
+      str m = tree.get<str>("request.method", DEF);
+      if (validateMethod(m))
         return false;
-      if (validateReference())
+      str ref = tree.get<str>("request.reference", DEF);
+      if (validateReference(ref))
         return false;
       return true;
 
     //проверка валидности для си
     case CPP:
-      if (validateAdress())
+      str git = tree.get<str>("request.git_adress", DEF);
+      if (validateAdress(git))
         return false;
-      if (validateTarget())
+      str target = tree.get<str>("request.target", DEF);
+      if (validateTarget(target))
         return false;
       return true;
 
