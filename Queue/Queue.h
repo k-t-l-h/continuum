@@ -9,22 +9,15 @@
 #include <queue>
 #include <string>
 
-typedef std::string JsonObject 
-
-
 template<class T>
 class Queue {
 public:
-    Queue() : std::queue<T>(), std::mutex() {}
-    void push(T);
+    void push(T value);
     T pop();
     bool empty();
 private:
-    std::queue<T> queue;
+    std::queue<T> q;
     std::mutex qmutex;
 };
-
-
-
 
 #endif //CONTINUUM_QUEUE_H
