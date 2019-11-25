@@ -15,11 +15,12 @@ typedef std::string JsonObject
 template<class T>
 class Queue {
 public:
+    Queue() : std::queue<T>(), std::mutex() {}
     void push(T);
     T pop();
-	bool empty();
+    bool empty();
 private:
-	std::queue<T> queue;
+    std::queue<T> queue;
     std::mutex qmutex;
 };
 
