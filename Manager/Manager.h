@@ -10,7 +10,7 @@ class Manager {
 
 public:
 
-    explicit Manager(Queue<TestCase *> &QueueIn, Queue<std::string> &QueueOut, int count);
+    Manager(Queue<TestCase *> *QueueIn, Queue<JsonObject> *QueueOut, int count);
 
     Manager(const Manager&) = delete;
 
@@ -18,20 +18,20 @@ public:
 
     ~Manager() = default;
 
-    std::vector<Container *>& GetContainers();
+    const std::vector<Container *>& GetContainers() const;
 
-    int GetCountContainers();
+    int GetCountContainers() const;
 
 
     void WorkCycle();
 
 private:
 
-    Queue<TestCase *> QueueIn;
+    Queue<TestCase *> *QueueIn;
 
-    Queue<JsonObject> QueueOut;
+    Queue<JsonObject> *QueueOut;
 
-    std::vector<Container *> Containers;
+    std::vector<Container> Containers;
 
 };
 

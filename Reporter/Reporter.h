@@ -5,17 +5,18 @@
 #ifndef CONTINUUM_REPORTER_H
 #define CONTINUUM_REPORTER_H
 
-#include <string>
 #include "../Queue/Queue.h"
 #include "../DataBase/DataBase.h"
 #include "../JsonObject/JsonObject.h"
+#include "../TestCase/TestCaseClass.h"
+#include <thread>
+#include <functional>
 
-template <class T>
 class Reporter {
 
 public:
 
-    explicit Reporter(Queue<T> &queue, DataBase &db);
+    Reporter(Queue<JsonObject> *queue, DataBase *db);
 
     Reporter(const Reporter&) = delete;
 
@@ -31,9 +32,9 @@ public:
 
 private:
 
-    Queue<T> *queue;
+    Queue<JsonObject> *Queue;
 
-    DataBase *db;
+    DataBase *DB;
 
 };
 
