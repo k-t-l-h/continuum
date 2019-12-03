@@ -9,50 +9,56 @@
 #define CPP "CPP TEST"
 #define WEB "WEB TEST"
 
-
+using namespace std;
 namespace pt = boost::property_tree;
-namespace str = std::string;
 
 void Parser::workCycle() {
 
   while(true){
       //получаем заявку и создаем
-      str request = get_request();
-      pt::ptree tree;
-      pt::read_json(request, tree);
-
-      if (validateRequestTree(tree))
-      {
-        switch (tree.get<str>("request.request_type")) {
-          case CPP:
-            CTestGeneration ctg = CTestGeneration(request, wque);
-            ctg.convertToTestCase();
-            ctg.sendToWorker();
-          break;
-          case WEB:
-            WebTestGeneration wtg = WebTestGeneration(request, wque);
-            wtg.convertToTestCase();
-            wtg.sendToWorker();
-          break;
-        }
+      if (!rque.isEmpty()){
+        string request = get_request();
+        //здесь будет параллельность
+        workThread(request);
       }
-  }
+}
 };
 
+void workThread(const std::string& request) {
+  pt::ptree tree;
+  pt::read_json(request, tree);
 
-str Parser::get_request()
+  if (validateRequestTree(tree))
+    {
+      string request_type = tree.get<string>("request.request_type");
+      switch (request_type) {
+        case CPP:
+          CTestGeneration ctg = CTestGeneration(request, wque);
+          ctg.convertToTestCase();
+          ctg.sendToWorker();
+        break;
+        case WEB:
+          WebTestGeneration wtg = WebTestGeneration(request, wque);
+          wtg.convertToTestCase();
+          wtg.sendToWorker();
+        break;
+      }
+    }
+}
+
+string Parser::get_request()
 {
-  return wque.pop();
+  return rque.pop();
 };
 
 bool Parser::validateRequestTree(const pt::ptree tree)
 {
   //получаем тип заявки
-  str request_type = tree.get<str>("request.request_type", BAD_REQUEST_TYPE);
+  string request_type = tree.get<string>("request.request_type", BAD_REQUEST_TYPE);
   if (request_type == BAD_REQUEST_TYPE)
     return false; //нет типа заявки
 
-  str id = tree.get<str>("request.id", DEF);
+  string id = tree.get<string>("request.id", DEF);
 
   if(id == DEF_ID)
     return false; //нет id
@@ -60,26 +66,26 @@ bool Parser::validateRequestTree(const pt::ptree tree)
   switch (request_type) {
     //проверка валидности для веба
     case WEB:
-      str host = tree.get<str>("request.host", DEF);
+      string host = tree.get<string>("request.host", DEF);
       if (validateHost(host))
         return false;
-      str p = tree.get<str>("request.protocol", DEF);
+      string p = tree.get<string>("request.protocol", DEF);
       if (validateProtocol(p))
         return false;
-      str m = tree.get<str>("request.method", DEF);
+      string m = tree.get<string>("request.method", DEF);
       if (validateMethod(m))
         return false;
-      str ref = tree.get<str>("request.reference", DEF);
+      string ref = tree.get<string>("request.reference", DEF);
       if (validateReference(ref))
         return false;
       return true;
 
     //проверка валидности для си
     case CPP:
-      str git = tree.get<str>("request.git_adress", DEF);
+      string git = tree.get<string>("request.git_adress", DEF);
       if (validateAdress(git))
         return false;
-      str target = tree.get<str>("request.target", DEF);
+      string target = tree.get<string>("request.target", DEF);
       if (validateTarget(target))
         return false;
       return true;

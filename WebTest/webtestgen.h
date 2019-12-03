@@ -1,17 +1,20 @@
 #ifndef WEB_TEST_GENERATION_H
 #define WEB_TEST_GENERATION_H
 
-class WebTestGeneration: public AbstractTestGeneration
+using namespace std;
+namespace pt = boost::property_tree;
+
+class WebTestGeneration: public AbstringactTestGeneration
 {
 public:
   WebTestGeneration() = delete;
-  WebTestGeneration(const JsonObject request, Queue<TestCase> &wque);
+  WebTestGeneration(const string request, Queue<TestCase*> &wque);
   WebTestGeneration(const CTestGeneration&) = delete;
   WebTestGeneration operator=(const CTestGeneration&) = delete;
   ~WebTestGeneration();
 
-  void convert() override;
-  int sendToWorker() override;
+  void convertToTestCase() override;
+  int sendToWorker() const override;
 
 private:
   Queque* wque;

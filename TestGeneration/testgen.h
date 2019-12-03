@@ -9,7 +9,7 @@ class AbstractTestGeneration
       virtual ~AbctractTestGeneration() =0; //декструктор
 
       void convertToTestCase() =0;
-      int sendToWorker() =0;
+      int sendToWorker() const =0;
 
 };
 
