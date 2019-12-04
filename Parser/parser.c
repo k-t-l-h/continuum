@@ -20,7 +20,8 @@ shared_ptr<Queue<std::string>> _reque):
 rque(_rque), wque(_wque), reque(_reque)
 {};
 
-void Parser::workCycle() {
+void Parser::workCycle() const
+{
 
   while(true){
       //получаем заявку и создаем
@@ -32,7 +33,8 @@ void Parser::workCycle() {
 }
 };
 
-void workThread(const std::string& request) {
+void workThread(const std::string& request)
+{
   pt::ptree tree;
   pt::read_json(request, tree);
 
@@ -54,12 +56,12 @@ void workThread(const std::string& request) {
     }
 }
 
-string Parser::get_request()
+string Parser::get_request() const
 {
   return rque.pop();
 };
 
-bool Parser::validateRequestTree(const pt::ptree tree)
+bool Parser::validateRequestTree(const pt::ptree tree) const
 {
   //получаем тип заявки
   string request_type = tree.get<string>("request.request_type", BAD_REQUEST_TYPE);
@@ -106,25 +108,25 @@ bool Parser::validateRequestTree(const pt::ptree tree)
 };
 
 //WEB CASE
-bool Parser::validateHost(const std::string& s)
+bool Parser::validateHost(const std::string& s) const
 {
   static const boost::regex e("^(www\\.)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$");
   return regex_match(s, e);
 };
 
-bool Parser::validateProtocol(const std::string& s)
+bool Parser::validateProtocol(const std::string& s) const
 {
   static const boost::regex e("[0|1]");
   return regex_match(s, e);
 };
 
-bool Parser::validateMethod(const std::string& s)
+bool Parser::validateMethod(const std::string& s) const
 {
   static const boost::regex e("[0|1|2|3|4]");
   return regex_match(s, e);
 };
 
-bool Parser::validateReference(const std::string& s)
+bool Parser::validateReference(const std::string& s) const
 {
   static const boost::regex e("(10[0-3]|20[0-6]|30[0-8]|4(0[0-9)|1[0-7])|50[0-5])");
   return regex_match(s, e);
@@ -132,13 +134,13 @@ bool Parser::validateReference(const std::string& s)
 
 
 //CPP CASE
-bool Parser::validateAdress(const std::string& s)
+bool Parser::validateAdress(const std::string& s) const
 {
   static const boost::regex e("github\\.com\\/([a-zA-Z0-9\\_\\-]*)/([a-zA-Z0-9\\_\\-]*)");
   return regex_match(s, e);
 };
 
-bool Parser::validateTarget(const std::string& s)
+bool Parser::validateTarget(const std::string& s) const
 {
   static const boost::regex e("([\\_]*[a-zA-Z]+[a-zA-Z0-9\\_]*)");
   return regex_match(s, e);
