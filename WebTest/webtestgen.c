@@ -3,6 +3,10 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
+WebTestGeneration::WebTestGeneration(const string _request, shared_ptr<Queue<TestCase*>> _wque):
+request(_request), wque(_wque)
+{};
+
 void WebTestGeneration::convertToTestCase(){
   //пропарсить поля
   pt::ptree tree;

@@ -8,18 +8,19 @@ class WebTestGeneration: public AbstringactTestGeneration
 {
 public:
   WebTestGeneration() = delete;
-  WebTestGeneration(const string request, Queue<TestCase*> &wque);
   WebTestGeneration(const CTestGeneration&) = delete;
   WebTestGeneration operator=(const CTestGeneration&) = delete;
+  
+  WebTestGeneration(const str request,   shared_ptr<Queue<TestCase*>> _wque);
   ~WebTestGeneration();
 
   void convertToTestCase() override;
   int sendToWorker() const override;
 
 private:
-  Queque* wque;
+  shared_ptr<Queue<TestCase*>> wque;
   WebTestCase tcase;
-  JsonObject request;
+  string request;
 
 };
 
