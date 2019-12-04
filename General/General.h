@@ -8,7 +8,10 @@
 #include "../TestCase/TestCase.h"
 #include "../DataBase/DataBase.h"
 
+
+#include <boost/thread/thread.hpp>
 #include <vector>
+#include <memory>
 #include <string>
 
 class General {

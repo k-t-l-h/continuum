@@ -32,3 +32,21 @@ General::General(int p_count, int m_count, int r_count, int cont_count) {
     for (int i = 0; i < r_count; ++i)
         reporters.push_back(Reporter(rqueue, db));
 }
+
+void General::TurnOn() {
+    for (auto ptr = parser.begin(); ptr < parsers.end(); ptr++)
+    {
+        boost::thread thr(*ptr->WorkCycle());
+        thr.detach();
+    }
+    for (auto ptr = managers.begin(); ptr < managers.end(); ptr++)
+    {
+        boost::thread thr(*ptr->WorkCycle());
+        thr.detach();
+    }
+    for (auto ptr = reporters.begin(); ptr < reporters.end(); ptr++)
+    {
+        boost::thread thr(*ptr->WorkCycle());
+        thr.detach();
+    }
+}
