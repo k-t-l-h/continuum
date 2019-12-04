@@ -7,7 +7,8 @@
 #define CONTINUUM_CONTAINER_H
 
 #include <string>
-#include "../Queue/Queue.cpp"
+#include <memory>
+#include "../Queue/Queue.h"
 
 #define DONE 0
 #define TEST_ERR -1
@@ -18,12 +19,10 @@
 
 class Container {
 public:
-    Container(Queue<std:string*> *rq);
+    Container(std::shared_ptr<Queue<std:string>> rq) : rqueue(rq), answer(0), command(0), free_state(true) {};
     ~Container();
 
-    const bool IsFree();
-    const std::string GetContainerHost();
-    const JsonObject GetAnswer();
+    bool IsFree() const;
     int DoTest(TestCase &test);
 	
 private:
@@ -37,10 +36,9 @@ private:
 	
 private:
     bool free_state;
-    std::string host;
     std::string answer;
     std::string command;
-	Queue<std::string> *rqueue;
+    std::shared_ptr<Queue<std:string>> rqueue;
 };
 
 

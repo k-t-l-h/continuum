@@ -7,7 +7,6 @@
 
 #include <mutex>
 #include <queue>
-#include <string>
 
 template<class T>
 class Queue {

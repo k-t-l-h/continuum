@@ -1,13 +1,15 @@
 #ifndef CONTINUUM_GENERAl_H
 #define CONTINUUM_GENERAL_H
 
-#include "../Queue/Queue.cpp"
-#include "../Parser/Parser.cpp"
-#include "../Manager/Manager.cpp"
-#include "../Reporter/Reporter.cpp"
-#include "../TestCase/TestCase.cpp"
+#include "../Queue/Queue.h"
+#include "../Parser/Parser.h"
+#include "../Manager/Manager.h"
+#include "../Reporter/Reporter.h"
+#include "../TestCase/TestCase.h"
+#include "../DataBase/DataBase.h"
 
 #include <vector>
+#include <string>
 
 class General {
 public:
@@ -16,13 +18,14 @@ public:
 	General(int p_count, int m_count, int r_count, int cont_count);
 	~General();
 	
-	int TurnOn();
-	int TurnOff();
-	
+	void TurnOn();
+	void TurnOff();
+	int GetRequest(std::string request);
 private:
-	Queue<JsonObject> rqueue;
-	Queue<JsonObject> pqueue;
-	Queue<TestCase> wqueue;
+	std::shared_ptr<Queue<std::string>> rqueue;
+	std::shared_ptr<Queue<std::string>> pqueue;
+	std::shared_ptr<Queue<TestCase*>> wqueue;
+    std::shared_ptr<DataBase> db;
 	std::vector<Parser> parsers;
 	std::vector<Manager> managers;
 	std::vector<Reporter> reporters;

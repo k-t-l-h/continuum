@@ -4,17 +4,14 @@
 
 #include "Container.h"
 
-Container::Container(Queue<std::string> *rq) {
-    rqueue = rq;
-    free_state = true;
-    answer = nullptr;
-    command = "";
-}
-
 int Container::DoTest(TestCase &test) {
     free_state = false;
     ClearAnswer();
-    if( ValidateTest(test) ) return TEST_ERR;
+    if( ValidateTest(test) )
+    {
+        rqueue->push("error");
+        return TEST_ERR;
+    }
     if( SendTestToDocker(test) ) return DOCKER_ERR;
     if( WaitForTestEnd() ) return TEST_ERR;
     if( GenerateAnswer() ) return QUEUE_ERR;
@@ -62,7 +59,6 @@ int Container::ValidateTest(const WebTestCase *test) const {
 }
 
 int Container::SendTestToDocker(const WebTestCase *test) {
-
     std::array<char, 128> buffer;
     answer = "";
     std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command, "r"), pclose);
