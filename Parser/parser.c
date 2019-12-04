@@ -12,6 +12,14 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
+//парсер не должен быть владельцем базового ресурса,
+//владельцем является general
+Parser::Parser(shared_ptr<Queue<std::string>> _rque,
+shared_ptr<Queue<TestCase*>> _wque,
+shared_ptr<Queue<std::string>> _reque):
+rque(_rque), wque(_wque), reque(_reque)
+{};
+
 void Parser::workCycle() {
 
   while(true){

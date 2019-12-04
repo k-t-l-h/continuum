@@ -1,15 +1,20 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+using namespace std;
+
 class Parser
 {
     public:
       Parser() = delete;
-      Parser(Queue<Request*> &pque, Queue<TestCase*> &wque);
       Parser(const Parser&) = delete;
       Parser operator=(const Parser&) = delete;
-      ~Parser();
 
+      Parser(shared_ptr<Queue<std::string>> _rque,
+      shared_ptr<Queue<TestCase*>> _wque,
+      shared_ptr<Queue<std::string>> _reque);
+
+      ~Parser();
       void workCycle() const;
 
     private:
@@ -25,8 +30,10 @@ class Parser
       bool validateProtocol(const std::string& s) const;
       bool validateReference(const std::string& s) const;
 
-      Queue* rque;
-      Queue* wque;
+      shared_ptr<Queue<std::string>> rque;
+      shared_ptr<Queue<TestCase*>> wque;
+      shared_ptr<Queue<std::string>> reque;
+
 };
 
 #endif //PARSER_H
