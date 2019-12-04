@@ -5,6 +5,10 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
+CTestGeneration::CTestGeneration(const string _request, shared_ptr<Queue<TestCase*>> _wque):
+request(_request), wque(_wque)
+{};
+
 void CTestGeneration::convertToTestCase(){
   //взять реквест
   //пропарсить поля
