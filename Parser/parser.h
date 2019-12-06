@@ -1,6 +1,9 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <mutex>
+#include <atomic>
+
 using namespace std;
 
 class Parser
@@ -18,6 +21,10 @@ class Parser
       void workCycle() const;
 
     private:
+      mutex pmutex;
+      unsigned int sizePool;
+      unsigned int maxPool;
+
       string& get_request() const;
       void workThread(const string& s);
       bool validateRequest(const string &request) const;

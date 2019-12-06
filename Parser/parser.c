@@ -1,5 +1,6 @@
 #include "parser.h"
 
+#include <thread>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -12,7 +13,14 @@ Parser::Parser(shared_ptr<Queue<std::string>> _rque,
 shared_ptr<Queue<TestCase*>> _wque,
 shared_ptr<Queue<std::string>> _reque):
 rque(_rque), wque(_wque), reque(_reque)
-{};
+{
+  maxPool = thread::hardware_concurrency();
+  sizePool = 0;
+};
+
+Parser::~Parser(){
+
+};
 
 void Parser::workCycle() const
 {
@@ -21,14 +29,28 @@ void Parser::workCycle() const
       //получаем заявку и создаем
       if (!rque.isEmpty()){
         string request = get_request();
-        //здесь будет параллельность
-        workThread(request);
+
+        bool flag = true;
+
+        while(flag) {
+          pmutex.lock();
+          if(sizePool < maxPool) flag = false;
+          pmutex.unlock();
+          //ждем?
+        }
+
+        thread t(workThread, &request);
+        t.detach();
       }
-}
+    }
 };
 
 void workThread(const std::string& request)
 {
+  pmutex.lock();
+  sizePool++;
+  pmutex.unlock();
+
   pt::ptree tree;
   pt::read_json(request, tree);
 
@@ -48,6 +70,10 @@ void workThread(const std::string& request)
         break;
       }
     }
+
+    pmutex.lock();
+    sizePool--;
+    pmutex.unlock();
 }
 
 string Parser::get_request() const
@@ -69,7 +95,8 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
   string id = tree.get<string>("request.id", ResponseCode.defaultId);
 
   if(id == ResponseCode.defaultId){
-    reque->push(ResponseCode.defaultId);
+    if(reque){
+    reque->push(ResponseCode.defaultId);}
     return false;
   }
 
@@ -78,25 +105,29 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
     case ResponseCode.webRequestType:
       string host = tree.get<string>("request.host", ResponseCode.defaultHost);
       if (validateHost(host)){
-        reque->push(ResponseCode.defaultHost);
+        if(reque){
+        reque->push(ResponseCode.defaultHost);}
         return false;
       }
 
       string p = tree.get<string>("request.protocol", ResponseCode.defaultProtocol);
       if (validateProtocol(p)){
-        reque->push(ResponseCode.defaultProtocol);
+        if(reque){
+        reque->push(ResponseCode.defaultProtocol);}
         return false;
       }
 
       string m = tree.get<string>("request.method", ResponseCode.defaultMethod);
       if (validateMethod(m)){
-        reque->push(ResponseCode.defaultMethod);
+        if(reque){
+        reque->push(ResponseCode.defaultMethod);}
         return false;
       }
 
       string ref = tree.get<string>("request.reference", ResponseCode.defaultReference);
       if (validateReference(ref)){
-        reque->push(ResponseCode.defaultReference);
+        if (reque){
+        reque->push(ResponseCode.defaultReference);}
         return false;
       }
       return true;
@@ -105,19 +136,23 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
     case ResponseCode.cppRequestType:
       string git = tree.get<string>("request.git_adress",  ResponseCode.defaultGit);
       if (validateAdress(git)){
-        reque->push(ResponseCode.defaultGit);
+        if(reque){
+        reque->push(ResponseCode.defaultGit);}
         return false;
       }
 
       string target = tree.get<string>("request.target", DEF);
       if (validateTarget(target)){
-        reque->push(ResponseCode.defaultTarget);
+        if (reque){
+        reque->push(ResponseCode.defaultTarget);}
         return false;
       }
       return true;
 
     default:
+      if (reque){
       reque->push(ResponseCode.temporary);
+      }
       return false;
   }
 
