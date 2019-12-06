@@ -3,12 +3,6 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
-#define BAD_REQUEST_TYPE "NO TYPE"
-#define DEF_ID "NO ID FOUND"
-#define DEF "DEFAULT ANSWER"
-#define CPP "CPP TEST"
-#define WEB "WEB TEST"
-
 using namespace std;
 namespace pt = boost::property_tree;
 
@@ -64,43 +58,66 @@ string Parser::get_request() const
 bool Parser::validateRequestTree(const pt::ptree tree) const
 {
   //получаем тип заявки
-  string request_type = tree.get<string>("request.request_type", BAD_REQUEST_TYPE);
-  if (request_type == BAD_REQUEST_TYPE)
-    return false; //нет типа заявки
+  string request_type = tree.get<string>
+  ("request.request_type", ResponseCode.invalidRequestStructure);
 
-  string id = tree.get<string>("request.id", DEF);
+  if (request_type == ResponseCode.invalidRequestStructure){
+      reque->push(ResponseCode.invalidRequestStructure);
+      return false;
+  }
 
-  if(id == DEF_ID)
-    return false; //нет id
+  string id = tree.get<string>("request.id", ResponseCode.defaultId);
+
+  if(id == ResponseCode.defaultId){
+    reque->push(ResponseCode.defaultId);
+    return false;
+  }
 
   switch (request_type) {
-    //проверка валидности для веба
-    case WEB:
-      string host = tree.get<string>("request.host", DEF);
-      if (validateHost(host))
+
+    case ResponseCode.webRequestType:
+      string host = tree.get<string>("request.host", ResponseCode.defaultHost);
+      if (validateHost(host)){
+        reque->push(ResponseCode.defaultHost);
         return false;
-      string p = tree.get<string>("request.protocol", DEF);
-      if (validateProtocol(p))
+      }
+
+      string p = tree.get<string>("request.protocol", ResponseCode.defaultProtocol);
+      if (validateProtocol(p)){
+        reque->push(ResponseCode.defaultProtocol);
         return false;
-      string m = tree.get<string>("request.method", DEF);
-      if (validateMethod(m))
+      }
+
+      string m = tree.get<string>("request.method", ResponseCode.defaultMethod);
+      if (validateMethod(m)){
+        reque->push(ResponseCode.defaultMethod);
         return false;
-      string ref = tree.get<string>("request.reference", DEF);
-      if (validateReference(ref))
+      }
+
+      string ref = tree.get<string>("request.reference", ResponseCode.defaultReference);
+      if (validateReference(ref)){
+        reque->push(ResponseCode.defaultReference);
         return false;
+      }
       return true;
 
     //проверка валидности для си
-    case CPP:
-      string git = tree.get<string>("request.git_adress", DEF);
-      if (validateAdress(git))
+    case ResponseCode.cppRequestType:
+      string git = tree.get<string>("request.git_adress",  ResponseCode.defaultGit);
+      if (validateAdress(git)){
+        reque->push(ResponseCode.defaultGit);
         return false;
+      }
+
       string target = tree.get<string>("request.target", DEF);
-      if (validateTarget(target))
+      if (validateTarget(target)){
+        reque->push(ResponseCode.defaultTarget);
         return false;
+      }
       return true;
 
     default:
+      reque->push(ResponseCode.temporary);
       return false;
   }
 
