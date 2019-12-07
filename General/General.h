@@ -10,6 +10,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <mutex>
 #include <thread>
 #include <vector>
 #include <memory>
@@ -22,7 +23,7 @@ public:
 
     void turnOn();
     void turnOff();
-    int getRequest(std::string request);
+    void getRequest(std::string request);
 private:
     std::shared_ptr<Queue<std::string>> rqueue;
     std::shared_ptr<Queue<std::string>> pqueue;

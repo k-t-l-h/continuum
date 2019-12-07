@@ -49,3 +49,10 @@ void General::turnOff() {
     }
     std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join()));
 }
+
+void General::getRequest(std::string request) {
+    std::unique_lock<std::mutex> lock(m);
+    *rqueue->push(request);
+    notified = true;
+    condition.notify_one();
+}
