@@ -64,12 +64,12 @@ void workThread(const std::string& request)
     {
       string request_type = tree.get<string>("request.request_type");
       switch (request_type) {
-        case CPP:
+        case ResponseCode.cppRequestType:
           CTestGeneration ctg = CTestGeneration(request, wque);
           ctg.convertToTestCase();
           ctg.sendToWorker();
         break;
-        case WEB:
+        case ResponseCode.webRequestType:
           WebTestGeneration wtg = WebTestGeneration(request, wque);
           wtg.convertToTestCase();
           wtg.sendToWorker();
