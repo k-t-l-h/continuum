@@ -23,12 +23,16 @@ void Parser::setStatus(bool newStatus){
 
 void Parser::workCycle() const
 {
+  unique_lock<std::mutex> lock(m);
   //bool состояния
   while(workStatus){
-      //получаем заявку и создаем
+      //избавляемся от внезапных пробуждений
+      while (!notified) {
+        condition.wait(lock);
+      }
+
       if (!rque.isEmpty()){
         string request = get_request();
-
         bool flag = true;
 
         while(flag) {
@@ -37,10 +41,10 @@ void Parser::workCycle() const
           pmutex.unlock();
           //ждем?
         }
-
         thread t(workThread, &request);
         t.detach();
       }
+      notified = false;
     }
 };
 

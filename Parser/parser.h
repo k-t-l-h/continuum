@@ -14,6 +14,10 @@
 using namespace std;
 
 mutex pmutex;
+//глобальные переменные
+mutex m;
+condition_variable condition;
+bool notified;
 
 class Parser
 {
