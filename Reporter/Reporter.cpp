@@ -1,16 +1,25 @@
 #include "Reporter.h"
 #include "../Queue/Queue.h"
 
-Reporter::Reporter(::Queue<JsonObject> *queue, DataBase *db) : Queue(Queue), DB(DB)
+Reporter::Reporter(::Queue<JsonObject> *queue, DataBase *db) : queue(queue), db(db)
 {}
 
+void Reporter::setWorkingState(bool status) {
+    workSatus = status;
+}
+
 void Reporter::WorkCycle() {
-    while (true) {
+    while (workStatus) {
         if (!Queue->empty()) {
             JsonObject obj = Queue->pop();
-            PutInDB(obj);
+            putInDB(obj);
             std::thread t(std::bind(&Reporter::Notify, this));
             t.detach();
         }
     }
+}
+
+bool putInDB(const JsonObject& elem) {
+    db->insert(elem);
+    return true;
 }

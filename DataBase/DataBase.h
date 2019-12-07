@@ -99,15 +99,15 @@ public:
 
     ~Database();
 
-    void Insert(std::string report);
+    void insert(std::string report);
 
-    bool Select(int id, std::string &report);
+    bool select(int id, std::string &report);
 
 private:
 
-    sql::connection *DB;
+    sql::connection *db;
 
-    Table Reporters;
+    Table reporters;
 
 };
 

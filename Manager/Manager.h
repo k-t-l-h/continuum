@@ -1,5 +1,5 @@
-#ifndef CONTINUUM_WORKER_H
-#define CONTINUUM_WORKER_H
+#ifndef CONTINUUM_MANAGER_H
+#define CONTINUUM_MANAGER_H
 
 #include <vector>
 #include "../Container/Container.h"
@@ -20,10 +20,11 @@ public:
 
     const std::vector<Container *>& GetContainers() const;
 
-    int GetCountContainers() const;
+    int getCountContainers() const;
 
+    void workCycle();
 
-    void WorkCycle();
+    void setWorkingState(bool WorkSatus);
 
 private:
 
@@ -31,7 +32,9 @@ private:
 
     Queue<JsonObject> *QueueOut;
 
-    std::vector<Container> Containers;
+    std::vector<Container> containers;
+
+    bool workSatus = true;
 
 };
 
