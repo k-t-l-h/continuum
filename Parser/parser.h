@@ -13,6 +13,8 @@
 
 using namespace std;
 
+mutex pmutex;
+
 class Parser
 {
     public:
