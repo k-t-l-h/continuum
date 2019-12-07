@@ -4,26 +4,26 @@
 
 #include "Container.h"
 
-int Container::DoTest(TestCase &test) {
+int Container::DoTdst(TestCase &test) {
     free_state = false;
-    ClearAnswer();
-    if( ValidateTest(test) )
+    clearAnswer();
+    if( validateTest(test) )
     {
         rqueue->push("error");
         return TEST_ERR;
     }
-    if( SendTestToDocker(test) ) return DOCKER_ERR;
-    if( WaitForTestEnd() ) return TEST_ERR;
-    if( GenerateAnswer() ) return QUEUE_ERR;
+    if( sendTestToDocker(test) ) return DOCKER_ERR;
+    if( waitForTestEnd() ) return TEST_ERR;
+    if( generateAnswer() ) return QUEUE_ERR;
     free_state = true;
     return DONE;
 }
 
-int Container::ClearAnswer() {
+int Container::clearAnswer() {
     answer = nullptr;
 }
 
-int Container::ValidateTest(const WebTestCase *test) const {
+int Container::validateTest(const WebTestCase *test) const {
     if ( !test->host ) return TEST_ERR;
     command = "";
     std::string image = "web";
@@ -58,7 +58,7 @@ int Container::ValidateTest(const WebTestCase *test) const {
     return Done;
 }
 
-int Container::SendTestToDocker(const WebTestCase *test) {
+int Container::sendTestToDocker(const WebTestCase *test) {
     std::array<char, 128> buffer;
     answer = "";
     std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command, "r"), pclose);
@@ -67,7 +67,7 @@ int Container::SendTestToDocker(const WebTestCase *test) {
     }
 }
 
-int Container::GenerateAnswer() {
+int Container::generateAnswer() {
     rqueue->push(answer);
     return Done;
 }

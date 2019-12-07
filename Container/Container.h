@@ -22,17 +22,17 @@ public:
     Container(std::shared_ptr<Queue<std:string>> rq) : rqueue(rq), answer(0), command(0), free_state(true) {};
     ~Container();
 
-    bool IsFree() const;
-    int DoTest(TestCase &test);
+    bool isFree() const;
+    int doTest(TestCase &test);
 	
 private:
-	int ClearAnswer();
-	int ValidateTest(const WebTestCase *test) const;
-    int ValidateTest(const CTestCase *test) const;
-	int SendTestToDocker(const WebTestCase *test);
-	int SendTestToDocker(const CTestCase *test);
-	int WaitForTestEnd();
-	int GenerateAnswer();
+	int clearAnswer();
+	int validateTest(const WebTestCase *test) const;
+    int validateTest(const CTestCase *test) const;
+	int sendTestToDocker(const WebTestCase *test);
+	int sendTestToDocker(const CTestCase *test);
+	int waitForTestEnd();
+	int generateAnswer();
 	
 private:
     bool free_state;

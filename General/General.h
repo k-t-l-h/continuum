@@ -20,9 +20,9 @@ public:
     General(int cont_count = 3, int p_count = 1, int m_count = 1, int r_count = 1);
     ~General();
 
-    void TurnOn();
-    void TurnOff();
-    int GetRequest(std::string request);
+    void turnOn();
+    void turnOff();
+    int getRequest(std::string request);
 private:
     std::shared_ptr<Queue<std::string>> rqueue;
     std::shared_ptr<Queue<std::string>> pqueue;

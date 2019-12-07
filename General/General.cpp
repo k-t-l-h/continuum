@@ -13,7 +13,7 @@ General::General(int cont_count, int p_count, int m_count, int r_count) {
         reporters.push_back(Reporter(rqueue, db));
 }
 
-void General::TurnOn() {
+void General::turnOn() {
     for (auto ptr = parser.begin(); ptr < parsers.end(); ptr++)
     {
         *ptr->setWorkingState(true);
@@ -34,7 +34,7 @@ void General::TurnOn() {
     }
 }
 
-void General::Turnoff() {
+void General::turnOff() {
     for (auto ptr = parser.begin(); ptr < parsers.end(); ptr++)
     {
         *ptr->setWorkingState(false);
