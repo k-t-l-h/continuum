@@ -1,6 +1,8 @@
 #ifndef CTESTGENERATION_H
 #define CTESTGENERATION_H
 
+#include <memory>
+
 using namespace std;
 
 class CTestGeneration: public AbstractTestGeneration

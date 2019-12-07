@@ -1,5 +1,10 @@
 #include "parser.h"
 
+#include <memory>
+#include <mutex>
+#include <atomic>
+#include <condition_variable>
+#include <thread>
 
 using namespace std;
 namespace pt = boost::property_tree;

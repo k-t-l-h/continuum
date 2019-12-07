@@ -12,6 +12,7 @@
 #include <thread>
 
 using namespace std;
+namespace pt = boost::property_tree;
 
 mutex pmutex;
 //глобальные переменные
