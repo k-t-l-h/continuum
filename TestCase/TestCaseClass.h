@@ -4,9 +4,9 @@
 class TestCase
 {
 public:
-  virtual TestCase() =0;
+  //virtual TestCase() =0;
   virtual ~TestCase() =0;
-  int id;
+  string id;
 };
 
-#endif TEST_CASE_CLASS_H
+#endif //TEST_CASE_CLASS_H
