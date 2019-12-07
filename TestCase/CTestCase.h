@@ -1,19 +1,22 @@
 #ifndef CTEST_CASE_H
 #define CTEST_CASE_H
 
+#include "TestCaseClass.h"
+#include <string>
+
 using namespace std;
 
 class CTestCase: public TestCase
 {
 public:
-  CTestCase();
-  CTestCase(int id, string git_adress, string target);
+  CTestCase(string _id, string _git_adress, string _target):
+  id(_id), git_adress(_git_adress), target(_target);
   ~CTestCase();
 
   CTestCase(const CTestCase&) = delete;
   CTestCase operator=(const CTestCase&) = delete;
 
-  int id;
+  string id;
   string git_adress;
   string target;
 };
