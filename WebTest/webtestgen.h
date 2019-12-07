@@ -23,7 +23,7 @@ public:
 
 private:
   shared_ptr<Queue<TestCase*>> wque;
-  WebTestCase tcase;
+  WebTestCase* tcase;
   string request;
 
 };
