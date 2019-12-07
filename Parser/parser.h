@@ -1,8 +1,15 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
 #include <mutex>
 #include <atomic>
+#include <condition_variable>
+#include <thread>
 
 using namespace std;
 
@@ -19,10 +26,11 @@ class Parser
 
       ~Parser();
       void workCycle() const;
+      void setStatus();
 
     private:
-      mutex pmutex;
-      unsigned int sizePool;
+      bool workStatus;
+      atomic_uint sizePool;
       unsigned int maxPool;
 
       string& get_request() const;

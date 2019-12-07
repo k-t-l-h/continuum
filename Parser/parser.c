@@ -1,8 +1,5 @@
 #include "parser.h"
 
-#include <thread>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 
 using namespace std;
 namespace pt = boost::property_tree;
@@ -12,20 +9,22 @@ namespace pt = boost::property_tree;
 Parser::Parser(shared_ptr<Queue<std::string>> _rque,
 shared_ptr<Queue<TestCase*>> _wque,
 shared_ptr<Queue<std::string>> _reque):
-rque(_rque), wque(_wque), reque(_reque)
+rque(_rque), wque(_wque), reque(_reque), workStatus(false),
 {
   maxPool = thread::hardware_concurrency();
   sizePool = 0;
 };
 
-Parser::~Parser(){
+Parser::~Parser(){};
 
+void Parser::setStatus(bool newStatus){
+  workStatus = newStatus;
 };
 
 void Parser::workCycle() const
 {
-
-  while(true){
+  //bool состояния
+  while(workStatus){
       //получаем заявку и создаем
       if (!rque.isEmpty()){
         string request = get_request();
@@ -47,9 +46,7 @@ void Parser::workCycle() const
 
 void workThread(const std::string& request)
 {
-  pmutex.lock();
-  sizePool++;
-  pmutex.unlock();
+  sizePool.fetch_add(1);
 
   pt::ptree tree;
   pt::read_json(request, tree);
@@ -71,9 +68,7 @@ void workThread(const std::string& request)
       }
     }
 
-    pmutex.lock();
-    sizePool--;
-    pmutex.unlock();
+    sizePool.fetch_sub(1);
 }
 
 string Parser::get_request() const
