@@ -5,10 +5,12 @@
 #include <boost/property_tree/json_parser.hpp>
 
 #include <memory>
+#include <vector>
 #include <mutex>
-#include <atomic>
 #include <condition_variable>
 #include <thread>
+#include <iostream>
+#include <functional>
 
 using namespace std;
 namespace pt = boost::property_tree;
@@ -36,8 +38,9 @@ class Parser
 
     private:
       bool workStatus;
-      atomic_uint sizePool;
       unsigned int maxPool;
+
+      vector<thread> threadPool;
 
       string& get_request() const;
       void workThread(const string& s);
@@ -60,9 +63,9 @@ class Parser
         const string invalidRequestStructure = "Invalid structute";
         const string defaultId = "Invalid ID";
 
-        const strinf invalidRequestType = "Untyped request";
-        const string cppRequestType = "CPP";
-        const string webRequestType = "WEB";
+        const int invalidRequestType = -1;
+        const int cppRequestType =  0;
+        const int webRequestType = 1;
 
         const string defaultHost = "Invalid host";
         const string defaultProtocol = "Invalid protocol";
@@ -73,7 +76,7 @@ class Parser
         const string defaultGit = "Invalid Git Adress";
 
         const string temporary = "Sorry";
-      };
+      } codes;
 
 };
 

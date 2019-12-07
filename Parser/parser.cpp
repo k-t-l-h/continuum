@@ -1,8 +1,8 @@
 #include "parser.h"
+#include "../CTest/ctestgen.h"
 
 #include <memory>
 #include <mutex>
-#include <atomic>
 #include <condition_variable>
 #include <thread>
 
@@ -16,11 +16,15 @@ shared_ptr<Queue<TestCase*>> _wque,
 shared_ptr<Queue<std::string>> _reque):
 rque(_rque), wque(_wque), reque(_reque), workStatus(false),
 {
-  maxPool = thread::hardware_concurrency();
-  sizePool = 0;
+    maxPool = thread::hardware_concurrency();
+    for(int i = 0; i < maxPool; i++){
+    threadPool.push_back(std::thread(std::bind(&Parser::workCycle, this)));
+  }
 };
 
-Parser::~Parser(){};
+Parser::~Parser(){
+  for_each(threadPool.begin(), threadPool.end(), mem_fn(&thread::join));
+};
 
 void Parser::setStatus(bool newStatus){
   workStatus = newStatus;
@@ -36,18 +40,9 @@ void Parser::workCycle() const
         condition.wait(lock);
       }
 
-      if (!rque.isEmpty()){
+      if (!rque->empty()){
         string request = get_request();
-        bool flag = true;
-
-        while(flag) {
-          pmutex.lock();
-          if(sizePool < maxPool) flag = false;
-          pmutex.unlock();
-          //ждем?
-        }
-        thread t(workThread, &request);
-        t.detach();
+        workThread(request);
       }
       notified = false;
     }
@@ -55,58 +50,54 @@ void Parser::workCycle() const
 
 void workThread(const std::string& request)
 {
-  sizePool.fetch_add(1);
-
   pt::ptree tree;
   pt::read_json(request, tree);
 
   if (validateRequestTree(tree))
     {
-      string request_type = tree.get<string>("request.request_type");
+      int request_type = tree.get<int>("request.request_type");
       switch (request_type) {
-        case ResponseCode.cppRequestType:
-          CTestGeneration ctg = CTestGeneration(request, wque);
-          ctg.convertToTestCase();
-          ctg.sendToWorker();
+        case codes.cppRequestType:
+          CTestGeneration* ctg = new CTestGeneration(request, wque);
+          ctg->convertToTestCase();
+          ctg->sendToWorker();
         break;
-        case ResponseCode.webRequestType:
-          WebTestGeneration wtg = WebTestGeneration(request, wque);
-          wtg.convertToTestCase();
-          wtg.sendToWorker();
+        case codes.webRequestType:
+          WebTestGeneration* wtg = new WebTestGeneration(request, wque);
+          wtg->convertToTestCase();
+          wtg->sendToWorker();
         break;
       }
     }
-
-    sizePool.fetch_sub(1);
 }
 
 string Parser::get_request() const
 {
-  return rque.pop();
+  return rque->pop();
 };
 
 bool Parser::validateRequestTree(const pt::ptree tree) const
 {
   //получаем тип заявки
-  string request_type = tree.get<string>
-  ("request.request_type", ResponseCode.invalidRequestStructure);
+  int request_type = tree.get<int>
+  ("request.request_type", codes.invalidRequestStructure);
 
-  if (request_type == ResponseCode.invalidRequestStructure){
-      reque->push(ResponseCode.invalidRequestStructure);
+  if (request_type == codes.invalidRequestStructure){
+      reque->push(codes.invalidRequestStructure);
       return false;
   }
 
-  string id = tree.get<string>("request.id", ResponseCode.defaultId);
+  string id = tree.get<string>("request.id", codes.defaultId);
 
-  if(id == ResponseCode.defaultId){
+  if(id == codes.defaultId){
     if(reque){
-    reque->push(ResponseCode.defaultId);}
+    reque->push(codes.defaultId);}
     return false;
   }
 
   switch (request_type) {
 
-    case ResponseCode.webRequestType:
+    case codes.webRequestType:
       string host = tree.get<string>("request.host", ResponseCode.defaultHost);
       if (validateHost(host)){
         if(reque){
@@ -114,48 +105,48 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
         return false;
       }
 
-      string p = tree.get<string>("request.protocol", ResponseCode.defaultProtocol);
+      string p = tree.get<string>("request.protocol", codes.defaultProtocol);
       if (validateProtocol(p)){
         if(reque){
-        reque->push(ResponseCode.defaultProtocol);}
+        reque->push(codes.defaultProtocol);}
         return false;
       }
 
-      string m = tree.get<string>("request.method", ResponseCode.defaultMethod);
+      string m = tree.get<string>("request.method", codes.defaultMethod);
       if (validateMethod(m)){
         if(reque){
-        reque->push(ResponseCode.defaultMethod);}
+        reque->push(codes.defaultMethod);}
         return false;
       }
 
-      string ref = tree.get<string>("request.reference", ResponseCode.defaultReference);
+      string ref = tree.get<string>("request.reference", codes.defaultReference);
       if (validateReference(ref)){
         if (reque){
-        reque->push(ResponseCode.defaultReference);}
+        reque->push(codes.defaultReference);}
         return false;
       }
       return true;
 
     //проверка валидности для си
-    case ResponseCode.cppRequestType:
-      string git = tree.get<string>("request.git_adress",  ResponseCode.defaultGit);
+    case codes.cppRequestType:
+      string git = tree.get<string>("request.git_adress",  codes.defaultGit);
       if (validateAdress(git)){
         if(reque){
-        reque->push(ResponseCode.defaultGit);}
+        reque->push(codes.defaultGit);}
         return false;
       }
 
       string target = tree.get<string>("request.target", DEF);
       if (validateTarget(target)){
         if (reque){
-        reque->push(ResponseCode.defaultTarget);}
+        reque->push(codes.defaultTarget);}
         return false;
       }
       return true;
 
     default:
       if (reque){
-      reque->push(ResponseCode.temporary);
+      reque->push(codes.temporary);
       }
       return false;
   }
