@@ -9,6 +9,21 @@
 using namespace std;
 namespace pt = boost::property_tree;
 
+struct dbFormatter{
+	string id;
+	string status;
+};
+
+string to_json(dbFormatter const& obj) {
+      pt::ptree out;
+      out.put("dbFormatter.id",          obj.id);
+      out.put("dbFormatter.status",    obj.status);
+      ostringstream oss;
+      pt::write_json(oss, out);
+      return oss.str();
+}
+
+
 //парсер не должен быть владельцем базового ресурса,
 //владельцем является general
 Parser::Parser(shared_ptr<Queue<std::string>> _rque,
@@ -82,16 +97,20 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
   int request_type = tree.get<int>
   ("request.request_type", codes.invalidRequestStructure);
 
+  string id = tree.get<string>("request.id", codes.defaultId);
+
   if (request_type == codes.invalidRequestStructure){
-      reque->push(codes.invalidRequestStructure);
+
+      dbFormatter obj {id, codes.invalidRequestStructure};
+      string response = to_json(obj);
+      reque->push(response);
       return false;
   }
 
-  string id = tree.get<string>("request.id", codes.defaultId);
-
   if(id == codes.defaultId){
-    if(reque){
-    reque->push(codes.defaultId);}
+    dbFormatter obj {id, codes.defaultId};
+    string response = to_json(obj);
+    reque->push(response);
     return false;
   }
 
@@ -100,29 +119,34 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
     case codes.webRequestType:
       string host = tree.get<string>("request.host", ResponseCode.defaultHost);
       if (validateHost(host)){
-        if(reque){
-        reque->push(ResponseCode.defaultHost);}
+        dbFormatter obj {id, codes.defaultHost};
+        string response = to_json(obj);
+        reque->push(response);
+
         return false;
       }
 
       string p = tree.get<string>("request.protocol", codes.defaultProtocol);
       if (validateProtocol(p)){
-        if(reque){
-        reque->push(codes.defaultProtocol);}
+        dbFormatter obj {id, codes.defaultProtocol};
+        string response = to_json(obj);
+        reque->push(response);
         return false;
       }
 
       string m = tree.get<string>("request.method", codes.defaultMethod);
       if (validateMethod(m)){
-        if(reque){
-        reque->push(codes.defaultMethod);}
+        dbFormatter obj {id, codes.defaultMethod};
+        string response = to_json(obj);
+        reque->push(response);
         return false;
       }
 
       string ref = tree.get<string>("request.reference", codes.defaultReference);
       if (validateReference(ref)){
-        if (reque){
-        reque->push(codes.defaultReference);}
+        dbFormatter obj {id, codes.defaultReference};
+        string response = to_json(obj);
+        reque->push(response);
         return false;
       }
       return true;
@@ -131,23 +155,27 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
     case codes.cppRequestType:
       string git = tree.get<string>("request.git_adress",  codes.defaultGit);
       if (validateAdress(git)){
-        if(reque){
-        reque->push(codes.defaultGit);}
+        dbFormatter obj {id, codes.defaultGit};
+        string response = to_json(obj);
+        reque->push(response);
         return false;
       }
 
-      string target = tree.get<string>("request.target", DEF);
+      string target = tree.get<string>("request.target", codes.defaultTarget);
       if (validateTarget(target)){
-        if (reque){
-        reque->push(codes.defaultTarget);}
+        dbFormatter obj {id, codes.defaultTarget};
+        string response = to_json(obj);
+        reque->push(response);
         return false;
       }
       return true;
 
     default:
-      if (reque){
-      reque->push(codes.temporary);
-      }
+    if(reque){
+      dbFormatter obj {id, codes.temporary};
+      string response = to_json(obj);
+      reque->push(response);
+    }
       return false;
   }
 
