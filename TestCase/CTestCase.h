@@ -10,7 +10,7 @@ class CTestCase: public TestCase
 {
 public:
   CTestCase(string _id, string _git_adress, string _target):
-  id(_id), rtype(0), git_adress(_git_adress), target(_target);
+  id(_id), rtype(0), git_adress(_git_adress), target(_target){};
   ~CTestCase();
 
   CTestCase(const CTestCase&) = delete;
