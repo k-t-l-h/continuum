@@ -4,47 +4,58 @@
 
 #include "Container.h"
 
-int Container::DoTdst(TestCase &test) {
+int Container::doTest(TestCase *test) {
     free_state = false;
     clearAnswer();
-    if( validateTest(test) )
-    {
-        rqueue->push("error");
-        return TEST_ERR;
+    auto webTest = (WebTestCase *)test;
+    if (webTest->rtype == 1) {
+        if (collectWebDockerCommand(webTest)) {
+            rqueue->push("error");
+            return TEST_ERR;
+        }
     }
-    if( sendTestToDocker(test) ) return DOCKER_ERR;
-    if( waitForTestEnd() ) return TEST_ERR;
+    auto cTest = (CTestCase *)test;
+    if (cTest->rtype == 0) {
+        if (collectCDockerCommand(cTest)) {
+            rqueue->push("error");
+            return TEST_ERR;
+        }
+    }
+    if( sendTestToDocker() ) return DOCKER_ERR;
     if( generateAnswer() ) return QUEUE_ERR;
     free_state = true;
     return DONE;
 }
 
 int Container::clearAnswer() {
-    answer = nullptr;
+    answer.clear();
+    return DONE;
 }
 
-int Container::validateTest(const WebTestCase *test) const {
-    if ( !test->host ) return TEST_ERR;
-    command = "";
+int Container::collectWebDockerCommand(const WebTestCase *test) {
+    if ( (test->host).empty() ) return TEST_ERR;
+    command.clear();
     std::string image = "web";
     std::string protocol;
     std::string method;
-    switch( test->protocol ) {
+    switch( test->p ) {
         case 0:
             protocol =  "http://";
             break;
         case 1:
             protocol = "https://";
             break;
+        default:
+            return TEST_ERR;
     }
-    switch( test->method ) {
+    switch( test->m ) {
         case 0:
             method = "OPTIONS";
             break;
-        case 0:
+        case 1:
             method = "GET";
             break;
-        case 0:
+        case 2:
             method = "POST";
             break;
         case 3:
@@ -53,15 +64,21 @@ int Container::validateTest(const WebTestCase *test) const {
         case 4:
             method = "DELETE";
             break;
+        default:
+            return TEST_ERR;
     }
-    command = "docker run web http -p h " + method + " " + protocol + host;
-    return Done;
+    command += "docker run web http -p h " + method + " " + protocol + test->host;
+    return DONE;
 }
 
-int Container::sendTestToDocker(const WebTestCase *test) {
-    std::array<char, 128> buffer;
+int Container::collectCDockerCommand(const CTestCase *test) {
+    return TEST_ERR;
+}
+
+int Container::sendTestToDocker() {
+    std::array<char, 128> buffer{};
     answer = "";
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command, "r"), pclose);
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
         answer += buffer.data();
     }
@@ -69,5 +86,9 @@ int Container::sendTestToDocker(const WebTestCase *test) {
 
 int Container::generateAnswer() {
     rqueue->push(answer);
-    return Done;
+    return DONE;
+}
+
+bool Container::isFree() const {
+    return free_state;
 }

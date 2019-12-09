@@ -8,7 +8,11 @@
 
 #include <string>
 #include <memory>
+#include <cstdio>
 #include "../Queue/Queue.h"
+#include "../TestCase/TestCaseClass.h"
+#include "../TestCase/CTestCase.h"
+#include "../TestCase/WebTestCase.h"
 
 #define DONE 0
 #define TEST_ERR -1
@@ -19,26 +23,24 @@
 
 class Container {
 public:
-    Container(std::shared_ptr<Queue<std:string>> rq) : rqueue(rq), answer(0), command(0), free_state(true) {};
+    Container(std::shared_ptr<Queue<std::string>> &rq) : rqueue(rq), answer(""), command(""), free_state(true) {};
     ~Container();
 
     bool isFree() const;
-    int doTest(TestCase &test);
+    int doTest(TestCase *test);
 	
 private:
 	int clearAnswer();
-	int validateTest(const WebTestCase *test) const;
-    int validateTest(const CTestCase *test) const;
-	int sendTestToDocker(const WebTestCase *test);
-	int sendTestToDocker(const CTestCase *test);
-	int waitForTestEnd();
+	int collectWebDockerCommand(const WebTestCase *test);
+    int collectCDockerCommand(const CTestCase *test);
+	int sendTestToDocker();
 	int generateAnswer();
 	
 private:
     bool free_state;
     std::string answer;
     std::string command;
-    std::shared_ptr<Queue<std:string>> rqueue;
+    std::shared_ptr<Queue<std::string>> rqueue;
 };
 
 
