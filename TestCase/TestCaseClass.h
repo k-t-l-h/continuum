@@ -7,6 +7,7 @@ public:
   //virtual TestCase() =0;
   virtual ~TestCase() =0;
   string id;
+  int rtype;
 };
 
 #endif //TEST_CASE_CLASS_H

@@ -11,7 +11,7 @@ class WebTestCase: public TestCase
 public:
   WebTestCase();
   WebTestCase(string _id, string _host, int _p, int _m, int _reference):
-  id(_id), host(_host), p(_p), m(_m), reference(_reference){};
+  id(_id), rtype(1), host(_host), p(_p), m(_m), reference(_reference){};
 
   WebTestCase(const WebTestCase&) = delete;
   WebTestCase operator=(const WebTestCase&) = delete;
@@ -19,6 +19,7 @@ public:
   ~WebTestCase();
 
   string id;
+  int rtype;
   string host;
 
   enum protocol {HTTP, HTTPS};
