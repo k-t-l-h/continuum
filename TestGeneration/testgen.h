@@ -4,7 +4,7 @@
 class AbstractTestGeneration
 {
     public:
-      virtual AbstractTestGeneration() =0; //конструктор
+      //virtual AbstractTestGeneration() =0; //конструктор
       virtual AbstractTestGeneration(const JsonObject req, Queue<TestCase> &wque)) =0;
       virtual ~AbctractTestGeneration() =0; //декструктор
 

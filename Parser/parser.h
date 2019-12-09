@@ -1,7 +1,25 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
+#include <memory>
+#include <vector>
+#include <mutex>
+#include <condition_variable>
+#include <thread>
+#include <iostream>
+#include <functional>
+
 using namespace std;
+namespace pt = boost::property_tree;
+
+mutex pmutex;
+//глобальные переменные
+mutex m;
+condition_variable condition;
+bool notified;
 
 class Parser
 {
@@ -16,8 +34,14 @@ class Parser
 
       ~Parser();
       void workCycle() const;
+      void setStatus();
 
     private:
+      bool workStatus;
+      unsigned int maxPool;
+
+      vector<thread> threadPool;
+
       string& get_request() const;
       void workThread(const string& s);
       bool validateRequest(const string &request) const;
@@ -39,9 +63,9 @@ class Parser
         const string invalidRequestStructure = "Invalid structute";
         const string defaultId = "Invalid ID";
 
-        const strinf invalidRequestType = "Untyped request";
-        const string cppRequestType = "CPP";
-        const string webRequestType = "WEB";
+        const int invalidRequestType = -1;
+        const int cppRequestType =  0;
+        const int webRequestType = 1;
 
         const string defaultHost = "Invalid host";
         const string defaultProtocol = "Invalid protocol";
@@ -52,7 +76,7 @@ class Parser
         const string defaultGit = "Invalid Git Adress";
 
         const string temporary = "Sorry";
-      };
+      } codes;
 
 };
 
