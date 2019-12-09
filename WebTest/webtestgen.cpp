@@ -19,7 +19,7 @@ void WebTestGeneration::convertToTestCase(){
   int ref = tree.get<int>("request.reference", 200);
 
   //вызвать конструктор тест кейса
-  tcase = new CTestCase(id, host, p, m, ref);
+  tcase = new WebTestCase(id, host, p, m, ref);
 };
 
 
