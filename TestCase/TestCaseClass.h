@@ -1,6 +1,10 @@
 #ifndef TEST_CASE_CLASS_H
 #define TEST_CASE_CLASS_H
 
+using namespace std;
+
+#include <string>
+
 class TestCase
 {
 public:
