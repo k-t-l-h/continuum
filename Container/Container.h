@@ -9,9 +9,6 @@
 #include <string>
 #include <memory>
 #include "../Queue/Queue.h"
-#include "../TestCase/TestCaseClass.h"
-#include "../TestCase/CTestCase.h"
-#include "../TestCase/WebTestCase.h"
 
 #define DONE 0
 #define TEST_ERR -1
@@ -30,10 +27,11 @@ public:
 	
 private:
 	int clearAnswer();
-	int validateWebTest(const WebTestCase *test) const;
-    int validateCTest(const CTestCase *test) const;
-	int sendWebTestToDocker(const WebTestCase *test);
-	int sendCTestToDocker(const CTestCase *test);
+	int validateTest(const WebTestCase *test) const;
+    int validateTest(const CTestCase *test) const;
+	int sendTestToDocker(const WebTestCase *test);
+	int sendTestToDocker(const CTestCase *test);
+	int waitForTestEnd();
 	int generateAnswer();
 	
 private:
