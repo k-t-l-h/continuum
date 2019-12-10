@@ -5,8 +5,8 @@
 #include "../Parser/Parser.h"
 #include "../Manager/Manager.h"
 #include "../Reporter/Reporter.h"
-#include "../TestCase/TestCase.h"
-#include "../DataBase/DataBase.h"
+#include "../TestCase/TestCaseClass.h"
+#include "../Database/Database.h"
 
 #include <algorithm>
 #include <functional>
@@ -33,6 +33,6 @@ private:
     std::vector<Manager> managers;
     std::vector<Reporter> reporters;
     std::vector<std::thread> threads;
-}
+};
 
 #endif //CONTINUUM_GENERAL_H
