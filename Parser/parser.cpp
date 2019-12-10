@@ -15,8 +15,8 @@ struct dbFormatter{
 
 string to_json(dbFormatter const& obj) {
       pt::ptree out;
-      out.put("dbFormatter.id",          obj.id);
-      out.put("dbFormatter.status",    obj.status);
+      out.put("response.id",          obj.id);
+      out.put("response.status",    obj.status);
       ostringstream oss;
       pt::write_json(oss, out);
       return oss.str();
