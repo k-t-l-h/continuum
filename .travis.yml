@@ -1,0 +1,23 @@
+dist: xenial #с этого года по дефолту
+sudo: required
+
+language: cpp
+
+os:
+  - linux
+
+compiler:
+  - gcc
+
+install:
+  - source ci/travis/install-linux.sh
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+
+notifications:
+  email:
+    - laciedreamer@gmail.com

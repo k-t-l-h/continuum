@@ -3,6 +3,13 @@
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include "../Queue/Queque.h"
+#include "../TestCase/TestCaseClass.h"
+#include "../TestCase/CTestCase.h"
+#include "../TestCase/WebTestCase.h"
+#include "../TestGeneration/testgen.h"
+#include "../CTest/ctestgen.h"
+#include "../WebTest/webtestgen.h"
 
 #include <memory>
 #include <vector>
