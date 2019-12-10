@@ -1,11 +1,11 @@
 #include "Reporter.h"
 #include "../Queue/Queue.h"
 
-Reporter::Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<DataBase> db) : queue(queue), db(db)
+Reporter::Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<Database> db) : queue(queue), db(db)
 {}
 
 void Reporter::setWorkingState(bool status) {
-    workSatus = status;
+    workStatus = status;
 }
 
 void Reporter::WorkCycle() {
@@ -19,7 +19,7 @@ void Reporter::WorkCycle() {
     }
 }
 
-bool putInDB(const JsonObject& elem) {
+bool putInDB(const std::string& elem) {
     db->insert(elem);
     return true;
 }
