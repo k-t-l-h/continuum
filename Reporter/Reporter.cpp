@@ -8,12 +8,12 @@ void Reporter::setWorkingState(bool status) {
     workStatus = status;
 }
 
-void Reporter::WorkCycle() {
+void Reporter::workCycle() {
     while (workStatus) {
-        if (!Queue->empty()) {
+        if (!queue->empty()) {
             std::string obj = Queue->pop();
             putInDB(obj);
-            std::thread t(std::bind(&Reporter::Notify, this));
+            std::thread t(std::bind(&Reporter::notify, this));
             t.detach();
         }
     }

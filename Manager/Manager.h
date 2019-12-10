@@ -31,9 +31,9 @@ public:
 
 private:
 
-    std::shared_ptr<Queue<TestCase *>> *QueueIn;
+    std::shared_ptr<Queue<TestCase *>> QueueIn;
 
-    std::shared_ptr<std::string> *QueueOut;
+    std::shared_ptr<std::string> QueueOut;
 
     std::vector<Container> containers;
 

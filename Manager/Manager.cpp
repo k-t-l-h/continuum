@@ -7,7 +7,7 @@ Manager::Manager(std::shared_ptr<Queue<TestCase *>> QueueIn, std::shared_ptr<Que
 {}
 
 int Manager::GetCountContainers() const {
-    return Containers.size();
+    return containers.size();
 }
 
 void Manager::setWorkingState(bool status) {
@@ -18,9 +18,9 @@ void Manager::workCycle() {
     while (workSatus) {
         if (!QueueIn->empty()) {
             TestCase* test = QueueIn->pop();
-            for (auto& container : Containers)
+            for (auto& container : containers)
                 if (container.isFree()) {
-                    std::thread t(std::bind(&Container::doTest, container, *test));
+                    std::thread t(std::bind(&Container::doTest, container, test));
                     t.detach();
                     break;
                 }

@@ -28,9 +28,9 @@ public:
 
     void workCycle();
 
-    void setWorkingState(bool WorkSatus);
+    void setWorkingState(bool);
 
-    bool putInDB(const std::string& elem);
+    bool putInDB(const std::string);
 
     bool notify();
 
