@@ -3,7 +3,9 @@
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include "../Queue/Queque.h"
+#include <boost/regex.hpp>
+
+#include "../Queue/Queue.h"
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
 #include "../TestCase/WebTestCase.h"
@@ -12,6 +14,7 @@
 #include "../WebTest/webtestgen.h"
 
 #include <memory>
+#include <string>
 #include <vector>
 #include <mutex>
 #include <condition_variable>
@@ -19,13 +22,13 @@
 #include <iostream>
 #include <functional>
 
-using namespace std;
+
 namespace pt = boost::property_tree;
 
-mutex pmutex;
 //глобальные переменные
-mutex m;
-condition_variable condition;
+std::mutex m;
+std::mutex pmutex;
+std::condition_variable condition;
 bool notified;
 
 class Parser
@@ -35,13 +38,13 @@ class Parser
       Parser(const Parser&) = delete;
       Parser operator=(const Parser&) = delete;
 
-      Parser(shared_ptr<Queue<string>> _rque,
-      shared_ptr<Queue<TestCase*>> _wque,
-      shared_ptr<Queue<string>> _reque);
+      Parser(std::shared_ptr<Queue<std::string>> _rque,
+      std::shared_ptr<Queue<TestCase*>> _wque,
+      std::shared_ptr<Queue<std::string>> _reque);
 
       ~Parser();
       void workCycle() const;
-      void setStatus();
+      void setStatus(bool newStatus);
 
     private:
       bool workStatus;
@@ -49,40 +52,40 @@ class Parser
 
       vector<thread> threadPool;
 
-      string& get_request() const;
-      void workThread(const string& s);
-      bool validateRequest(const string &request) const;
+      std::string get_request() const;
+      void workThread(const std::string& s);
+      bool validateRequest(const pt::ptree tree) const;
 
-      bool validateHost(const string& s) const;
-      bool validateAdress(const string& s) const;
-      bool validateMethod(const string& s) const;
-      bool validateTarget(const string& s) const;
-      bool validateRequest(const string& s) const;
-      bool validateProtocol(const string& s) const;
-      bool validateReference(const string& s) const;
+      bool validateHost(const std::string& s) const;
+      bool validateAdress(const std::string& s) const;
+      bool validateMethod(const std::string& s) const;
+      bool validateTarget(const std::string& s) const;
+      bool validateRequest(const std::string& s) const;
+      bool validateProtocol(const std::string& s) const;
+      bool validateReference(const std::string& s) const;
 
-      shared_ptr<Queue<string>> rque;
-      shared_ptr<Queue<TestCase*>> wque;
-      shared_ptr<Queue<string>> reque;
+      std::shared_ptr<Queue<std::string>> rque;
+      std::shared_ptr<Queue<TestCase*>> wque;
+      std::shared_ptr<Queue<std::string>> reque;
 
       struct ResponseCode {
-        const string OK = "0";
-        const string invalidRequestStructure = "Invalid structute";
-        const string defaultId = "Invalid ID";
+        static const std::string OK = "0";
+        static const std::string invalidRequestStructure = "Invalid structute";
+        static const std::string defaultId = "Invalid ID";
 
-        const int invalidRequestType = -1;
-        const int cppRequestType =  0;
-        const int webRequestType = 1;
+        static const int invalidRequestType = -1;
+        static const int cppRequestType =  0;
+        static const int webRequestType = 1;
 
-        const string defaultHost = "Invalid host";
-        const string defaultProtocol = "Invalid protocol";
-        const string defaultMethod = "Invalid method";
-        const string defaultReference = "Invalid Reference";
+        static const std::string defaultHost = "Invalid host";
+        static const std::string defaultProtocol = "Invalid protocol";
+        static const std::string defaultMethod = "Invalid method";
+        static const std::string defaultReference = "Invalid Reference";
 
-        const string defaultTarget = "Invalid Target";
-        const string defaultGit = "Invalid Git Adress";
+        static const std::string defaultTarget = "Invalid Target";
+        static const std::string defaultGit = "Invalid Git Adress";
 
-        const string temporary = "Sorry";
+        const std::string temporary = "Sorry";
       } codes;
 
 };

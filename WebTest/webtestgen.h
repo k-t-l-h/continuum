@@ -5,26 +5,26 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
-using namespace std;
+
 namespace pt = boost::property_tree;
 
-class WebTestGeneration: public AbstringactTestGeneration
+class WebTestGeneration: public AbstractTestGeneration
 {
 public:
   WebTestGeneration() = delete;
-  WebTestGeneration(const CTestGeneration&) = delete;
-  WebTestGeneration operator=(const CTestGeneration&) = delete;
+  WebTestGeneration(const WebTestGeneration&) = delete;
+  WebTestGeneration operator=(const WebTestGeneration&) = delete;
 
-  WebTestGeneration(const str request,   shared_ptr<Queue<TestCase*>> _wque);
+  WebTestGeneration(const string request, shared_ptr<Queue<TestCase*>> _wque);
   ~WebTestGeneration();
 
   void convertToTestCase() override;
   int sendToWorker() const override;
 
 private:
-  shared_ptr<Queue<TestCase*>> wque;
+  std::shared_ptr<Queue<TestCase*>> wque;
   WebTestCase* tcase;
-  string request;
+  std::string request;
 
 };
 

@@ -4,22 +4,22 @@
 #include "TestCaseClass.h"
 #include <string>
 
-using namespace std;
+
 
 class CTestCase: public TestCase
 {
 public:
-  CTestCase(string _id, string _git_adress, string _target):
+  CTestCase(std::string _id, std::string _git_adress, std::string _target):
   id(_id), rtype(0), git_adress(_git_adress), target(_target){};
   ~CTestCase(){};
 
   CTestCase(const CTestCase&) = delete;
   CTestCase operator=(const CTestCase&) = delete;
 
-  string id;
+  std::string id;
   int rtype;
-  string git_adress;
-  string target;
+  std::string git_adress;
+  std::string target;
 };
 
 #endif //CTEST_CASE_H
