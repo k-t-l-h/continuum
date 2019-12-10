@@ -1,7 +1,22 @@
 dist: xenial #с этого года по дефолту
+sudo: required
+
 language: cpp
 
-script: skip
+os:
+  - linux
+
+compiler:
+  - gcc
+
+install:
+  - skip
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
 
 notifications:
   email:
