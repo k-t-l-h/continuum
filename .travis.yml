@@ -1,1 +1,8 @@
+dist: xenial #с этого года по дефолту
 language: cpp
+
+script: skip
+
+notifications:
+  email:
+    - laciedreamer@gmail.com
