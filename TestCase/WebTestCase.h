@@ -16,7 +16,7 @@ public:
   WebTestCase(const WebTestCase&) = delete;
   WebTestCase operator=(const WebTestCase&) = delete;
 
-  ~WebTestCase();
+  ~WebTestCase(){};
 
   string id;
   int rtype;
@@ -30,4 +30,4 @@ public:
   int reference;
 };
 
-#endif WEB_TEST_CASE_H
+#endif //WEB_TEST_CASE_H

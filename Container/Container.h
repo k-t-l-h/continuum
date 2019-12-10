@@ -23,8 +23,10 @@
 
 class Container {
 public:
-    Container(std::shared_ptr<Queue<std::string>> &rq) : rqueue(rq), answer(""), command(""), free_state(true) {};
-    ~Container();
+    explicit Container(std::shared_ptr<Queue<std::string>> &rq) : rqueue(rq), answer(""), command(""), free_state(true) {};
+    Container() = delete;
+    Container(Container &cont) = delete;
+
 
     bool isFree() const;
     int doTest(TestCase *test);
