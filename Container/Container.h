@@ -8,7 +8,8 @@
 
 #include <string>
 #include <memory>
-#include <cstdio>
+#include <fstream>
+#include <iostream>
 #include "../Queue/Queue.h"
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
