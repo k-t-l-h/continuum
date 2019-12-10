@@ -9,8 +9,7 @@ os:
 compiler:
   - gcc
 
-install:
-  - skip
+install: ./ci/travis/install-linux.sh
 
 script:
   - mkdir build
