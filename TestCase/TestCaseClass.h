@@ -9,7 +9,7 @@ class TestCase
 {
 public:
   //virtual TestCase() =0;
-  virtual ~TestCase() {};
+  virtual ~TestCase() {}
   string id;
   int rtype;
 };
