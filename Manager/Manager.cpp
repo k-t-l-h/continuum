@@ -10,8 +10,12 @@ int Manager::GetCountContainers() const {
     return Containers.size();
 }
 
-void Manager::WorkCycle() {
-    while (true) {
+void Manager::setWorkingState(bool status) {
+    workSatus = status;
+}
+
+void Manager::workCycle() {
+    while (workSatus) {
         if (!QueueIn->empty()) {
             TestCase* test = QueueIn->pop();
             for (auto& container : Containers)

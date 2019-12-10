@@ -24,17 +24,21 @@ public:
 
     ~Reporter() = default;
 
-    void WorkCycle();
+    void workCycle();
 
-    bool PutInDB(const JsonObject& elem);
+    void setWorkingState(bool WorkSatus);
 
-    bool Notify();
+    bool putInDB(const JsonObject& elem);
+
+    bool notify();
 
 private:
 
-    Queue<JsonObject> *Queue;
+    Queue<JsonObject> *queue;
 
-    DataBase *DB;
+    DataBase *db;
+
+    bool workStatus = true;
 
 };
 
