@@ -1,7 +1,7 @@
 #include "Reporter.h"
 #include "../Queue/Queue.h"
 
-Reporter::Reporter(::Queue<JsonObject> *queue, DataBase *db) : queue(queue), db(db)
+Reporter::Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<DataBase> db) : queue(queue), db(db)
 {}
 
 void Reporter::setWorkingState(bool status) {
@@ -11,7 +11,7 @@ void Reporter::setWorkingState(bool status) {
 void Reporter::WorkCycle() {
     while (workStatus) {
         if (!Queue->empty()) {
-            JsonObject obj = Queue->pop();
+            std::string obj = Queue->pop();
             putInDB(obj);
             std::thread t(std::bind(&Reporter::Notify, this));
             t.detach();

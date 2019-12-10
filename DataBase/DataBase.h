@@ -91,7 +91,7 @@ struct Table : sqlpp::table_t<Table, Table_::Id, Table_::Report>
     };
 };
 
-class DataBase {
+class Database {
 
 public:
 

@@ -1,6 +1,6 @@
 #include "DataBase.h"
 
-DataBase::DataBase() {
+Database::Database() {
     sql::connection_config config;
     config.password = "";
     config.path_to_database = "/home/evgeny/temp.db";
@@ -8,7 +8,7 @@ DataBase::DataBase() {
     config.debug = false;
     db = new sql::connection(config);
     try {
-        DB->execute("CREATE TABLE reporters (\
+        db->execute("CREATE TABLE reporters (\
             id INTEGER PRIMARY KEY AUTOINCREMENT,\
             report varchar(255) DEFAULT NULL\
         )");
@@ -18,18 +18,18 @@ DataBase::DataBase() {
     }
 }
 
-DataBase::~DataBase() {
+Database::~Database() {
     delete db;
 }
 
-void DataBase::insert(std::string report) {
+void Database::insert(std::string report) {
     auto i = insert_into(reporters).columns(reporters.report);
     i.values.add(reporters.report = report);
     (*db)(i);
 }
 
-bool DataBase::select(int id, std::string &report) {
-    for (const auto& row : (*db)(select(reporters.report).from(reporters).where(reporters.id == id))) {
+bool Database::select(int id, std::string &report) {
+    for (const auto& row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.id == id))) {
         if (row.report.is_null()) {
             return false;
         }

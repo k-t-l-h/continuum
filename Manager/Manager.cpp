@@ -2,7 +2,7 @@
 #include <thread>
 #include <functional>
 
-Manager::Manager(Queue<TestCase *> *QueueIn, Queue<std::string> *QueueOut, int count)
+Manager::Manager(std::shared_ptr<Queue<TestCase *>> QueueIn, std::shared_ptr<Queue<std::string>> QueueOut, int count)
 : QueueIn(QueueIn), QueueOut(QueueOut), Containers(std::vector<Container>(count, QueueOut))
 {}
 
@@ -19,8 +19,8 @@ void Manager::workCycle() {
         if (!QueueIn->empty()) {
             TestCase* test = QueueIn->pop();
             for (auto& container : Containers)
-                if (container.IsFree()) {
-                    std::thread t(std::bind(&Container::DoTest, container, *test));
+                if (container.isFree()) {
+                    std::thread t(std::bind(&Container::doTest, container, *test));
                     t.detach();
                     break;
                 }
