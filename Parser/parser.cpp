@@ -5,15 +5,14 @@
 #include <condition_variable>
 #include <thread>
 
-using namespace std;
 namespace pt = boost::property_tree;
 
 struct dbFormatter{
-	string id;
-	string status;
+	std::string id;
+	std::string status;
 };
 
-string to_json(dbFormatter const& obj) {
+std::string to_json(dbFormatter const& obj) {
       pt::ptree out;
       out.put("response.id",          obj.id);
       out.put("response.status",    obj.status);
@@ -25,19 +24,19 @@ string to_json(dbFormatter const& obj) {
 
 //парсер не должен быть владельцем базового ресурса,
 //владельцем является general
-Parser::Parser(shared_ptr<Queue<std::string>> _rque,
-shared_ptr<Queue<TestCase*>> _wque,
-shared_ptr<Queue<std::string>> _reque):
+Parser::Parser(std::shared_ptr<Queue<std::string>> _rque,
+std::shared_ptr<Queue<TestCase*>> _wque,
+std::shared_ptr<Queue<std::string>> _reque):
 rque(_rque), wque(_wque), reque(_reque), workStatus(false),
 {
-    maxPool = thread::hardware_concurrency();
+    maxPool = std::thread::hardware_concurrency();
     for(int i = 0; i < maxPool; i++){
     threadPool.push_back(std::thread(std::bind(&Parser::workCycle, this)));
   }
 };
 
 Parser::~Parser(){
-  for_each(threadPool.begin(), threadPool.end(), mem_fn(&thread::join));
+  std::for_each(threadPool.begin(), threadPool.end(), mem_fn(&thread::join));
 };
 
 void Parser::setStatus(bool newStatus){
@@ -46,7 +45,7 @@ void Parser::setStatus(bool newStatus){
 
 void Parser::workCycle() const
 {
-  unique_lock<std::mutex> lock(m);
+  std::unique_lock<std::mutex> lock(m);
   //bool состояния
   while(workStatus){
       //избавляемся от внезапных пробуждений
@@ -55,19 +54,19 @@ void Parser::workCycle() const
       }
 
       if (!rque->empty()){
-        string request = get_request();
+        std::string request = get_request();
         workThread(request);
       }
       notified = false;
     }
 };
 
-void workThread(const std::string& request)
+void workThread(const std::string request)
 {
   pt::ptree tree;
   pt::read_json(request, tree);
 
-  if (validateRequestTree(tree))
+  if (validateRequest(tree))
     {
       int request_type = tree.get<int>("request.request_type");
       switch (request_type) {
@@ -85,30 +84,29 @@ void workThread(const std::string& request)
     }
 }
 
-string Parser::get_request() const
+std::string Parser::get_request() const
 {
   return rque->pop();
 };
 
-bool Parser::validateRequestTree(const pt::ptree tree) const
+bool Parser::validateRequest(const pt::ptree tree) const
 {
   //получаем тип заявки
-  int request_type = tree.get<int>
-  ("request.request_type", codes.invalidRequestStructure);
+  int request_type = tree.get<int>("request.request_type", codes.invalidRequestStructure);
 
-  string id = tree.get<string>("request.id", codes.defaultId);
+  std::string id = tree.get<std::string>("request.id", codes.defaultId);
 
   if (request_type == codes.invalidRequestStructure){
 
       dbFormatter obj {id, codes.invalidRequestStructure};
-      string response = to_json(obj);
+      std::string response = to_json(obj);
       reque->push(response);
       return false;
   }
 
   if(id == codes.defaultId){
     dbFormatter obj {id, codes.defaultId};
-    string response = to_json(obj);
+    std::string response = to_json(obj);
     reque->push(response);
     return false;
   }
@@ -116,35 +114,35 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
   switch (request_type) {
 
     case codes.webRequestType:
-      string host = tree.get<string>("request.host", ResponseCode.defaultHost);
+      std::string host = tree.get<std::string>("request.host", codes.defaultHost);
       if (validateHost(host)){
         dbFormatter obj {id, codes.defaultHost};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
 
         return false;
       }
 
-      string p = tree.get<string>("request.protocol", codes.defaultProtocol);
+      std::string p = tree.get<std::string>("request.protocol", codes.defaultProtocol);
       if (validateProtocol(p)){
         dbFormatter obj {id, codes.defaultProtocol};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
         return false;
       }
 
-      string m = tree.get<string>("request.method", codes.defaultMethod);
+      std::string m = tree.get<std::string>("request.method", codes.defaultMethod);
       if (validateMethod(m)){
         dbFormatter obj {id, codes.defaultMethod};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
         return false;
       }
 
-      string ref = tree.get<string>("request.reference", codes.defaultReference);
+      std::string ref = tree.get<std::string>("request.reference", codes.defaultReference);
       if (validateReference(ref)){
         dbFormatter obj {id, codes.defaultReference};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
         return false;
       }
@@ -152,30 +150,30 @@ bool Parser::validateRequestTree(const pt::ptree tree) const
 
     //проверка валидности для си
     case codes.cppRequestType:
-      string git = tree.get<string>("request.git_adress",  codes.defaultGit);
+      std::string git = tree.get<std::string>("request.git_adress",  codes.defaultGit);
       if (validateAdress(git)){
         dbFormatter obj {id, codes.defaultGit};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
         return false;
       }
 
-      string target = tree.get<string>("request.target", codes.defaultTarget);
+      std::string target = tree.get<std::string>("request.target", codes.defaultTarget);
       if (validateTarget(target)){
         dbFormatter obj {id, codes.defaultTarget};
-        string response = to_json(obj);
+        std::string response = to_json(obj);
         reque->push(response);
         return false;
       }
       return true;
 
     default:
-    if(reque){
-      dbFormatter obj {id, codes.temporary};
-      string response = to_json(obj);
-      reque->push(response);
-    }
-      return false;
+	    if(reque){
+	      dbFormatter obj {id, codes.temporary};
+	      std::string response = to_json(obj);
+	      reque->push(response);
+	    }
+	    return false;
   }
 
   return false;
