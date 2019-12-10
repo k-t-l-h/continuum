@@ -2,7 +2,7 @@
 #define CONTINUUM_DATABASE_H
 #include <iostream>
 #include <sqlpp11/sqlite3/connection.h>
-#include "../submodules/sqlpp11-connector-sqlite3/src/detail/connection_handle.h"
+#include "submodules/sqlpp11-connector-sqlite3/src/detail/connection_handle.h"
 #include <sqlite3.h>
 #include <sqlpp11/insert.h>
 #include <sqlpp11/select.h>
@@ -91,7 +91,7 @@ struct Table : sqlpp::table_t<Table, Table_::Id, Table_::Report>
     };
 };
 
-class DataBase {
+class Database {
 
 public:
 
@@ -99,15 +99,15 @@ public:
 
     ~Database();
 
-    void Insert(std::string report);
+    void insert(std::string report);
 
-    bool Select(int id, std::string &report);
+    bool select(int id, std::string &report);
 
 private:
 
-    sql::connection *DB;
+    sql::connection *db;
 
-    Table Reporters;
+    Table reporters;
 
 };
 

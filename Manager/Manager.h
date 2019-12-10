@@ -1,16 +1,19 @@
-#ifndef CONTINUUM_WORKER_H
-#define CONTINUUM_WORKER_H
+#ifndef CONTINUUM_MANAGER_H
+#define CONTINUUM_MANAGER_H
 
+#include <memory>
 #include <vector>
 #include "../Container/Container.h"
+#include "../TestCase/TestCaseClass.h"
 #include "../Queue/Queue.h"
+
 #include "../TestCase/TestCaseClass.h"
 
 class Manager {
 
 public:
 
-    Manager(Queue<TestCase *> *QueueIn, Queue<JsonObject> *QueueOut, int count);
+    Manager(std::shared_ptr<Queue<TestCase *>> QueueIn, std::shared_ptr<std::string> QueueOut, int count);
 
     Manager(const Manager&) = delete;
 
@@ -20,18 +23,21 @@ public:
 
     const std::vector<Container *>& GetContainers() const;
 
-    int GetCountContainers() const;
+    int getCountContainers() const;
 
+    void workCycle();
 
-    void WorkCycle();
+    void setWorkingState(bool WorkSatus);
 
 private:
 
-    Queue<TestCase *> *QueueIn;
+    std::shared_ptr<Queue<TestCase *>> QueueIn;
 
-    Queue<JsonObject> *QueueOut;
+    std::shared_ptr<std::string> QueueOut;
 
-    std::vector<Container> Containers;
+    std::vector<Container> containers;
+
+    bool workSatus = true;
 
 };
 

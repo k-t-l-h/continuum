@@ -1,14 +1,14 @@
 #include "DataBase.h"
 
-DataBase::DataBase() {
+Database::Database() {
     sql::connection_config config;
     config.password = "";
     config.path_to_database = "/home/evgeny/temp.db";
     config.flags = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE;
     config.debug = false;
-    DB = new sql::connection(config);
+    db = new sql::connection(config);
     try {
-        DB->execute("CREATE TABLE reporters (\
+        db->execute("CREATE TABLE reporters (\
             id INTEGER PRIMARY KEY AUTOINCREMENT,\
             report varchar(255) DEFAULT NULL\
         )");
@@ -18,18 +18,18 @@ DataBase::DataBase() {
     }
 }
 
-DataBase::~DataBase() {
-    delete DB;
+Database::~Database() {
+    delete db;
 }
 
-void DataBase::Insert(std::string report) {
-    auto i = insert_into(Reporters).columns(Reporters.report);
-    i.values.add(Reporters.report = report);
-    (*DB)(i);
+void Database::insert(std::string report) {
+    auto i = insert_into(reporters).columns(reporters.report);
+    i.values.add(reporters.report = report);
+    (*db)(i);
 }
 
-bool DataBase::Select(int id, std::string &report) {
-    for (const auto& row : (*DB)(select(Reporters.report).from(Reporters).where(Reporters.id == id))) {
+bool Database::select(int id, std::string &report) {
+    for (const auto& row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.id == id))) {
         if (row.report.is_null()) {
             return false;
         }
