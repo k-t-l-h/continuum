@@ -5,6 +5,7 @@ include(ExternalProject)
 
 
 
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
@@ -50,5 +51,3 @@ add_executable( ci ${Backend_SRC} TestCase/TestCaseClass.cpp TestCase/CTestCase.
         Container/Container.cpp Manager/Manager.cpp Reporter/Reporter.cpp DataBase/DataBase.cpp General/General.cpp ${Backend_SRC})
 
 target_link_libraries(ci sqlite3 sqlpp11 ${Boost_LIBRARIES})
-
-
