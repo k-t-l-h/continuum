@@ -16,7 +16,7 @@ std::string to_json(dbFormatter const& obj) {
       pt::ptree out;
       out.put("response.id",          obj.id);
       out.put("response.status",    obj.status);
-      ostringstream oss;
+      std::ostringstream oss;
       pt::write_json(oss, out);
       return oss.str();
 }
@@ -27,7 +27,7 @@ std::string to_json(dbFormatter const& obj) {
 Parser::Parser(std::shared_ptr<Queue<std::string>> _rque,
 std::shared_ptr<Queue<TestCase*>> _wque,
 std::shared_ptr<Queue<std::string>> _reque):
-rque(_rque), wque(_wque), reque(_reque), workStatus(false),
+rque(_rque), wque(_wque), reque(_reque), workStatus(false)
 {
     maxPool = std::thread::hardware_concurrency();
     for(int i = 0; i < maxPool; i++){
@@ -36,14 +36,14 @@ rque(_rque), wque(_wque), reque(_reque), workStatus(false),
 };
 
 Parser::~Parser(){
-  std::for_each(threadPool.begin(), threadPool.end(), mem_fn(&thread::join));
+  std::for_each(threadPool.begin(), threadPool.end(), mem_fn(&std::thread::join));
 };
 
 void Parser::setStatus(bool newStatus){
   workStatus = newStatus;
 };
 
-void Parser::workCycle() const
+void Parser::workCycle()
 {
   std::unique_lock<std::mutex> lock(m);
   //bool состояния
@@ -61,7 +61,7 @@ void Parser::workCycle() const
     }
 };
 
-void workThread(const std::string request)
+void Parser::workThread(std::string request)
 {
   pt::ptree tree;
   pt::read_json(request, tree);
@@ -92,9 +92,9 @@ std::string Parser::get_request() const
 bool Parser::validateRequest(const pt::ptree tree) const
 {
   //получаем тип заявки
-  int request_type = tree.get<int>("request.request_type", codes.invalidRequestStructure);
+  int request_type = tree.get("request.request_type", codes.invalidRequestType);
 
-  std::string id = tree.get<std::string>("request.id", codes.defaultId);
+  std::string id = tree.get("request.id", codes.defaultId);
 
   if (request_type == codes.invalidRequestStructure){
 
@@ -113,8 +113,8 @@ bool Parser::validateRequest(const pt::ptree tree) const
 
   switch (request_type) {
 
-    case codes.webRequestType:
-      std::string host = tree.get<std::string>("request.host", codes.defaultHost);
+    case codes.webRequestType:{
+      std::string host = tree.get("request.host", codes.defaultHost);
       if (validateHost(host)){
         dbFormatter obj {id, codes.defaultHost};
         std::string response = to_json(obj);
@@ -123,7 +123,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
 
-      std::string p = tree.get<std::string>("request.protocol", codes.defaultProtocol);
+      std::string p = tree.get("request.protocol", codes.defaultProtocol);
       if (validateProtocol(p)){
         dbFormatter obj {id, codes.defaultProtocol};
         std::string response = to_json(obj);
@@ -131,7 +131,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
 
-      std::string m = tree.get<std::string>("request.method", codes.defaultMethod);
+      std::string m = tree.get("request.method", codes.defaultMethod);
       if (validateMethod(m)){
         dbFormatter obj {id, codes.defaultMethod};
         std::string response = to_json(obj);
@@ -139,7 +139,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
 
-      std::string ref = tree.get<std::string>("request.reference", codes.defaultReference);
+      std::string ref = tree.get("request.reference", codes.defaultReference);
       if (validateReference(ref)){
         dbFormatter obj {id, codes.defaultReference};
         std::string response = to_json(obj);
@@ -147,10 +147,10 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
       return true;
-
+}
     //проверка валидности для си
     case codes.cppRequestType:
-      std::string git = tree.get<std::string>("request.git_adress",  codes.defaultGit);
+      {std::string git = tree.get("request.git_adress",  codes.defaultGit);
       if (validateAdress(git)){
         dbFormatter obj {id, codes.defaultGit};
         std::string response = to_json(obj);
@@ -158,7 +158,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
 
-      std::string target = tree.get<std::string>("request.target", codes.defaultTarget);
+      std::string target = tree.get("request.target", codes.defaultTarget);
       if (validateTarget(target)){
         dbFormatter obj {id, codes.defaultTarget};
         std::string response = to_json(obj);
@@ -166,14 +166,14 @@ bool Parser::validateRequest(const pt::ptree tree) const
         return false;
       }
       return true;
-
-    default:
+}
+    default:{
 	    if(reque){
 	      dbFormatter obj {id, codes.temporary};
 	      std::string response = to_json(obj);
 	      reque->push(response);
 	    }
-	    return false;
+	    return false;}
   }
 
   return false;

@@ -3,6 +3,10 @@
 
 #include <memory>
 #include <string>
+#include "../Queue/Queue.h"
+#include "../TestCase/TestCaseClass.h"
+##include "../TestGeneration/Testgen.h"
+#include "../TestCase/Testgen.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -17,7 +21,7 @@ public:
   WebTestGeneration operator=(const WebTestGeneration&) = delete;
 
   WebTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
-  ~WebTestGeneration();
+  ~WebTestGeneration(){};
 
   void convertToTestCase() override;
   int sendToWorker() const override;

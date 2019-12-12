@@ -43,17 +43,17 @@ class Parser
       std::shared_ptr<Queue<std::string>> _reque);
 
       ~Parser();
-      void workCycle() const;
+      void workCycle();
       void setStatus(bool newStatus);
 
     private:
       bool workStatus;
       unsigned int maxPool;
 
-      std::vector<thread> threadPool;
+      std::vector<std::thread> threadPool;
 
       std::string get_request() const;
-      void workThread(const std::string& s);
+      void workThread(const std::string s);
       bool validateRequest(const pt::ptree tree) const;
 
       bool validateHost(const std::string& s) const;
@@ -68,14 +68,14 @@ class Parser
       std::shared_ptr<Queue<TestCase*>> wque;
       std::shared_ptr<Queue<std::string>> reque;
 
-      struct ResponseCode {
+      const struct ResponseCode {
         inline static const std::string OK = "0";
         inline static const std::string invalidRequestStructure = "Invalid structute";
         inline static const std::string defaultId = "Invalid ID";
 
-        static const int invalidRequestType = -1;
-        static const int cppRequestType =  0;
-        static const int webRequestType = 1;
+        inline static const int invalidRequestType = -1;
+        inline static const int cppRequestType =  0;
+        inline static const int webRequestType = 1;
 
         inline static const std::string defaultHost = "Invalid host";
         inline static const std::string defaultProtocol = "Invalid protocol";
