@@ -1,7 +1,7 @@
 #ifndef CTESTGENERATION_H
 #define CTESTGENERATION_H
 
-#include "../TestGeneration/testgen.h"
+#include "../TestGeneration/Testgen.h"
 #include "../Queue/Queue.h"
 #include "../TestCase/CTestCase.h"
 #include "../TestCase/TestCaseClass.h"
@@ -18,7 +18,6 @@ public:
  CTestGeneration operator=(const CTestGeneration&) = delete;
 
  CTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
- ~CTestGeneration();
 
  void convertToTestCase() override;
  int sendToWorker() const override;
