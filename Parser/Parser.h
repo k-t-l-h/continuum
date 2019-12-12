@@ -26,10 +26,7 @@
 namespace pt = boost::property_tree;
 
 //глобальные переменные
-std::mutex m;
-std::mutex pmutex;
-std::condition_variable condition;
-bool notified;
+
 
 class Parser
 {

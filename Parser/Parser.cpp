@@ -7,6 +7,12 @@
 
 namespace pt = boost::property_tree;
 
+extern std::mutex m;
+extern std::mutex pmutex;
+extern std::condition_variable condition;
+extern bool notified;
+
+
 struct dbFormatter{
 	std::string id;
 	std::string status;

@@ -5,8 +5,8 @@
 #include "../Parser/Parser.h"
 #include "../Manager/Manager.h"
 #include "../Reporter/Reporter.h"
-#include "../TestCase/TestCase.h"
-#include "../DataBase/DataBase.h"
+#include "../TestCase/TestCaseClass.h"
+#include "../Database/Database.h"
 
 #include <algorithm>
 #include <functional>
@@ -15,6 +15,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+
 
 class General {
 public:
@@ -28,11 +29,11 @@ private:
     std::shared_ptr<Queue<std::string>> rqueue;
     std::shared_ptr<Queue<std::string>> pqueue;
     std::shared_ptr<Queue<TestCase*>> wqueue;
-    std::shared_ptr<DataBase> db;
-    std::vector<Parser> parsers;
-    std::vector<Manager> managers;
-    std::vector<Reporter> reporters;
+    std::shared_ptr<Database> db;
+    std::vector<std::shared_ptr<Parser>> parsers;
+    std::vector<std::shared_ptr<Manager>> managers;
+    std::vector<std::shared_ptr<Reporter>> reporters;
     std::vector<std::thread> threads;
-}
+};
 
 #endif //CONTINUUM_GENERAL_H
