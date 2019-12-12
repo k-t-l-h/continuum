@@ -70,16 +70,16 @@ void Parser::workThread(std::string request)
     {
       int request_type = tree.get<int>("request.request_type");
       switch (request_type) {
-        case codes.cppRequestType:
+        case codes.cppRequestType:{
           CTestGeneration* ctg = new CTestGeneration(request, wque);
           ctg->convertToTestCase();
           ctg->sendToWorker();
-        break;
-        case codes.webRequestType:
+        break;}
+        case codes.webRequestType:{
           WebTestGeneration* wtg = new WebTestGeneration(request, wque);
           wtg->convertToTestCase();
           wtg->sendToWorker();
-        break;
+        break;}
       }
     }
 }
