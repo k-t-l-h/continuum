@@ -2,11 +2,12 @@
 #define WEB_TEST_GENERATION_H
 
 #include <memory>
-#include <string>
 #include "../Queue/Queue.h"
 #include "../TestCase/TestCaseClass.h"
-##include "../TestGeneration/Testgen.h"
-#include "../TestCase/Testgen.h"
+#include "../TestGeneration/Testgen.h"
+#include "../TestCase/WebTestCase.h"
+
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -21,7 +22,6 @@ public:
   WebTestGeneration operator=(const WebTestGeneration&) = delete;
 
   WebTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
-  ~WebTestGeneration(){};
 
   void convertToTestCase() override;
   int sendToWorker() const override;

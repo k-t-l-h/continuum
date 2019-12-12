@@ -61,7 +61,7 @@ void Parser::workCycle()
     }
 };
 
-void Parser::workThread(std::string request)
+void Parser::workThread(const std::string request)
 {
   pt::ptree tree;
   pt::read_json(request, tree);
@@ -74,12 +74,12 @@ void Parser::workThread(std::string request)
           CTestGeneration* ctg = new CTestGeneration(request, wque);
           ctg->convertToTestCase();
           ctg->sendToWorker();
-        break;}
+          break;}
         case codes.webRequestType:{
           WebTestGeneration* wtg = new WebTestGeneration(request, wque);
           wtg->convertToTestCase();
-          wtg->sendToWorker();
-        break;}
+          wtg->sendToWorker();}
+        break;
       }
     }
 }
@@ -96,7 +96,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
 
   std::string id = tree.get("request.id", codes.defaultId);
 
-  if (request_type == codes.invalidRequestStructure){
+  if (request_type == codes.invalidRequestType){
 
       dbFormatter obj {id, codes.invalidRequestStructure};
       std::string response = to_json(obj);
@@ -149,8 +149,8 @@ bool Parser::validateRequest(const pt::ptree tree) const
       return true;
 }
     //проверка валидности для си
-    case codes.cppRequestType:
-      {std::string git = tree.get("request.git_adress",  codes.defaultGit);
+    case codes.cppRequestType:{
+      std::string git = tree.get("request.git_adress",  codes.defaultGit);
       if (validateAdress(git)){
         dbFormatter obj {id, codes.defaultGit};
         std::string response = to_json(obj);
@@ -165,8 +165,8 @@ bool Parser::validateRequest(const pt::ptree tree) const
         reque->push(response);
         return false;
       }
-      return true;
-}
+      return true;}
+
     default:{
 	    if(reque){
 	      dbFormatter obj {id, codes.temporary};

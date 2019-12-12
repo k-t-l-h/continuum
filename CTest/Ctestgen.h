@@ -18,7 +18,6 @@ public:
  CTestGeneration operator=(const CTestGeneration&) = delete;
 
  CTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
- ~CTestGeneration() {};
 
  void convertToTestCase() override;
  int sendToWorker() const override;

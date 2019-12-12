@@ -68,14 +68,14 @@ class Parser
       std::shared_ptr<Queue<TestCase*>> wque;
       std::shared_ptr<Queue<std::string>> reque;
 
-      const struct ResponseCode {
+      struct ResponseCode {
         inline static const std::string OK = "0";
         inline static const std::string invalidRequestStructure = "Invalid structute";
         inline static const std::string defaultId = "Invalid ID";
 
-        inline static const int invalidRequestType = -1;
-        inline static const int cppRequestType =  0;
-        inline static const int webRequestType = 1;
+        static constexpr int invalidRequestType = -1;
+        static constexpr int cppRequestType =  0;
+        static constexpr int webRequestType = 1;
 
         inline static const std::string defaultHost = "Invalid host";
         inline static const std::string defaultProtocol = "Invalid protocol";
