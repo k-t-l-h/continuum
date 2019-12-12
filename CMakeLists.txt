@@ -1,22 +1,22 @@
-cmake_minimum_required(VERSION 3.1)
-project(continuum CXX)
-
-include(ExternalProject)
-
-
+cmake_minimum_required(VERSION 3.14)
+project(ci)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-set(SRC_DIR "${PROJECT_SOURCE_DIR}/")
-set(LIB_DIR "${PROJECT_SOURCE_DIR}/DataBase/submodules")
+find_package(Boost REQUIRED )
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+endif()
+
+set(LIB_DIR "${PROJECT_SOURCE_DIR}/libs")
 
 include_directories(
-        DataBase/submodules/date/include
-        DataBase/submodules/date/include/date
-        DataBase/submodules/sqlpp11/include
-        DataBase/submodules/sqlpp11-connector-sqlite3/include
+        libs/date/include
+        libs/date/include/date
+        libs/sqlpp11/include
+        libs/sqlpp11-connector-sqlite3/include
 )
 
 find_package(SQLite3 REQUIRED)
@@ -30,25 +30,15 @@ add_subdirectory(${Sqlpp11_DIR})
 add_subdirectory(${Sqlpp11Sqlite3_DIR})
 
 file(
-        GLOB Backend_SRC
-
+        GLOB Project_SRC
+        "${PROJECT_SOURCE_DIR}/Manager/*"
+        "${PROJECT_SOURCE_DIR}/Reporter/*"
+        "${PROJECT_SOURCE_DIR}/Database/*"
         "${Sqlpp11Sqlite3_DIR}/src/*.h"
         "${Sqlpp11Sqlite3_DIR}/src/*.cpp"
         "${Sqlpp11Sqlite3_DIR}/src/detail/*.h"
         "${Sqlpp11Sqlite3_DIR}/src/detail/*.cpp"
 )
 
-#set(${Boost_INCLUDE_DIRS} /home/evgeny/boost_1_71_0/)
-
-find_package(Boost REQUIRED )
-if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-endif()
-
-add_executable( ci ${Backend_SRC} TestCase/TestCaseClass.cpp TestCase/CTestCase.cpp TestCase/WebTestCase.cpp
-        TestGeneration/testgen.cpp CTest/ctestgen.cpp WebTest/webtestgen.cpp Parser/parser.cpp
-        Container/Container.cpp Manager/Manager.cpp Reporter/Reporter.cpp DataBase/DataBase.cpp General/General.cpp ${Backend_SRC})
-
+add_executable(ci ${Project_SRC})
 target_link_libraries(ci sqlite3 sqlpp11 ${Boost_LIBRARIES})
-
-
