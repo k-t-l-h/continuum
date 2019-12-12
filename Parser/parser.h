@@ -9,9 +9,9 @@
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
 #include "../TestCase/WebTestCase.h"
-#include "../TestGeneration/testgen.h"
-#include "../CTest/ctestgen.h"
-#include "../WebTest/webtestgen.h"
+#include "../TestGeneration/Testgen.h"
+#include "../CTest/Ctestgen.h"
+#include "../WebTest/Webtestgen.h"
 
 #include <memory>
 #include <string>
@@ -50,7 +50,7 @@ class Parser
       bool workStatus;
       unsigned int maxPool;
 
-      vector<thread> threadPool;
+      std::vector<thread> threadPool;
 
       std::string get_request() const;
       void workThread(const std::string& s);

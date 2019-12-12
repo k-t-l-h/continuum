@@ -2,6 +2,7 @@
 #define WEB_TEST_GENERATION_H
 
 #include <memory>
+#include <string>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
@@ -15,7 +16,7 @@ public:
   WebTestGeneration(const WebTestGeneration&) = delete;
   WebTestGeneration operator=(const WebTestGeneration&) = delete;
 
-  WebTestGeneration(const string request, shared_ptr<Queue<TestCase*>> _wque);
+  WebTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
   ~WebTestGeneration();
 
   void convertToTestCase() override;

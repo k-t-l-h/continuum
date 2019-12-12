@@ -1,4 +1,4 @@
-#include "webtestgen.h"
+#include "Webtestgen.h"
 
 
 namespace pt = boost::property_tree;

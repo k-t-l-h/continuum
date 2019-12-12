@@ -1,7 +1,7 @@
 #ifndef CTESTGENERATION_H
 #define CTESTGENERATION_H
 
-#include "../TestGeneration/testgen.h"
+#include "../TestGeneration/Testgen.h"
 #include "../Queue/Queue.h"
 #include "../TestCase/CTestCase.h"
 #include "../TestCase/TestCaseClass.h"
