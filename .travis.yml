@@ -8,6 +8,9 @@ os:
 
 compiler:
   - gcc
+  
+before_install:
+  - chmod +x build.sh
 
 install:
 - source ci/travis/install-linux.sh
