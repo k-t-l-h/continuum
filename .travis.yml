@@ -1,5 +1,5 @@
 dist: xenial #с этого года по дефолту
-sudo: required
+sudo: enabled
 
 language: cpp
 
@@ -13,7 +13,7 @@ before_install:
   - chmod +x ci/travis/install-linux.sh
 
 install:
-- source ci/travis/install-linux.sh
+  - source ci/travis/install-linux.sh
 
 script:
   - mkdir build
