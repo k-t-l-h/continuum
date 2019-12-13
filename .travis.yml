@@ -10,7 +10,7 @@ compiler:
   - gcc
 
 install:
-   ./ci/travis/install-linux.sh
+- source ci/travis/install-linux.sh
 
 script:
   - mkdir build
