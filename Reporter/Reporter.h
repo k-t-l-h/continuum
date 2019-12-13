@@ -5,20 +5,19 @@
 #ifndef CONTINUUM_REPORTER_H
 #define CONTINUUM_REPORTER_H
 
-#include <memory>
 #include "../Queue/Queue.h"
-#include "../DataBase/DataBase.h"
-#include "../JsonObject/JsonObject.h"
+#include "../Database/Database.h"
 #include "../TestCase/TestCaseClass.h"
 #include <string>
 #include <thread>
 #include <functional>
+#include <memory>
 
 class Reporter {
 
 public:
 
-    Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<Database> db);
+    Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<Database> db, int count);
 
     Reporter(const Reporter&) = delete;
 
@@ -28,17 +27,17 @@ public:
 
     void workCycle();
 
-    void setWorkingState(bool WorkSatus);
+    void setWorkingState(bool);
 
-    bool putInDB(const std::string& elem);
-
-    bool notify();
+    void notify(bool &);
 
 private:
 
     std::shared_ptr<Queue<std::string>> queue;
 
     std::shared_ptr<Database> db;
+
+    std::vector<std::pair<std::thread, bool>> threads;
 
     bool workStatus = true;
 

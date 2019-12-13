@@ -2,7 +2,7 @@
 #define CONTINUUM_DATABASE_H
 #include <iostream>
 #include <sqlpp11/sqlite3/connection.h>
-#include "../submodules/sqlpp11-connector-sqlite3/src/detail/connection_handle.h"
+#include "../libs/sqlpp11-connector-sqlite3/src/detail/connection_handle.h"
 #include <sqlite3.h>
 #include <sqlpp11/insert.h>
 #include <sqlpp11/select.h>
@@ -99,7 +99,7 @@ public:
 
     ~Database();
 
-    void insert(std::string report);
+    bool insert(std::string report);
 
     bool select(int id, std::string &report);
 
