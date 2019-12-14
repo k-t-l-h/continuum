@@ -19,7 +19,6 @@ include_directories(
         libs/sqlpp11-connector-sqlite3/include
 )
 
-find_package(SQLite3 REQUIRED)
 
 set(HinnantDate_ROOT_DIR "${LIB_DIR}/date/include")
 set(Sqlite3_DIR "${LIB_DIR}/libsqlite3")
