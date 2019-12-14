@@ -1,4 +1,4 @@
-dist: xenial #с этого года по дефолту
+dist: bionic  #с этого года по дефолту
 sudo: enabled
 
 language: cpp
