@@ -1,5 +1,5 @@
-dist: xenial #с этого года по дефолту
-sudo: required
+dist: bionic  #с этого года по дефолту
+sudo: enabled
 
 language: cpp
 
@@ -9,8 +9,27 @@ os:
 compiler:
   - gcc
 
+#before_install:
+#  - chmod +x ci/travis/install-linux.sh
+
+before_install:
+  - sudo apt update
+  - sudo apt install make
+  - sudo apt install libboost-all-dev
+  - sudo apt install sqlite3
+
+  - git clone https://github.com/abseil/googletest.git
+  - cd googletest/
+  - git submodule update --init
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j8
+  - sudo make install
+  - cd ../..
+
 install:
-  - source ci/travis/install-linux.sh
+  - skip
 
 script:
   - mkdir build
