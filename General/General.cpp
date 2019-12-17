@@ -62,3 +62,11 @@ void General::getRequest(std::string request) {
     notified = true;
     condition.notify_one();
 }
+
+int main() {
+    General server = General();
+    server.turnOn();
+    server.getRequest("die plz");
+    server.turnOff();
+    return 0;
+}

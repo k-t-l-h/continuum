@@ -92,11 +92,3 @@ int Container::generateAnswer() {
 bool Container::isFree() const {
     return free_state;
 }
-
-int main() {
-    auto *test = new WebTestCase("qwerty", "github.com", 0, 1, 0);
-    std::shared_ptr<Queue<std::string>> rq = std::make_shared<Queue<std::string>>();
-    Container c(rq);
-    c.doTest(test);
-    return 0;
-};

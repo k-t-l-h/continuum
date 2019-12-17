@@ -20,7 +20,6 @@
 class General {
 public:
     General(int cont_count = 3, int p_count = 1, int m_count = 1, int r_count = 1);
-    ~General();
 
     void turnOn();
     void turnOff();
