@@ -2,35 +2,36 @@
 #include "../Queue/Queue.h"
 #include <functional>
 
-Reporter::Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<Database> db, int count)
-    : queue(queue), db(db), threads(std::vector<std::pair<std::thread, bool>>(count))
+Reporter::Reporter(std::shared_ptr<Queue<std::string>> qIn, std::shared_ptr<Queue<std::string>> qOut, std::shared_ptr<Database> db, int count)
+    : queueIn(qIn), queueOut(qOut), db(db), threads(std::vector<std::thread>(count))
 {}
+
+Reporter::~Reporter(){
+    std::for_each(threads.begin(), threads.end(),
+                  [](std::thread& thread) { if (thread.joinable()) thread.join(); });
+}
 
 void Reporter::setWorkingState(bool status) {
     workStatus = status;
 }
 
-void Reporter::notify(bool& status) {
-    status = true;
+void Reporter::worker(std::shared_ptr<Reporter> self) {
+    while (self->workStatus) {
+        self->mutex.lock();
+        if (!self->queueIn->empty()) {
+            std::string answer = self->queueIn->pop();
+            self->mutex.unlock();
+            self->db->insert(answer);
+            self->queueOut->push(answer);
+        } else
+            self->mutex.unlock();
+    }
 }
 
-void Reporter::workCycle() {
-    while (workStatus) {
-        if (!queue->empty()) {
-            std::string obj = queue->pop();
-            if (db->insert(obj))
-                for (int i = 0; i < threads.size(); ++i)
-                    if (!threads[i].first.joinable()) {
-                        threads[i].second = false;
-                        threads[i].first = std::thread(std::bind(&Reporter::notify, std::ref(*this), std::ref(threads[i].second)));
-                        break;
-                    }
-        }
-        for (int i = 0; i < threads.size(); ++i)
-            if (threads[i].second && threads[i].first.joinable())
-                threads[i].first.join();
-    }
-    for (int i = 0; i < threads.size(); ++i)
-        if (threads[i].first.joinable())
-            threads[i].first.join();
+void Reporter::run() {
+    for (auto it = threads.begin(); it != threads.end(); ++it)
+        *it = std::thread(std::bind(worker, shared_from_this()));
 }
+
+
+

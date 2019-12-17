@@ -13,31 +13,37 @@
 #include <functional>
 #include <memory>
 
-class Reporter {
+class Reporter : public std::enable_shared_from_this<Reporter>{
 
 public:
 
-    Reporter(std::shared_ptr<Queue<std::string>> queue, std::shared_ptr<Database> db, int count);
+    Reporter(std::shared_ptr<Queue<std::string>>, std::shared_ptr<Queue<std::string>>, std::shared_ptr<Database>, int);
 
     Reporter(const Reporter&) = delete;
 
     Reporter& operator=(const Reporter&) = delete;
 
-    ~Reporter() = default;
+    ~Reporter();
 
-    void workCycle();
+    void run();
 
     void setWorkingState(bool);
 
-    void notify(bool &);
+private:
+
+    static void worker(std::shared_ptr<Reporter> self);
 
 private:
 
-    std::shared_ptr<Queue<std::string>> queue;
+    std::shared_ptr<Queue<std::string>> queueIn;
+
+    std::shared_ptr<Queue<std::string>> queueOut;
 
     std::shared_ptr<Database> db;
 
-    std::vector<std::pair<std::thread, bool>> threads;
+    std::vector<std::thread> threads;
+
+    std::mutex mutex;
 
     bool workStatus = true;
 
