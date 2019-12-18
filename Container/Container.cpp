@@ -92,6 +92,10 @@ int Container::generateAnswer() {
     return DONE;
 }
 
+std::string Container::getAnswer() {
+    return answer;
+}
+
 bool Container::isFree() const {
     return free_state;
 }

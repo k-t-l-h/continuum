@@ -30,6 +30,7 @@ public:
 
 
     bool isFree() const;
+    std::string getAnswer();
     int doTest(TestCase *test);
 	
 private:
