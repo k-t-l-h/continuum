@@ -1,13 +1,14 @@
-#include "ctestgen.h"
 
+#include "Ctestgen.h"
+#include <string>
 #include <memory>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
-using namespace std;
+
 namespace pt = boost::property_tree;
 
-CTestGeneration::CTestGeneration(const string _request, shared_ptr<Queue<TestCase*>> _wque):
+CTestGeneration::CTestGeneration(const std::string _request, std::shared_ptr<Queue<TestCase*>> _wque):
 request(_request), wque(_wque)
 {};
 
@@ -17,9 +18,9 @@ void CTestGeneration::convertToTestCase(){
   pt::ptree tree;
   pt::read_json(request, tree);
 
-  string id = tree.get<string>("request.id", "C0FFEE");
-  string git = tree.get<string>("request.git_adress", "github.com/continuum");
-  string target = tree.get<string>("request.target", "all");
+  std::string id = tree.get<std::string>("request.id", "C0FFEE");
+  std::string git = tree.get<std::string>("request.git_adress", "github.com/continuum");
+  std::string target = tree.get<std::string>("request.target", "all");
   //вызвать конструктор тест кейса
   tcase = new CTestCase(id, git, target);
 };

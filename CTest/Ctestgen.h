@@ -1,13 +1,14 @@
 #ifndef CTESTGENERATION_H
 #define CTESTGENERATION_H
 
-#include "../TestGeneration/testgen.h"
+#include "../TestGeneration/Testgen.h"
 #include "../Queue/Queue.h"
 #include "../TestCase/CTestCase.h"
+#include "../TestCase/TestCaseClass.h"
 
 #include <memory>
+#include <string>
 
-using namespace std;
 
 class CTestGeneration: public AbstractTestGeneration
 {
@@ -16,16 +17,15 @@ public:
  CTestGeneration(const CTestGeneration&) = delete;
  CTestGeneration operator=(const CTestGeneration&) = delete;
 
- CTestGeneration(const string request, shared_ptr<Queue<TestCase*>> _wque);
- ~CTestGeneration();
+ CTestGeneration(const std::string request, std::shared_ptr<Queue<TestCase*>> _wque);
 
  void convertToTestCase() override;
  int sendToWorker() const override;
 
   private:
-    shared_ptr<Queue<TestCase*>> wque;
+    std::shared_ptr<Queue<TestCase*>> wque;
     CTestCase *tcase;
-    string request;
+    std::string request;
 };
 
 #endif //CTESTGENERATION_H
