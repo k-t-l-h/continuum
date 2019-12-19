@@ -1,0 +1,12 @@
+[submodule "libs/date"]
+	path = libs/date
+	url = https://github.com/HowardHinnant/date
+[submodule "libs/sqlpp11"]
+	path = libs/sqlpp11
+	url = https://github.com/rbock/sqlpp11
+[submodule "libs/sqlpp11-connector-sqlite3"]
+	path = libs/sqlpp11-connector-sqlite3
+	url = https://github.com/rbock/sqlpp11-connector-sqlite3
+[submodule "libs/libsqlite3"]
+	path = libs/libsqlite3
+	url = https://github.com/LuaDist/libsqlite3
