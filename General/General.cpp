@@ -66,7 +66,11 @@ void General::getRequest(std::string request) {
 int main() {
     General server = General();
     server.turnOn();
-    server.getRequest("die plz");
+    sleep(1);
+    std::string input = "{\"request\":{\"id\":\"234\",\"request_type\":\"1\",\"host\":\"localhost\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
+    server.getRequest(input);
+    while (true)
+        sleep(1);
     server.turnOff();
     return 0;
 }

@@ -76,17 +76,25 @@ int Container::collectCDockerCommand(const CTestCase *test) {
 }
 
 int Container::sendTestToDocker() {
-    std::array<char, 128> buffer{};
-    answer = "";
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(command.c_str(), "r"), pclose);
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        answer += buffer.data();
+    system((command + " > temp.txt").c_str());
+
+    std::ifstream ifs("temp.txt");
+    std::string ret{ std::istreambuf_iterator<char>(ifs), std::istreambuf_iterator<char>() };
+    ifs.close();
+    if (std::remove("temp.txt") != 0) {
+        perror("Error deleting temporary file");
     }
+    answer = ret;
+    return DONE;
 }
 
 int Container::generateAnswer() {
     rqueue->push(answer);
     return DONE;
+}
+
+std::string Container::getAnswer() {
+    return answer;
 }
 
 bool Container::isFree() const {

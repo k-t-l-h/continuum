@@ -8,7 +8,8 @@
 
 #include <string>
 #include <memory>
-#include <cstdio>
+#include <fstream>
+#include <iostream>
 #include "../Queue/Queue.h"
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
@@ -29,15 +30,16 @@ public:
 
 
     bool isFree() const;
+    std::string getAnswer();
     int doTest(TestCase *test);
-	
+
 private:
-	int clearAnswer();
-	int collectWebDockerCommand(const WebTestCase *test);
+    int clearAnswer();
+    int collectWebDockerCommand(const WebTestCase *test);
     int collectCDockerCommand(const CTestCase *test);
-	int sendTestToDocker();
-	int generateAnswer();
-	
+    int sendTestToDocker();
+    int generateAnswer();
+
 private:
     bool free_state;
     std::string answer;

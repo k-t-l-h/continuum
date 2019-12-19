@@ -1,4 +1,4 @@
-#ifndef CONTINUUM_GENERAl_H
+#ifndef CONTINUUM_GENERAL_H
 #define CONTINUUM_GENERAL_H
 
 #include "../Queue/Queue.h"
@@ -20,7 +20,6 @@
 class General {
 public:
     General(int cont_count = 3, int p_count = 1, int m_count = 1, int r_count = 1);
-
     void turnOn();
     void turnOff();
     void getRequest(std::string request);

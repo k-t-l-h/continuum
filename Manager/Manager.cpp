@@ -15,9 +15,12 @@ void Manager::setWorkingState(bool status) {
     workStatus = status;
 }
 
+#include <iostream>
+
 void Manager::workCycle() {
     while (workStatus) {
         if (!queueIn->empty()) {
+            std::cout << "Manager: Send test" << std::endl;
             TestCase *test = queueIn->pop();
             for (int i = 0; i < threads.size(); ++i)
                 if (!threads[i].joinable()) {
@@ -26,8 +29,10 @@ void Manager::workCycle() {
                 }
         }
         for (int i = 0; i < containers.size(); ++i)
-            if (containers[i]->isFree() && threads[i].joinable())
+            if (containers[i]->isFree() && threads[i].joinable()) {
+                std::cout << "Manager: join thread" << std::endl;
                 threads[i].join();
+            }
     }
     for (int i = 0; i < containers.size(); ++i)
         if (threads[i].joinable())
