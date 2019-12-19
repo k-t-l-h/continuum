@@ -32,14 +32,14 @@ public:
     bool isFree() const;
     std::string getAnswer();
     int doTest(TestCase *test);
-	
+
 private:
-	int clearAnswer();
-	int collectWebDockerCommand(const WebTestCase *test);
+    int clearAnswer();
+    int collectWebDockerCommand(const WebTestCase *test);
     int collectCDockerCommand(const CTestCase *test);
-	int sendTestToDocker();
-	int generateAnswer();
-	
+    int sendTestToDocker();
+    int generateAnswer();
+
 private:
     bool free_state;
     std::string answer;

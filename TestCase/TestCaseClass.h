@@ -1,3 +1,4 @@
+
 #ifndef TEST_CASE_CLASS_H
 #define TEST_CASE_CLASS_H
 
@@ -15,3 +16,4 @@ public:
 };
 
 #endif //TEST_CASE_CLASS_H
+

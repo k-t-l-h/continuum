@@ -1,9 +1,9 @@
-#include "DataBase.h"
+#include "Database.h"
 
 Database::Database() {
     sql::connection_config config;
     config.password = "";
-    config.path_to_database = "/home/evgeny/temp.db";
+    config.path_to_database = ":memory:";
     config.flags = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE;
     config.debug = false;
     db = new sql::connection(config);
@@ -22,10 +22,17 @@ Database::~Database() {
     delete db;
 }
 
-void Database::insert(std::string report) {
-    auto i = insert_into(reporters).columns(reporters.report);
-    i.values.add(reporters.report = report);
-    (*db)(i);
+bool Database::insert(std::string report) {
+    try {
+        auto i = insert_into(reporters).columns(reporters.report);
+        i.values.add(reporters.report = report);
+        (*db)(i);
+    }
+    catch (sqlpp::exception e) {
+        std::cerr << e.what() << std::endl;
+        return false;
+    }
+    return true;
 }
 
 bool Database::select(int id, std::string &report) {

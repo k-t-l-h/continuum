@@ -2,6 +2,7 @@
 #define CONTINUUM_MANAGER_H
 
 #include <memory>
+#include <thread>
 #include <vector>
 #include "../Container/Container.h"
 #include "../TestCase/TestCaseClass.h"
@@ -13,7 +14,7 @@ class Manager {
 
 public:
 
-    Manager(std::shared_ptr<Queue<TestCase *>> QueueIn, std::shared_ptr<std::string> QueueOut, int count);
+    Manager(std::shared_ptr<Queue<TestCase *>> queueIn, std::shared_ptr<Queue<std::string>> queueOut, int count);
 
     Manager(const Manager&) = delete;
 
@@ -21,23 +22,23 @@ public:
 
     ~Manager() = default;
 
-    const std::vector<Container *>& GetContainers() const;
-
-    int getCountContainers() const;
+    //const std::vector<Container *>& getContainers() const;
 
     void workCycle();
 
-    void setWorkingState(bool WorkSatus);
+    void setWorkingState(bool);
 
 private:
 
-    std::shared_ptr<Queue<TestCase *>> QueueIn;
+    std::shared_ptr<Queue<TestCase *>> queueIn;
 
-    std::shared_ptr<std::string> QueueOut;
+    std::shared_ptr<Queue<std::string>> queueOut;
 
-    std::vector<Container> containers;
+    std::vector<std::thread> threads;
 
-    bool workSatus = true;
+    std::vector<std::shared_ptr<Container>> containers;
+
+    bool workStatus = true;
 
 };
 
