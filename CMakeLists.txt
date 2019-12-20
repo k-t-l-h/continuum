@@ -44,3 +44,8 @@ add_executable(ci ${Project_SRC})
 target_link_libraries(ci sqlpp11-connector-sqlite3 sqlite3 sqlpp11 ${Boost_LIBRARIES})
 
 add_executable(client Client/main.cpp)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++14 -Wall -ggdb3 -pthread")
+
+
+target_link_libraries(client ${Boost_LIBRARIES} -lpthread -lboost_system -lpthread -std=c++14)
