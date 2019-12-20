@@ -12,6 +12,7 @@
 #include "../TestGeneration/Testgen.h"
 #include "../CTest/Ctestgen.h"
 #include "../WebTest/Webtestgen.h"
+#include "../StringFormatter/StringFormatter.h"
 
 #include <memory>
 #include <string>

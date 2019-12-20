@@ -5,21 +5,6 @@
 #include <condition_variable>
 #include <thread>
 
-namespace pt = boost::property_tree;
-
-struct dbFormatter{
-	std::string id;
-	std::string status;
-};
-
-std::string to_json(dbFormatter const& obj) {
-      pt::ptree out;
-      out.put("response.id",          obj.id);
-      out.put("response.status",    obj.status);
-      std::ostringstream oss;
-      pt::write_json(oss, out);
-      return oss.str();
-}
 
 
 //парсер не должен быть владельцем базового ресурса,
