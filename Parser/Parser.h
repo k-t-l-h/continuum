@@ -31,6 +31,28 @@ std::mutex pmutex;
 std::condition_variable condition;
 bool notified;
 
+struct ResponseCode {
+    inline static const std::string OK = "0";
+    inline static const std::string invalidRequestStructure = "Invalid structute";
+    inline static const std::string defaultId = "Invalid ID";
+
+
+    static constexpr int invalidRequestType = -1;
+    static constexpr int cppRequestType =  0;
+    static constexpr int webRequestType = 1;
+
+    inline static const std::string defaultHost = "Invalid host";
+    inline static const std::string defaultProtocol = "Invalid protocol";
+    inline static const std::string defaultMethod = "Invalid method";
+    inline static const std::string defaultReference = "Invalid Reference";
+
+    inline static const std::string defaultTarget = "Invalid Target";
+    inline static const std::string defaultGit = "Invalid Git Adress";
+
+    const std::string temporary = "Sorry";
+} static codes;
+
+
 class Parser
 {
     public:
@@ -67,26 +89,6 @@ class Parser
       std::shared_ptr<Queue<std::string>> rque;
       std::shared_ptr<Queue<TestCase*>> wque;
       std::shared_ptr<Queue<std::string>> reque;
-
-      struct ResponseCode {
-        inline static const std::string OK = "0";
-        inline static const std::string invalidRequestStructure = "Invalid structute";
-        inline static const std::string defaultId = "Invalid ID";
-
-        static constexpr int invalidRequestType = -1;
-        static constexpr int cppRequestType =  0;
-        static constexpr int webRequestType = 1;
-
-        inline static const std::string defaultHost = "Invalid host";
-        inline static const std::string defaultProtocol = "Invalid protocol";
-        inline static const std::string defaultMethod = "Invalid method";
-        inline static const std::string defaultReference = "Invalid Reference";
-
-        inline static const std::string defaultTarget = "Invalid Target";
-        inline static const std::string defaultGit = "Invalid Git Adress";
-
-        const std::string temporary = "Sorry";
-      } codes;
 
 };
 
