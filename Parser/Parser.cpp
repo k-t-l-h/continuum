@@ -115,7 +115,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
 
     case codes.webRequestType:{
       std::string host = tree.get("request.host", codes.defaultHost);
-      if (validateHost(host)){
+      if (!validateHost(host)){
         dbFormatter obj {id, codes.defaultHost};
         std::string response = to_json(obj);
         reque->push(response);
@@ -124,7 +124,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       }
 
       std::string p = tree.get("request.protocol", codes.defaultProtocol);
-      if (validateProtocol(p)){
+      if (!validateProtocol(p)){
         dbFormatter obj {id, codes.defaultProtocol};
         std::string response = to_json(obj);
         reque->push(response);
@@ -132,7 +132,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       }
 
       std::string m = tree.get("request.method", codes.defaultMethod);
-      if (validateMethod(m)){
+      if (!validateMethod(m)){
         dbFormatter obj {id, codes.defaultMethod};
         std::string response = to_json(obj);
         reque->push(response);
@@ -140,7 +140,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       }
 
       std::string ref = tree.get("request.reference", codes.defaultReference);
-      if (validateReference(ref)){
+      if (!validateReference(ref)){
         dbFormatter obj {id, codes.defaultReference};
         std::string response = to_json(obj);
         reque->push(response);
@@ -151,7 +151,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
     //проверка валидности для си
     case codes.cppRequestType:{
       std::string git = tree.get("request.git_adress",  codes.defaultGit);
-      if (validateAdress(git)){
+      if (!validateAdress(git)){
         dbFormatter obj {id, codes.defaultGit};
         std::string response = to_json(obj);
         reque->push(response);
@@ -159,7 +159,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       }
 
       std::string target = tree.get("request.target", codes.defaultTarget);
-      if (validateTarget(target)){
+      if (!validateTarget(target)){
         dbFormatter obj {id, codes.defaultTarget};
         std::string response = to_json(obj);
         reque->push(response);
