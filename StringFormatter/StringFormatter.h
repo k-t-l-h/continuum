@@ -12,7 +12,7 @@ struct stringFormatter{
 	std::string description;
 };
 
-std::string to_json(stringFormatter const& obj) {
+inline std::string to_json(stringFormatter const& obj) {
       pt::ptree out;
       out.put("response.id",          obj.id);
       out.put("response.description",    obj.description);
