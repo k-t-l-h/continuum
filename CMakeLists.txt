@@ -30,16 +30,16 @@ add_subdirectory(${Sqlpp11Sqlite3_DIR})
 
 file(
         GLOB Project_SRC
-        "${PROJECT_SOURCE_DIR}/Container/*"
-        "${PROJECT_SOURCE_DIR}/General/*"
-        "${PROJECT_SOURCE_DIR}/Manager/*"
-        "${PROJECT_SOURCE_DIR}/Reporter/*"
-        "${PROJECT_SOURCE_DIR}/Database/*"
-        "${PROJECT_SOURCE_DIR}/CTest/*"
-        "${PROJECT_SOURCE_DIR}/Parser/*"
         "${PROJECT_SOURCE_DIR}/TestCase/*"
         "${PROJECT_SOURCE_DIR}/TestGeneration/*"
         "${PROJECT_SOURCE_DIR}/WebTest/*"
+        "${PROJECT_SOURCE_DIR}/CTest/*"
+        "${PROJECT_SOURCE_DIR}/Parser/*"
+        "${PROJECT_SOURCE_DIR}/Container/*"
+        "${PROJECT_SOURCE_DIR}/Manager/*"
+        "${PROJECT_SOURCE_DIR}/Database/*"
+        "${PROJECT_SOURCE_DIR}/Reporter/*"
+        "${PROJECT_SOURCE_DIR}/General/*"
 )
 
 add_executable(ci ${Project_SRC})

@@ -14,9 +14,12 @@ void Reporter::notify(bool& status) {
     status = true;
 }
 
+#include <iostream>
+
 void Reporter::workCycle() {
     while (workStatus) {
         if (!queue->empty()) {
+            //std::cout << "Reporter: get report" << std::endl;
             std::string obj = queue->pop();
             if (db->insert(obj))
                 for (int i = 0; i < threads.size(); ++i)
@@ -27,8 +30,10 @@ void Reporter::workCycle() {
                     }
         }
         for (int i = 0; i < threads.size(); ++i)
-            if (threads[i].second && threads[i].first.joinable())
+            if (threads[i].second && threads[i].first.joinable()) {
                 threads[i].first.join();
+                //std::cout << "Reporter: Checking input queue" << std::endl;
+            }
     }
     for (int i = 0; i < threads.size(); ++i)
         if (threads[i].first.joinable())

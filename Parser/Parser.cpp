@@ -60,12 +60,16 @@ void Parser::workCycle()
   std::unique_lock<std::mutex> lock(m);
   //bool состояния
   while(workStatus){
+      std::cout << "Parser: Entering workCycle iteration" << std::endl;
       //избавляемся от внезапных пробуждений
       while (!notified) {
+          std::cout << "Parser: sleep" << std::endl;
         condition.wait(lock);
       }
 
+      std::cout << "Parser: checking input queue" << std::endl;
       if (!rque->empty()){
+          std::cout << "Parser: get request" << std::endl;
         std::string request = get_request();
         workThread(request);
       }
@@ -87,11 +91,14 @@ void Parser::workThread(const std::string request)
         case codes.cppRequestType:{
           CTestGeneration* ctg = new CTestGeneration(request, wque);
           ctg->convertToTestCase();
+
           ctg->sendToWorker();
           break;}
         case codes.webRequestType:{
           WebTestGeneration* wtg = new WebTestGeneration(request, wque);
+            std::cout << "Parser: parsed" << std::endl;
           wtg->convertToTestCase();
+            std::cout << "Parser: send" << std::endl;
           wtg->sendToWorker();}
         break;
       }
