@@ -49,7 +49,3 @@ file(
 add_executable(ci ${Project_SRC})
 
 target_link_libraries(ci sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams)
-
-enable_testing()
-add_executable(testing Tests/TestsManager.cpp ${Project_SRC})
-target_link_libraries(testing sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams gmock gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
