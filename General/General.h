@@ -27,10 +27,11 @@ private:
     std::shared_ptr<Queue<std::string>> rqueue;
     std::shared_ptr<Queue<std::string>> pqueue;
     std::shared_ptr<Queue<TestCase*>> wqueue;
+    std::shared_ptr<Queue<std::string>> oqueue;
     std::shared_ptr<Database> db;
-    std::vector<std::shared_ptr<Parser>> parsers;
-    std::vector<std::shared_ptr<Manager>> managers;
-    std::vector<std::shared_ptr<Reporter>> reporters;
+    std::shared_ptr<Parser> parser;
+    std::shared_ptr<Manager> manager;
+    std::shared_ptr<Reporter> reporter;
     std::vector<std::thread> threads;
 };
 

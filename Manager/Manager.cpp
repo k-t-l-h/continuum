@@ -1,40 +1,39 @@
 #include "Manager.h"
 #include <functional>
+#include <algorithm>
 
 
-Manager::Manager(std::shared_ptr<Queue<TestCase *>> queueIn, std::shared_ptr<Queue<std::string>> queueOut, int count)
-        : queueIn(queueIn), queueOut(queueOut), threads(count), containers(count)
-{
-    for (int i = 0; i < containers.size(); ++i)
-        containers[i] = std::make_shared<Container>(queueOut);
+
+Manager::Manager(std::shared_ptr<Queue<TestCase *>> qIn, std::shared_ptr<Queue<std::string>> qOut, int count)
+        : queueIn(qIn), queueOut(qOut), threads(std::vector<std::thread>(count))
+{}
+
+Manager::~Manager() {
+    std::for_each(threads.begin(), threads.end(),
+            [](std::thread& thread) { if (thread.joinable()) thread.join(); });
 }
-
-
 
 void Manager::setWorkingState(bool status) {
     workStatus = status;
 }
 
-#include <iostream>
 
-void Manager::workCycle() {
-    while (workStatus) {
-        if (!queueIn->empty()) {
-            std::cout << "Manager: Send test" << std::endl;
-            TestCase *test = queueIn->pop();
-            for (int i = 0; i < threads.size(); ++i)
-                if (!threads[i].joinable()) {
-                    threads[i] = std::thread(std::bind(&Container::doTest, std::ref(containers[i]), std::ref(test)));
-                    break;
-                }
-        }
-        for (int i = 0; i < containers.size(); ++i)
-            if (containers[i]->isFree() && threads[i].joinable()) {
-                std::cout << "Manager: join thread" << std::endl;
-                threads[i].join();
-            }
+void Manager::worker(std::shared_ptr<Manager> self) {
+    std::cout << "here11111111" << std::endl;
+    while (self->workStatus) {
+        self->mutexM.lock();
+        if (!self->queueIn->empty()) {
+            std::cout << "here2222" << std::endl;
+            auto test = self->queueIn->pop();
+            self->mutexM.unlock();
+            Container(self->queueOut).doTest(test);
+        } else
+            self->mutexM.unlock();
     }
-    for (int i = 0; i < containers.size(); ++i)
-        if (threads[i].joinable())
-            threads[i].join();
 }
+
+void Manager::run() {
+    for (auto it = threads.begin(); it != threads.end(); ++it)
+        *it = std::thread(std::bind(worker, shared_from_this()));
+}
+

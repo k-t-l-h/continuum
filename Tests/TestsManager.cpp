@@ -9,19 +9,30 @@ struct MockQueue : public Queue<T> {
 
     MOCK_CONST_METHOD0(empty, bool());
 
-    MOCK_METHOD(T, front, (), (override));
+    /*MOCK_METHOD(T, front, (), (override));
 
-    MOCK_METHOD(void, pop, (), (override));
+    MOCK_METHOD(void, pop, (), (override));*/
+
+};
+
+struct MockContainer : public Container {
+
+    //MOCK_CONST_METHOD0(empty, bool());
+
+    /*MOCK_METHOD(T, front, (), (override));
+
+    MOCK_METHOD(void, pop, (), (override));*/
 
 };
 
 TEST(MockCantainer, TestWorkCycleCallEmpty) {
-    int n = 5;
-    MockQueue<TestCase *> *QueueIn;
-    MockQueue<JsonObject> *QueueOut;
+    int n = 3;
+    std::shared_ptr<MockQueue<TestCase *>> QueueIn;
+    std::shared_ptr<MockQueue<std::string>> QueueOut;
     Manager manager(QueueIn, QueueOut, n);
     EXPECT_CALL(*QueueIn, empty()).Times(AtLeast(1));
-    manager.WorkCycle();
+    manager.run();
+    manager.setWorkingState(false);
 }
 /*
 TEST(MockCantainer, TestWorkCycleCountContainers) {

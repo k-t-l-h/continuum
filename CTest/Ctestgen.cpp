@@ -18,7 +18,9 @@ void CTestGeneration::convertToTestCase(){
   //взять реквест
   //пропарсить поля
   pt::ptree tree;
-  pt::read_json(request, tree);
+    std::stringstream ss;
+    ss << request;
+    pt::read_json(ss, tree);
 
   std::string id = tree.get<std::string>("request.id", "C0FFEE");
   std::string git = tree.get<std::string>("request.git_adress", "github.com/continuum");

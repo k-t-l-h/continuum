@@ -3,7 +3,7 @@
 Database::Database() {
     sql::connection_config config;
     config.password = "";
-    config.path_to_database = ":memory:";
+    config.path_to_database = "ex.db";
     config.flags = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE;
     config.debug = false;
     db = new sql::connection(config);
@@ -32,15 +32,22 @@ bool Database::insert(std::string report) {
         std::cerr << e.what() << std::endl;
         return false;
     }
+    std::cout << "insert" << std::endl;
     return true;
 }
 
 bool Database::select(int id, std::string &report) {
-    for (const auto& row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.id == id))) {
-        if (row.report.is_null()) {
-            return false;
+    try {
+        for (const auto &row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.id == id))) {
+            if (row.report.is_null()) {
+                return false;
+            }
+            report = row.report;
+            return true;
         }
-        report = row.report;
-        return true;
+    }
+    catch (sqlpp::exception e) {
+        std::cerr << e.what() << std::endl;
+        return false;
     }
 }

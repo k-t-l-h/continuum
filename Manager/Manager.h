@@ -10,23 +10,27 @@
 
 #include "../TestCase/TestCaseClass.h"
 
-class Manager {
+class Manager : public std::enable_shared_from_this<Manager> {
 
 public:
 
-    Manager(std::shared_ptr<Queue<TestCase *>> queueIn, std::shared_ptr<Queue<std::string>> queueOut, int count);
+    Manager(std::shared_ptr<Queue<TestCase *>>, std::shared_ptr<Queue<std::string>>, int);
 
     Manager(const Manager&) = delete;
 
     Manager& operator=(const Manager&) = delete;
 
-    ~Manager() = default;
+    ~Manager();
 
     //const std::vector<Container *>& getContainers() const;
 
-    void workCycle();
-
     void setWorkingState(bool);
+
+    void run();
+
+private:
+
+    static void worker(std::shared_ptr<Manager> self);
 
 private:
 
@@ -36,7 +40,7 @@ private:
 
     std::vector<std::thread> threads;
 
-    std::vector<std::shared_ptr<Container>> containers;
+    std::mutex mutexM;
 
     bool workStatus = true;
 

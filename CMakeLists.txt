@@ -10,6 +10,10 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
 endif()
 
+add_subdirectory(libs/googletest)
+include_directories(libs/googletest/googletest/include)
+
+
 set(LIB_DIR "${PROJECT_SOURCE_DIR}/libs")
 
 include_directories(
@@ -43,4 +47,9 @@ file(
 )
 
 add_executable(ci ${Project_SRC})
+
 target_link_libraries(ci sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams)
+
+enable_testing()
+add_executable(testing Tests/TestsManager.cpp ${Project_SRC})
+target_link_libraries(testing sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams gmock gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
