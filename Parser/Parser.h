@@ -26,12 +26,6 @@
 
 namespace pt = boost::property_tree;
 
-//глобальные переменные
-std::mutex m;
-std::mutex pmutex;
-std::condition_variable condition;
-bool notified;
-
 static struct ResponseCode {
     inline static const std::string OK = "0";
     inline static const std::string invalidRequestStructure = "Invalid structute";

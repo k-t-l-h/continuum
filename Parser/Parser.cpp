@@ -6,6 +6,10 @@
 #include <thread>
 
 
+extern std::mutex m;
+extern std::mutex pmutex;
+extern std::condition_variable condition;
+extern bool notified;
 
 //парсер не должен быть владельцем базового ресурса,
 //владельцем является general
