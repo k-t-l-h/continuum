@@ -73,7 +73,6 @@ public:
             bytes = boost::asio::read(socket, boost::asio::buffer(buffer, 25),
                                           [this](const boost::system::error_code &err, size_t byte) {
                                               if (err) return false;
-                                              //std::cout << "here" << std::endl;
                                               std::string tmp(this->buffer, this->buffer + byte);
                                               int count = std::count(tmp.begin(), tmp.end(), ' ');
                                               return count > 1;
@@ -92,9 +91,6 @@ public:
         }
         int size = 0;
         s >> size;
-        /*std::cout << "bytes " << bytes << std::endl;
-        std::cout << "it " << it + 1 << std::endl;
-        std::cout << "size " << size << std::endl;*/
         result.append(buffer + ++it, buffer + bytes);
         if (size == (bytes - it)) {
             return result;
@@ -115,6 +111,29 @@ public:
     }
 };
 
+std::string createTest(const std::string& buffer) {
+    std::string result;
+    std::ifstream fin(buffer);
+    if (fin.is_open()) {
+        std::string line;
+        std::string buf;
+        while (getline(fin, line))
+            buf += line;
+        fin.close();
+        srand(time(NULL));
+        int id = rand();
+        std::ofstream fout(".ci_id", std::ios_base::app);
+        if (fout.is_open()){
+            fout << id;
+            fout.close();
+        }
+        std::cout << "Your id" << id << std::endl;
+        result = "{    \"request\": {    \"id\": \"" + std::to_string(id) + "\",    " + buf + "    }}";
+    } else
+        std::cout << "file is not open" << std::endl;
+    return result;
+}
+
 int main() {
     boost::asio::io_context context;
     Client client(context, "127.0.0.1", 8081);
@@ -125,25 +144,7 @@ int main() {
     while (client.getStatus() && std::cin >> buffer) {
         std::string message;
         if (testFlag) {
-            std::ifstream fin(buffer);
-            if (fin.is_open()) {
-                std::string line;
-                std::string buf;
-                while (getline(fin, line))
-                    buf += line;
-                fin.close();
-                srand(time(NULL));
-                int id = rand();
-                std::ofstream fout(".ci_id", std::ios_base::app);
-                if (fout.is_open()){
-                    std::cout << "nice"<< std::endl;
-                }
-                fout << id;
-                fout.close();
-                std::cout << "Your id" << id << std::endl;
-                message = "{    \"request\": {    \"id\": \"" + std::to_string(id) + "\",    " + buf + "    }}";
-            } else
-                std::cout << "file is not open" << std::endl;
+            message = createTest(buffer);
             testFlag = false;
         }
         if (getFlag) {

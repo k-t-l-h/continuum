@@ -72,8 +72,8 @@ int main() {
     //requestF obj;
     std::string input = "{\"request\":{\"id\":\"234\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";//to_jsonr(obj);
     std::string input1 = "{\"request\":{\"id\":\"235\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
-    std::string input2 = "{\"request\":{\"id\":\"236\",\"request_type\":\"2\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
-    std::string input3 = "{\"request\":{\"id\":\"237\",\"request_type\":\"2\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
+    std::string input2 = "{\"request\":{\"id\":\"236\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
+    std::string input3 = "{\"request\":{\"id\":\"237\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
     std::string input4 = "{\"request\":{\"id\":\"238\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
     server.getRequest(input1);
     std::cout << "line 111" <<std::endl;
