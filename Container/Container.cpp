@@ -29,6 +29,7 @@ int Container::doTest(TestCase *test) {
 
 int Container::clearAnswer() {
     answer.clear();
+    test_id.clear();
     return DONE;
 }
 
@@ -38,6 +39,7 @@ int Container::collectWebDockerCommand(const WebTestCase *test) {
     std::string image = "web";
     std::string protocol;
     std::string method;
+    test_id = test->id;
     switch( test->p ) {
         case 0:
             protocol =  "http://";
@@ -76,12 +78,13 @@ int Container::collectCDockerCommand(const CTestCase *test) {
 }
 
 int Container::sendTestToDocker() {
-    system((command + " > temp.txt").c_str());
+    std::string filename = test_id + "tmp.txt";
+    system((command + " > " + filename).c_str());
 
-    std::ifstream ifs("temp.txt");
+    std::ifstream ifs(filename);
     std::string ret{ std::istreambuf_iterator<char>(ifs), std::istreambuf_iterator<char>() };
     ifs.close();
-    if (std::remove("temp.txt") != 0) {
+    if (std::remove(filename.c_str()) != 0) {
         perror("Error deleting temporary file");
     }
     answer = ret;

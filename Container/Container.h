@@ -10,6 +10,7 @@
 #include <memory>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 #include "../Queue/Queue.h"
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
@@ -45,6 +46,7 @@ private:
     std::string answer;
     std::string command;
     std::shared_ptr<Queue<std::string>> rqueue;
+    std::string test_id;
 };
 
 

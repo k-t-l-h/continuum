@@ -17,47 +17,15 @@ General::General(int cont_count, int p_count, int m_count, int r_count) {
 }
 
 void General::turnOn() {
-    /*for (auto ptr = parsers.begin(); ptr < parsers.end(); ptr++)
-    {
-        (*ptr)->setStatus(true);
-        std::thread thr(std::bind(&Parser::workCycle, std::ref(*ptr)));
-        threads.emplace_back(std::move(thr));
-    }*/
     parser->setStatus(true);
-    //parser->workCycle();
     manager->setWorkingState(true);
     reporter->setWorkingState(true);
     manager->run();
     reporter->run();
-    /*for (auto ptr = managers.begin(); ptr < managers.end(); ptr++)
-    {
-        (*ptr)->setWorkingState(true);
-        std::thread thr(std::bind(&Manager::run, std::ref(*ptr)));
-        threads.emplace_back(std::move(thr));
-    }*/
-    /*for (auto ptr = reporters.begin(); ptr < reporters.end(); ptr++)
-    {
-        (*ptr)->setWorkingState(true);
-        std::thread thr(std::bind(&Reporter::run, std::ref(*ptr)));
-        threads.emplace_back(std::move(thr));
-    }*/
 }
 
 void General::turnOff() {
-    /*for (auto ptr = parsers.begin(); ptr < parsers.end(); ptr++)
-    {
-        (*ptr)->setStatus(false);
-    }*/
     parser->setStatus(false);
-    /*for (auto ptr = managers.begin(); ptr < managers.end(); ptr++)
-    {
-        (*ptr)->setWorkingState(false);
-    }
-    for (auto ptr = reporters.begin(); ptr < reporters.end(); ptr++)
-    {
-        (*ptr)->setWorkingState(false);
-    }*/
-    //parser->setWorkingState(false);
     manager->setWorkingState(false);
     reporter->setWorkingState(false);
     std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
