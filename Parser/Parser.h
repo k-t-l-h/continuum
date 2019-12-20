@@ -32,7 +32,7 @@ std::mutex pmutex;
 std::condition_variable condition;
 bool notified;
 
-struct ResponseCode {
+static struct ResponseCode {
     inline static const std::string OK = "0";
     inline static const std::string invalidRequestStructure = "Invalid structute";
     inline static const std::string defaultId = "Invalid ID";
@@ -51,7 +51,7 @@ struct ResponseCode {
     inline static const std::string defaultGit = "Invalid Git Adress";
 
     const std::string temporary = "Sorry";
-} static codes;
+} codes;
 
 
 class Parser
