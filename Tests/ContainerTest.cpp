@@ -11,7 +11,7 @@ class TestContainer : public ::testing::Test
 protected:
 	void SetUp()
 	{
-		rq = new Queue<JsonObject>();
+		rq = std::make_shared<Queue<std::string>>();
 		container = new Container(rq);
 	}
 	
@@ -27,7 +27,7 @@ protected:
 TEST_F(TestContainer, ContainerBusy)
 {
 	// some testcase
-	TestCase test();
+    auto *test = new WebTestCase("qwerty", "github.com", 0, 1, 0);
 	
 	boost::thread t(container.DoTest(test));
 	ASSERT_FALSE(container.IsFree());
@@ -39,32 +39,27 @@ TEST_F(TestContainer, ContainerFree)
 	ASSERT_TRUE(container.IsFree());
 }
 
-TEST_F(TestContainer, HasHost)
-{
-	ASSERT_TRUE(container.GetContainerHost() != nullptr);
-}
-
 TEST_F(TestContainer, CorrectTestSent)
 {
 	// correct testcase
-	TestCase test();
+	auto *test = new WebTestCase("qwerty", "github.com", 0, 1, 0);
 	ASSERT_EQ(container.DoTest(test), OK);
 }
 
 TEST_F(TestContainer, IncorrectTestNotSent)
 {
 	// incorrect testcase
-	TestCase test();
+    auto *test = new WebTestCase("qwerty", "sgasdjdh", 0, 1, 0);
 	
-	ASSERT_EQ(container.DoTest(test), ERROR);
+	ASSERT_EQ(container.DoTest(test), DOCKER_ERR);
 }
 
 TEST_F(TestContainer, RightAnswer)
 {
 	// correct answer
-	JsonObject answer;
-	TestCase test();
+	std::string answer = "HTTP/1.1 301 Moved Permanently\r\nContent-length: 0\r\nLocation: https://github.com/\r\n\r\n"
+
 	
-	container.DoTest(test);
-	ASSERT_EQ(container.GetAnswer(), answer);
+	container.doTest(test);
+	ASSERT_EQ(container.getAnswer(), answer);
 }
