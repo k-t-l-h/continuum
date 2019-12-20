@@ -100,7 +100,7 @@ int main() {
     General server = General();
     server.turnOn();
     std::cout << "hi"<<std::endl;
-    //sleep(1);
+    sleep(1.1);
     //requestF obj;
     std::string input = "{\"request\":{\"id\":\"234\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";//to_jsonr(obj);
     std::string input1 = "{\"request\":{\"id\":\"235\",\"request_type\":\"1\",\"host\":\"www.ya.ru\",\"protocol\":\"0\",\"method\":\"0\",\"reference\":\"200\"}}";
