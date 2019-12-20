@@ -63,8 +63,11 @@ void Parser::workCycle()
 
 void Parser::workThread(const std::string request)
 {
+
   pt::ptree tree;
-  pt::read_json(request, tree);
+  std::stringstream ss;
+  ss << request;
+  pt::read_json(ss, tree);
 
   if (validateRequest(tree))
     {
