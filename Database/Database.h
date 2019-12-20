@@ -42,6 +42,29 @@ namespace Table_
         using _traits = ::sqlpp::make_traits<::sqlpp::integer, ::sqlpp::tag::can_be_null>;
     };
 
+    struct Key
+    {
+        struct _alias_t
+        {
+            static constexpr const char _literal[] = "key";
+            using _name_t = sqlpp::make_char_sequence<sizeof(_literal), _literal>;
+            template <typename T>
+            struct _member_t
+            {
+                T key;
+                T& operator()()
+                {
+                    return key;
+                }
+                const T& operator()() const
+                {
+                    return key;
+                }
+            };
+        };
+        using _traits = ::sqlpp::make_traits<::sqlpp::integer, ::sqlpp::tag::can_be_null>;
+    };
+
     struct Report
     {
         struct _alias_t
@@ -68,7 +91,7 @@ namespace Table_
 
 }
 
-struct Table : sqlpp::table_t<Table, Table_::Id, Table_::Report>
+struct Table : sqlpp::table_t<Table, Table_::Id, Table_::Key, Table_::Report>
 {
     using _value_type = sqlpp::no_value_t;
     struct _alias_t
@@ -99,9 +122,9 @@ public:
 
     ~Database();
 
-    bool insert(std::string report);
+    bool insert(int, std::string&);
 
-    bool select(int id, std::string &report);
+    bool select(int, std::string&);
 
 private:
 

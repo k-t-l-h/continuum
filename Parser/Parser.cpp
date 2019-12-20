@@ -5,31 +5,11 @@
 #include <condition_variable>
 #include <thread>
 
-namespace pt = boost::property_tree;
 
 extern std::mutex m;
 extern std::mutex pmutex;
 extern std::condition_variable condition;
 extern bool notified;
-
-
-struct dbFormatter{
-	std::string id;
-	std::string status;
-};
-
-std::string to_json(dbFormatter const& obj) {
-      pt::ptree out;
-      out.put("response.id",          obj.id);
-      out.put("response.status",    obj.status);
-
-      std::ostringstream oss;
-
-      pt::write_json(oss, out);
-      return oss.str();
-}
-
-
 //парсер не должен быть владельцем базового ресурса,
 //владельцем является general
 Parser::Parser(std::shared_ptr<Queue<std::string>> _rque,
@@ -83,32 +63,29 @@ void Parser::workCycle()
 void Parser::workThread(const std::string request)
 
 {
-      pt::ptree tree;
 
-          std::stringstream ss;
-          ss << request;
-          pt::read_json(ss, tree);
+  pt::ptree tree;
+  std::stringstream ss;
+  ss << request;
+  pt::read_json(ss, tree);
 
-      std::cout << "workThread - 87" << std::endl;
-      if (validateRequest(tree))
-        {
-          int request_type = tree.get<int>("request.request_type");
-          switch (request_type) {
-            case codes.cppRequestType:{
-              CTestGeneration* ctg = new CTestGeneration(request, wque);
-              ctg->convertToTestCase();
+  if (validateRequest(tree))
+    {
+      int request_type = tree.get<int>("request.request_type");
+      switch (request_type) {
+        case codes.cppRequestType:{
+          CTestGeneration* ctg = new CTestGeneration(request, wque);
+          ctg->convertToTestCase();
+          ctg->sendToWorker();
+          break;}
+        case codes.webRequestType:{
+          WebTestGeneration* wtg = new WebTestGeneration(request, wque);
+          wtg->convertToTestCase();
+          wtg->sendToWorker();}
+        break;
+      }
+    }
 
-              ctg->sendToWorker();
-              break;}
-            case codes.webRequestType:{
-              WebTestGeneration* wtg = new WebTestGeneration(request, wque);
-                std::cout << "Parser: parsed" << std::endl;
-              wtg->convertToTestCase();
-                std::cout << "Parser: send" << std::endl;
-              wtg->sendToWorker();}
-            break;
-          }
-        }
 }
 
 std::string Parser::get_request() const
@@ -128,14 +105,14 @@ bool Parser::validateRequest(const pt::ptree tree) const
 
   if (request_type == codes.invalidRequestType){
 
-      dbFormatter obj {id, codes.invalidRequestStructure};
+      stringFormatter obj {id, codes.invalidRequestStructure};
       std::string response = to_json(obj);
       reque->push(response);
       return false;
   }
 
   if (id == codes.defaultId) {
-    dbFormatter obj {id, codes.defaultId};
+    stringFormatter obj {id, codes.defaultId};
     std::string response = to_json(obj);
     reque->push(response);
     return false;
@@ -148,7 +125,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       std::string host = tree.get("request.host", codes.defaultHost);
 
       if (!validateHost(host)){
-        dbFormatter obj {id, codes.defaultHost};
+        stringFormatter obj {id, codes.defaultHost};
         std::string response = to_json(obj);
         reque->push(response);
 
@@ -159,7 +136,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       std::string p = tree.get("request.protocol", codes.defaultProtocol);
 
       if (!validateProtocol(p)){
-        dbFormatter obj {id, codes.defaultProtocol};
+        stringFormatter obj {id, codes.defaultProtocol};
         std::string response = to_json(obj);
         reque->push(response);
         return false;
@@ -169,7 +146,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       std::string m = tree.get("request.method", codes.defaultMethod);
 
       if (!validateMethod(m)){
-        dbFormatter obj {id, codes.defaultMethod};
+        stringFormatter obj {id, codes.defaultMethod};
         std::string response = to_json(obj);
         reque->push(response);
         return false;
@@ -179,7 +156,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
       std::string ref = tree.get("request.reference", codes.defaultReference);
 
       if (!validateReference(ref)){
-        dbFormatter obj {id, codes.defaultReference};
+        stringFormatter obj {id, codes.defaultReference};
         std::string response = to_json(obj);
         reque->push(response);
         return false;
@@ -191,8 +168,9 @@ bool Parser::validateRequest(const pt::ptree tree) const
     case codes.cppRequestType:{
       std::string git = tree.get("request.git_adress",  codes.defaultGit);
 
-      if (validateAdress(git)){
-        dbFormatter obj {id, codes.defaultGit};
+      if (!validateAdress(git)){
+
+        stringFormatter obj {id, codes.defaultGit};
         std::string response = to_json(obj);
         reque->push(response);
         return false;
@@ -201,8 +179,9 @@ bool Parser::validateRequest(const pt::ptree tree) const
 
       std::string target = tree.get("request.target", codes.defaultTarget);
 
-      if (validateTarget(target)){
-        dbFormatter obj {id, codes.defaultTarget};
+      if (!validateTarget(target)){
+
+        stringFormatter obj {id, codes.defaultTarget};
         std::string response = to_json(obj);
         reque->push(response);
         return false;
@@ -213,7 +192,7 @@ bool Parser::validateRequest(const pt::ptree tree) const
     default:{
 
 	    if(reque){
-	      dbFormatter obj {id, codes.temporary};
+	      stringFormatter obj {id, codes.temporary};
 	      std::string response = to_json(obj);
 	      std::cout << "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" << std::endl;
 	      reque->push(response);

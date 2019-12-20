@@ -87,7 +87,8 @@ int Container::sendTestToDocker() {
     if (std::remove(filename.c_str()) != 0) {
         perror("Error deleting temporary file");
     }
-    answer = ret;
+    stringFormatter obj {test_id, ret};
+    answer = to_json(obj);
     return DONE;
 }
 

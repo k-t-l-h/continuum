@@ -128,7 +128,7 @@ std::string createTest(const std::string& buffer) {
             fout.close();
         }
         std::cout << "Your id" << id << std::endl;
-        result = "{    \"request\": {    \"id\": \"" + std::to_string(id) + "\",    " + buf + "    }}";
+        result = "test {    \"request\": {    \"id\": \"" + std::to_string(id) + "\",    " + buf + "    }}";
     } else
         std::cout << "file is not open" << std::endl;
     return result;
@@ -136,7 +136,7 @@ std::string createTest(const std::string& buffer) {
 
 int main() {
     boost::asio::io_context context;
-    Client client(context, "127.0.0.1", 8081);
+    Client client(context, "0.0.0.0", 8082);
     client.start();
     std::string buffer;
     bool getFlag = false;
@@ -160,7 +160,7 @@ int main() {
                     std::cout << "Enter your id" << std::endl;
                 }
             }
-            message = buffer;
+            message = "get " + buffer;
             getFlag = false;
         }
         if (buffer.find("test") == 0 && !testFlag) {

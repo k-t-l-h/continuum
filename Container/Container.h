@@ -15,6 +15,7 @@
 #include "../TestCase/TestCaseClass.h"
 #include "../TestCase/CTestCase.h"
 #include "../TestCase/WebTestCase.h"
+#include "../StringFormatter/StringFormatter.h"
 
 #define DONE 0
 #define TEST_ERR -1

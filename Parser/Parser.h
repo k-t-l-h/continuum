@@ -12,6 +12,7 @@
 #include "../TestGeneration/Testgen.h"
 #include "../CTest/Ctestgen.h"
 #include "../WebTest/Webtestgen.h"
+#include "../StringFormatter/StringFormatter.h"
 
 #include <memory>
 #include <string>
@@ -24,6 +25,7 @@
 
 
 namespace pt = boost::property_tree;
+
 
 static struct ResponseCode {
     inline static const std::string OK = "0";

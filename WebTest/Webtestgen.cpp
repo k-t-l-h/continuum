@@ -11,10 +11,13 @@ request(_request), wque(_wque)
 
 void WebTestGeneration::convertToTestCase(){
   //пропарсить поля
+
   pt::ptree tree;
+
     std::stringstream ss;
     ss << request;
     pt::read_json(ss, tree);
+
   std::string id = tree.get<std::string>("request.id", "FEELDEAD");
 
   std::string host = tree.get<std::string>("request.host", "localhost");

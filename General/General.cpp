@@ -13,7 +13,7 @@ General::General(int cont_count, int p_count, int m_count, int r_count) {
     db = std::make_shared<Database>();
     parser = std::make_shared<Parser>(pqueue, wqueue, rqueue);
     manager = std::make_shared<Manager>(wqueue, rqueue, cont_count);
-    reporter = std::make_shared<Reporter>(rqueue, oqueue, db, 2);
+    reporter = std::make_shared<Reporter>(rqueue, oqueue, db, cont_count);
 }
 
 void General::turnOn() {

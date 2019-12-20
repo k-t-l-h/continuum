@@ -48,7 +48,9 @@ file(
 
 add_executable(ci ${Project_SRC})
 add_executable(client Client/main.cpp)
+add_executable(server Client/server.cpp)
 target_link_libraries(client ${Boost_LIBRARIES} -lboost_system)
+target_link_libraries(server ${Boost_LIBRARIES} -lboost_system)
 
 target_link_libraries(ci sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams)
 

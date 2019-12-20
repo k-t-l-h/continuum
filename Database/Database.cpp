@@ -10,6 +10,7 @@ Database::Database() {
     try {
         db->execute("CREATE TABLE reporters (\
             id INTEGER PRIMARY KEY AUTOINCREMENT,\
+            key INTEGER UNIQUE DEFAULT NULL,\
             report varchar(255) DEFAULT NULL\
         )");
     }
@@ -22,10 +23,10 @@ Database::~Database() {
     delete db;
 }
 
-bool Database::insert(std::string report) {
+bool Database::insert(int key, std::string& report) {
     try {
-        auto i = insert_into(reporters).columns(reporters.report);
-        i.values.add(reporters.report = report);
+        auto i = insert_into(reporters).columns(reporters.key, reporters.report);
+        i.values.add(reporters.key = key, reporters.report = report);
         (*db)(i);
     }
     catch (sqlpp::exception e) {
@@ -36,9 +37,9 @@ bool Database::insert(std::string report) {
     return true;
 }
 
-bool Database::select(int id, std::string &report) {
+bool Database::select(int key, std::string& report) {
     try {
-        for (const auto &row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.id == id))) {
+        for (const auto &row : (*db)(sqlpp::select(reporters.report).from(reporters).where(reporters.key == key))) {
             if (row.report.is_null()) {
                 return false;
             }
