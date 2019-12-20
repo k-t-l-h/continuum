@@ -5,32 +5,19 @@ language: cpp
 
 os:
   - linux
-#  - osx
+  - osx
 
 compiler:
   - gcc
   - clang
-#before_install:
-#  - chmod +x ci/travis/install-linux.sh
 
-before_install:
-  - sudo apt update
-  - sudo apt install make
-  - sudo apt install libboost-all-dev
-  - sudo apt install sqlite3
-
-  - git clone https://github.com/abseil/googletest.git
-  - cd googletest/
-  - git submodule update --init
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make -j8
-  - sudo make install
-  - cd ../..
+matrix:
+  exclude:
+  - os:       osx
+    compiler: gcc
 
 install:
-  - skip
+- source ci/travis/install-$TRAVIS_OS_NAME.sh
 
 script:
   - mkdir build
