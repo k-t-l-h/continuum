@@ -25,11 +25,11 @@
 
 namespace pt = boost::property_tree;
 
-//глобальные переменные
-struct ResponseCode {
+static struct ResponseCode {
     inline static const std::string OK = "0";
     inline static const std::string invalidRequestStructure = "Invalid structute";
     inline static const std::string defaultId = "Invalid ID";
+
 
     static constexpr int invalidRequestType = -1;
     static constexpr int cppRequestType =  0;
@@ -44,7 +44,8 @@ struct ResponseCode {
     inline static const std::string defaultGit = "Invalid Git Adress";
 
     const std::string temporary = "Sorry";
-} static codes;
+} codes;
+
 
 class Parser
 {
