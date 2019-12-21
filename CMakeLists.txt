@@ -34,6 +34,7 @@ add_subdirectory(${Sqlpp11Sqlite3_DIR})
 
 file(
         GLOB Project_SRC
+        main.cpp
         "${PROJECT_SOURCE_DIR}/TestCase/*"
         "${PROJECT_SOURCE_DIR}/TestGeneration/*"
         "${PROJECT_SOURCE_DIR}/WebTest/*"
@@ -52,7 +53,8 @@ add_executable(server Client/server.cpp)
 target_link_libraries(client ${Boost_LIBRARIES} -lboost_system)
 target_link_libraries(server ${Boost_LIBRARIES} -lboost_system)
 
-target_link_libraries(ci sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams)
+
+target_link_libraries(ci -lboost_system sqlpp11-connector-sqlite3 sqlite3 sqlpp11 pthread ${Boost_LIBRARIES} -lboost_regex -lboost_iostreams)
 
 enable_testing()
 add_executable(testing Tests/TestsManager.cpp ${Project_SRC})

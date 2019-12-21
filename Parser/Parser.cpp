@@ -19,8 +19,7 @@ std::shared_ptr<Queue<std::string>> _reque):
 rque(_rque), wque(_wque), reque(_reque), workStatus(true)
 
 {
-    maxPool = 3;//std::thread::hardware_concurrency();
-    std::cout << "maxPoll" << maxPool <<std::endl;
+    maxPool = 2;//std::thread::hardware_concurrency();
     for(int i = 0; i < maxPool; i++){
     threadPool.push_back(std::thread(std::bind(&Parser::workCycle, this)));
   }
@@ -44,15 +43,15 @@ void Parser::workCycle()
       //std::cout << "Parser: Entering workCycle iteration" << std::endl;
       //избавляемся от внезапных пробуждений
       while (!notified) {
-          std::cout << "Parser: sleep" << std::endl;
+          //std::cout << "Parser: sleep" << std::endl;
         condition.wait(lock);
       }
 
-      std::cout << "Parser: checking input queue" << std::endl;
+      //std::cout << "Parser: checking input queue" << std::endl;
       if (!rque->empty()){
-          std::cout << "Parser: get request" << std::endl;
+          //std::cout << "Parser: get request" << std::endl;
         std::string request = get_request();
-        std::cout << "reques" << request << std::endl;
+        //std::cout << "reques" << request << std::endl;
         workThread(request);
       }
       notified = false;
@@ -96,7 +95,6 @@ std::string Parser::get_request() const
 bool Parser::validateRequest(const pt::ptree tree) const
 {
   //получаем тип заявки
-  std::cout << "validate\n";
 
   int request_type = tree.get("request.request_type", codes.invalidRequestType);
 

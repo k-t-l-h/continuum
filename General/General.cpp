@@ -5,7 +5,7 @@ std::mutex pmutex;
 std::condition_variable condition;
 bool notified = false;
 
-General::General(int cont_count, int p_count, int m_count, int r_count) {
+General::General(int cont_count) {
     rqueue = std::make_shared<Queue<std::string>>();
     pqueue = std::make_shared<Queue<std::string>>();
     wqueue = std::make_shared<Queue<TestCase*>>();
@@ -31,41 +31,23 @@ void General::turnOff() {
     std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 }
 
-void General::getRequest(std::string request) {
+std::string General::sendAnswer(const std::string& id) {
+    std::string result;
+    if (!db->select(std::stoi(id), result))
+        result = "Not Found";
+    return result;
+}
+
+void General::getRequest(const std::string& request) {
     std::unique_lock<std::mutex> lock(m);
     pqueue->push(request);
     notified = true;
     condition.notify_one();
 }
 
-struct requestF{
-    std::string id = "234";
-    int request_type = 2;
-    std::string host = "www.ya.ru";
-    int protocol = 0;
-    int method = 0;
-    int reference = 200;
-
-};
-
-std::string to_jsonr(requestF const& obj) {
-    pt::ptree out;
-    out.put("request.id",          obj.id);
-    out.put("request.request_type",    obj.request_type);
-    out.put("request.host",    obj.host);
-    out.put("request.protocol",    obj.protocol);
-    out.put("request.method",    obj.method);
-    out.put("request.reference",    obj.reference);
-
-
-    std::ostringstream oss;
-
-    pt::write_json(oss, out);
-    return oss.str();
-}
-
+/*
 int main() {
-    General server = General();
+    General server = General(2);
     server.turnOn();
     std::cout << "hi"<<std::endl;
     sleep(1.1);
@@ -89,4 +71,4 @@ int main() {
         //sleep(1);
     server.turnOff();
     return 0;
-}
+}*/

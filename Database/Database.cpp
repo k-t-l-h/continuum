@@ -33,7 +33,6 @@ bool Database::insert(int key, std::string& report) {
         std::cerr << e.what() << std::endl;
         return false;
     }
-    std::cout << "insert" << std::endl;
     return true;
 }
 

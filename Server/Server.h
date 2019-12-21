@@ -5,7 +5,7 @@
 #ifndef CI_SERVER_H
 #define CI_SERVER_H
 
-#include "../General.h"
+#include "../General/General.h"
 #include <cstdlib>
 #include <iostream>
 #include <boost/bind.hpp>
@@ -44,10 +44,12 @@ public:
             std::string answer = "";
             if (request.find("GET ") == 0) {
                 answer = backend_->sendAnswer(request.substr(4, request.size() - 4));
-
+                if (answer.size() == 0)
+                    answer = "Please, wait";
             }
             if (request.find("TEST ") == 0) {
-                backend_->getRequest(request.substr(5, request.size()-5), this);
+                backend_->getRequest(request.substr(5, request.size()-5));
+                answer = "OK";
             }
             boost::asio::async_write(socket_,
                                      boost::asio::buffer(answer, answer.size()),
@@ -87,7 +89,7 @@ public:
     server(boost::asio::io_service &io_service, short port, General* backend)
             : io_service_(io_service),
               acceptor_(io_service, tcp::endpoint(tcp::v4(), port)), backend_(backend) {
-        session *new_session = new session(io_service_);
+        session *new_session = new session(io_service_, backend_);
         acceptor_.async_accept(new_session->socket(),
                                boost::bind(&server::handle_accept, this, new_session,
                                            boost::asio::placeholders::error));
@@ -97,7 +99,7 @@ public:
                        const boost::system::error_code &error) {
         if (!error) {
             new_session->start();
-            new_session = new session(io_service_);
+            new_session = new session(io_service_, backend_);
             acceptor_.async_accept(new_session->socket(),
                                    boost::bind(&server::handle_accept, this, new_session,
                                                boost::asio::placeholders::error));
@@ -110,6 +112,6 @@ private:
     boost::asio::io_service &io_service_;
     tcp::acceptor acceptor_;
     General* backend_;
-}
+};
 
 #endif //CI_SERVER_H

@@ -21,7 +21,6 @@ void Reporter::worker(std::shared_ptr<Reporter> self) {
     while (self->workStatus) {
         self->mutexR.lock();
         if (!self->queueIn->empty()) {
-            std::cout << "start report"  << std::endl;
             std::string report = self->queueIn->pop();
             boost::property_tree::ptree tree;
             std::stringstream ss;
@@ -32,9 +31,6 @@ void Reporter::worker(std::shared_ptr<Reporter> self) {
             std::cout << id << " " << descriprion << std::endl;
             self->mutexR.unlock();
             self->db->insert(id, descriprion);
-            //self->queueOut->push(report);
-            //std::cout << "report: " << report << std::endl;
-            std::cout << "end report"  << std::endl;
         } else {
             self->mutexR.unlock();
         }
