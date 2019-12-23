@@ -19,13 +19,13 @@ void Manager::setWorkingState(bool status) {
 
 void Manager::worker(std::shared_ptr<Manager> self) {
     while (self->workStatus) {
-        self->mutex.lock();
+        self->mutexM.lock();
         if (!self->queueIn->empty()) {
             auto test = self->queueIn->pop();
-            self->mutex.unlock();
+            self->mutexM.unlock();
             Container(self->queueOut).doTest(test);
         } else
-            self->mutex.unlock();
+            self->mutexM.unlock();
     }
 }
 

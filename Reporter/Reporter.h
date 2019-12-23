@@ -17,7 +17,7 @@ class Reporter : public std::enable_shared_from_this<Reporter>{
 
 public:
 
-    Reporter(std::shared_ptr<Queue<std::string>>, std::shared_ptr<Queue<std::string>>, std::shared_ptr<Database>, int);
+    Reporter(std::shared_ptr<Queue<std::string>>, std::shared_ptr<Database>, int);
 
     Reporter(const Reporter&) = delete;
 
@@ -37,13 +37,11 @@ private:
 
     std::shared_ptr<Queue<std::string>> queueIn;
 
-    std::shared_ptr<Queue<std::string>> queueOut;
-
     std::shared_ptr<Database> db;
 
     std::vector<std::thread> threads;
 
-    std::mutex mutex;
+    std::mutex mutexR;
 
     bool workStatus = true;
 

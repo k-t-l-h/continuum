@@ -2,8 +2,8 @@
 #include "../Queue/Queue.h"
 #include <functional>
 
-Reporter::Reporter(std::shared_ptr<Queue<std::string>> qIn, std::shared_ptr<Queue<std::string>> qOut, std::shared_ptr<Database> db, int count)
-    : queueIn(qIn), queueOut(qOut), db(db), threads(std::vector<std::thread>(count))
+Reporter::Reporter(std::shared_ptr<Queue<std::string>> qIn, std::shared_ptr<Database> db, int count)
+    : queueIn(qIn), db(db), threads(std::vector<std::thread>(count))
 {}
 
 Reporter::~Reporter(){
@@ -17,14 +17,21 @@ void Reporter::setWorkingState(bool status) {
 
 void Reporter::worker(std::shared_ptr<Reporter> self) {
     while (self->workStatus) {
-        self->mutex.lock();
+        self->mutexR.lock();
         if (!self->queueIn->empty()) {
-            std::string answer = self->queueIn->pop();
-            self->mutex.unlock();
-            self->db->insert(answer);
-            self->queueOut->push(answer);
+            std::string report = self->queueIn->pop();
+            boost::property_tree::ptree tree;
+            std::stringstream ss;
+            ss << report;
+            boost::property_tree::read_json(ss, tree);
+            int id = tree.get("response.id", 0);
+            std::string descriprion = tree.get("response.description", "");
+            std::cout << id << " " << descriprion << std::endl;
+            self->mutexR.unlock();
+            self->db->insert(id, descriprion);
+
         } else
-            self->mutex.unlock();
+            self->mutexR.unlock();
     }
 }
 

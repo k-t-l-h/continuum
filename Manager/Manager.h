@@ -42,7 +42,7 @@ private:
 
     std::vector<std::thread> threads;
 
-    std::mutex mutex;
+    std::mutex mutexM;
 
     bool workStatus = true;
 
