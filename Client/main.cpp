@@ -11,33 +11,43 @@
 #include <memory>
 #include <string>
 
+boost::asio::io_service service;
 
-class Client : public boost::enable_shared_from_this<Client> {
+class Client : public boost::enable_shared_from_this<Client>, boost::noncopyable {
 
-    boost::asio::ip::tcp::socket socket;
-    boost::asio::ip::address adress;
-    int port;
-    bool status = false;
-    char readBuffer[1024];
+    Client()
+    : socket_(service), started_(true), timer_(service) {}
+
+    void start(boost::asio::ip::tcp::endpoint ep)
+    {
+        socket_.async_connect(ep, boost::bind(&Client::on_connect, shared_from_this(), boost::asio::placeholders::error));
+    }
 
 public:
 
-    Client(boost::asio::io_service& io, const std::string& adress, int port) : socket(io), adress(boost::asio::ip::address::from_string(adress)), port(port)
-    {}
+    static boost::shared_ptr<Client> start(const std::string& adress, int port)
+    {
+        boost::shared_ptr<Client> new_(new Client());
+        new_->start(boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(adress), port));
+        return new_;
+    }
 
-    void start() {
-        try {
-            //socket.async_connect(boost::asio::ip::tcp::endpoint(adress, port),boost::bind(&Client::on_connect, shared_from_this(),\
-                                                                                          boost::asio::placeholders::error));
-            socket.connect(boost::asio::ip::tcp::endpoint(adress, port));
-            status = true;
-            std::cout << "Connection with " << adress.to_string() << ":" << port << std::endl;
-        }
-        catch(boost::system::system_error& e)
-        {
-            std::cout << "Connection refused" << std::endl;
-            std::cout << e.code() << std::endl;
-        }
+    void stop()
+    {
+        if ( !started_) return;
+        started_ = false;
+        socket_.close();
+    }
+
+    bool started() { return started_; }
+
+private:
+
+    size_t read_complete(const boost::system::error_code & err, size_t bytes)
+    {
+        if ( err) return 0;
+        bool found = std::find(readBuffer_, readBuffer_ + bytes, '\n') < readBuffer_ + bytes;
+        return found ? 0 : 1;
     }
 
     void on_connect(const boost::system::error_code & err)
@@ -47,89 +57,56 @@ public:
 
     }
 
-    void close() {
-        try {
-            socket.close();
-            status = false;
+    void do_read() {
+        async_read(socket_, boost::asio::buffer(readBuffer_, max_length),
+                   boost::bind(&Client::read_complete, shared_from_this(),
+                               boost::asio::placeholders::error,
+                               boost::asio::placeholders::bytes_transferred),
+                   boost::bind(&Client::handle_read, shared_from_this(),
+                               boost::asio::placeholders::error,
+                               boost::asio::placeholders::bytes_transferred));
+    }
+
+
+
+    void do_write(const std::string& msg) {
+        if (!started()) return;
+        std::copy(msg.begin(), msg.end(), writeBuffer_);
+        socket_.async_write_some(boost::asio::buffer(writeBuffer_, msg.size()),
+                                 boost::bind(&Client::handle_write, shared_from_this(),
+                                             boost::asio::placeholders::error));
+    }
+
+    void handle_read(const boost::system::error_code& e, std::size_t bytes_transferred) {
+        if (e) stop();
+        if ( !started() ) return;
+        // process the msg
+        std::string msg(readBuffer_, bytes_transferred);
+        if ( msg.find("login ") == 0) on_login();
+        else if ( msg.find("ping") == 0) on_ping(msg);
+        else if ( msg.find("clients ") == 0) on_clients(msg);
+    }
+
+    void handle_write(const boost::system::error_code& error)
+    {
+        if (!error)       {
+            do_read();
         }
-        catch(boost::system::system_error& e)
+        else
         {
-            std::cout << "Connection refused" << std::endl;
-            std::cout << e.code() << std::endl;
+            stop();
         }
     }
 
-    bool getStatus() {
-        return status;
-    }
+private:
 
-    void send(const std::string& message) {
-        boost::asio::streambuf request;
-        try {
-            boost::asio::write(socket, boost::asio::buffer(message.data(), message.size()));
-        }
-        catch(boost::system::system_error& e) {
-            status = false;
-            std::cout << "Connection refused" << std::endl;
-            std::cout << e.code() << std::endl;
-        }
-    }
-/*
-    void readd() {
-        socket.async_read_some(
-                boost::asio::buffer(readBuffer),
-                boost::bind(&Client::handleRead, shared_from_this(),
-                            boost::asio::placeholders::error,
-                            boost::asio::placeholders::bytes_transferred));
-    }
+boost::asio::ip::tcp::socket socket_;
+bool started_;
+boost::asio::deadline_timer timer_;
+enum { max_length = 1024 };
+char readBuffer_[max_length];
+char writeBuffer_[max_length];
 
-    void handleRead(const boost::system::error_code& e, std::size_t bytes_transferred) {
-        if (e == boost::asio::error::eof) {
-            std::cerr << "-client: " << socket.remote_endpoint().address().to_string()
-                      << std::endl;
-        }
-        if (e)
-            return;
-        std::cout << "Answer: " << std::string(readBuffer, readBuffer + bytes_transferred);
-    }
-
-    void sendd(const std::string& message) {
-
-        socket.async_write_some(
-                boost::asio::buffer(message, message.size()),
-                [self = shared_from_this()](const boost::system::error_code& e,
-                                            std::size_t bytes_transferred) -> void {
-                    self->readd();
-                });
-    }*/
-
-    std::string read() {
-        std::string result;
-        int bytes = 0;
-        try {
-            bytes = socket.read_some(boost::asio::buffer(readBuffer, 1024)/*,
-                                          [this](const boost::system::error_code &err, size_t byte) {
-                                              if (err) return false;
-                                              std::string tmp(this->buffer, this->buffer + byte);
-                                              if (tmp.find("OK") == 0)
-                                                  return true;
-                                              if (std::string::npos != tmp.find("\r\n"))
-                                                  return true;
-                                              if (byte > 0) {
-                                                  std::cout << "read" << std::endl;
-                                                  return true;
-                                              }
-                                          }*/);
-        }
-        catch(boost::system::system_error& e) {
-            status = false;
-            std::cout << "Connection refused" << std::endl;
-            std::cout << e.code() << std::endl;
-            return result;
-        }
-        result.append(readBuffer, readBuffer + bytes);
-        return result;
-    }
 };
 
 std::string createTest(const std::string& buffer) {

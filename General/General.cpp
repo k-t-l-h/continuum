@@ -5,15 +5,14 @@ std::mutex pmutex;
 std::condition_variable condition;
 bool notified = false;
 
-General::General(int cont_count) {
+General::General(int cont_count = 3) {
     rqueue = std::make_shared<Queue<std::string>>();
     pqueue = std::make_shared<Queue<std::string>>();
     wqueue = std::make_shared<Queue<TestCase*>>();
-    oqueue = std::make_shared<Queue<std::string>>();
     db = std::make_shared<Database>();
     parser = std::make_shared<Parser>(pqueue, wqueue, rqueue);
     manager = std::make_shared<Manager>(wqueue, rqueue, cont_count);
-    reporter = std::make_shared<Reporter>(rqueue, oqueue, db, cont_count);
+    reporter = std::make_shared<Reporter>(rqueue, db, cont_count);
 }
 
 void General::turnOn() {
@@ -22,6 +21,7 @@ void General::turnOn() {
     reporter->setWorkingState(true);
     manager->run();
     reporter->run();
+
 }
 
 void General::turnOff() {
@@ -31,11 +31,12 @@ void General::turnOff() {
     std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 }
 
-std::string General::sendAnswer(const std::string& id) {
+std::pair<bool, std::string> General::sendAnswer(int id) {
     std::string result;
-    if (!db->select(std::stoi(id), result))
-        result = "Not Found";
-    return result;
+    if (!db->select(id, result)) {
+        return {false, ""};
+    }
+    return {true, result};
 }
 
 void General::getRequest(const std::string& request) {
@@ -43,6 +44,24 @@ void General::getRequest(const std::string& request) {
     pqueue->push(request);
     notified = true;
     condition.notify_one();
+}
+
+void General::addSession(boost::shared_ptr<Session> session) {
+    sessions.push_back(session);
+}
+
+void General::removeSession(boost::shared_ptr<Session> session) {
+    auto it = std::find(sessions.begin(), sessions.end(), session);
+    if (it != sessions.end())
+        sessions.erase(it);
+}
+
+std::pair<bool, boost::shared_ptr<Session>> General::findSession(boost::shared_ptr<Session> session) {
+    auto it = std::find(sessions.begin(), sessions.end(), session);
+    if (it != sessions.end()) {
+        return {true, *it};
+    }
+    return {false, nullptr};
 }
 
 /*

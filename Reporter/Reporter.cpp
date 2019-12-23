@@ -4,8 +4,8 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
-Reporter::Reporter(std::shared_ptr<Queue<std::string>> qIn, std::shared_ptr<Queue<std::string>> qOut, std::shared_ptr<Database> db, int count)
-    : queueIn(qIn), queueOut(qOut), db(db), threads(std::vector<std::thread>(count))
+Reporter::Reporter(std::shared_ptr<Queue<std::string>> qIn, std::shared_ptr<Database> db, int count)
+    : queueIn(qIn), db(db), threads(std::vector<std::thread>(count))
 {}
 
 Reporter::~Reporter(){
