@@ -22,7 +22,7 @@ class Session;
 
 class General {
 public:
-    General(int);
+    explicit General(int);
     void turnOn();
     void turnOff();
     void getRequest(const std::string& request);
@@ -39,6 +39,7 @@ private:
     std::shared_ptr<Manager> manager;
     std::shared_ptr<Reporter> reporter;
     std::vector<std::thread> threads;
+
     std::vector<boost::shared_ptr<Session>> sessions;
 };
 

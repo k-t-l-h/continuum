@@ -5,7 +5,7 @@ std::mutex pmutex;
 std::condition_variable condition;
 bool notified = false;
 
-General::General(int cont_count = 3) {
+General::General(int cont_count) {
     rqueue = std::make_shared<Queue<std::string>>();
     pqueue = std::make_shared<Queue<std::string>>();
     wqueue = std::make_shared<Queue<TestCase*>>();

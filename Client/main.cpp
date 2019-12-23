@@ -15,8 +15,8 @@ boost::asio::io_service service;
 
 class Client : public boost::enable_shared_from_this<Client>, boost::noncopyable {
 
-    Client()
-    : socket_(service), started_(true), timer_(service) {}
+    Client(std::string& msg)
+    : socket_(service), started_(true), timer_(service), message(msg) {}
 
     void start(boost::asio::ip::tcp::endpoint ep)
     {
@@ -25,10 +25,10 @@ class Client : public boost::enable_shared_from_this<Client>, boost::noncopyable
 
 public:
 
-    static boost::shared_ptr<Client> start(const std::string& adress, int port)
+    static boost::shared_ptr<Client> start(boost::asio::ip::tcp::endpoint ep, std::string message)
     {
-        boost::shared_ptr<Client> new_(new Client());
-        new_->start(boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string(adress), port));
+        boost::shared_ptr<Client> new_(new Client(message));
+        new_->start(ep);
         return new_;
     }
 
@@ -46,14 +46,29 @@ private:
     size_t read_complete(const boost::system::error_code & err, size_t bytes)
     {
         if ( err) return 0;
-        bool found = std::find(readBuffer_, readBuffer_ + bytes, '\n') < readBuffer_ + bytes;
+        std::string msg(readBuffer_, readBuffer_ + bytes);
+        bool found = msg.find("\r\n\r\n") < msg.size();
         return found ? 0 : 1;
     }
 
     void on_connect(const boost::system::error_code & err)
     {
-        if ( err)
-            std::cout << "error\n";
+        if (err) {
+            std::cout << "Connection refused\n";
+        }
+        else {
+            if (message.find("test") == 0) {
+                do_write(message + "\r\n");
+            } else if (message.find("get") == 0) {
+                std::stringstream ss(message.substr(4, message.size() - 1));
+                ss >> id;
+                do_write(message + "\r\n");
+            } else {
+                std::cout << "Invalid request" << std::endl;
+                stop();
+            }
+        }
+
 
     }
 
@@ -80,11 +95,11 @@ private:
     void handle_read(const boost::system::error_code& e, std::size_t bytes_transferred) {
         if (e) stop();
         if ( !started() ) return;
-        // process the msg
-        std::string msg(readBuffer_, bytes_transferred);
-        if ( msg.find("login ") == 0) on_login();
-        else if ( msg.find("ping") == 0) on_ping(msg);
-        else if ( msg.find("clients ") == 0) on_clients(msg);
+        std::string msg(readBuffer_, readBuffer_ + bytes_transferred);
+        if (msg.find("report") == 0) on_report(msg);
+        else if (msg.find("wait") == 0) on_wait(msg);
+        else if (msg.find("error") == 0) on_error(msg);
+        else if (msg.find("id") == 0) on_id(msg);
     }
 
     void handle_write(const boost::system::error_code& error)
@@ -92,10 +107,34 @@ private:
         if (!error)       {
             do_read();
         }
-        else
-        {
+        else {
             stop();
         }
+    }
+
+    void on_report(std::string msg) {
+        std::cout << "Id: " << id << "\n" << msg.substr(7, msg.size() - 1) << std::endl;
+        stop();
+    }
+
+    void on_wait(std::string msg) {
+        timer_.expires_from_now(boost::posix_time::millisec(1000));
+        timer_.async_wait( boost::bind(&Client::do_write, shared_from_this(), "get " +std::to_string(id) + "\r\n"));
+    }
+
+    void on_id(std::string msg) {
+        std::stringstream ss(msg.substr(3, msg.size() - 1));
+        ss >> id;
+        timer_.expires_from_now(boost::posix_time::millisec(1000));
+        timer_.async_wait( boost::bind(&Client::do_write, shared_from_this(), "get " +std::to_string(id) + "\r\n"));
+    }
+
+    void on_error(std::string msg) {
+        if (msg.find("Non") < msg.size()) {
+            std::cout << "Id: " << id << "\nError! Test is not found!\n";
+        } else
+            std::cout << "Id: " << id << "\nError! Invalid test!\n";
+        stop();
     }
 
 private:
@@ -103,6 +142,8 @@ private:
 boost::asio::ip::tcp::socket socket_;
 bool started_;
 boost::asio::deadline_timer timer_;
+std::string message;
+int id;
 enum { max_length = 1024 };
 char readBuffer_[max_length];
 char writeBuffer_[max_length];
@@ -119,47 +160,61 @@ std::string createTest(const std::string& buffer) {
             buf += line;
         fin.close();
         srand(time(NULL));
-        int id = rand();
+        /*int id = rand();
         std::ofstream fout(".ci_id", std::ios_base::app);
         if (fout.is_open()){
             fout << id;
             fout.close();
-        }
-        std::cout << "Your id is " << id << std::endl;
-        result = "TEST {    \"request\": {    \"id\": \"" + std::to_string(id) + "\",    " + buf + "    }}";
+        }*/
+        result = buf;
     } else
         std::cout << "file is not open" << std::endl;
     return result;
 }
 
-int main() {
-    boost::asio::io_service service;
-    Client client(service, "0.0.0.0", 8082);
-    client.start();
+void input(std::string &message) {
     std::string buffer;
-    bool getFlag = false;
-    bool testFlag = false;
-    while (client.getStatus() && std::cin >> buffer) {
-        std::string message;
+    while (std::cin >> buffer) {
         if (buffer.find("test") == 0) {
             std::cin >> buffer;
-            message = createTest(buffer);
+            message = "test " + createTest(buffer);
         }
         if (buffer.find("get") == 0) {
             int id;
             std::cin >> id;
-            message = "GET " + std::to_string(id);
+            message = "get " + std::to_string(id);
         }
-        if (buffer.find("exit") == 0 && !getFlag) {
-            break;
+        if (buffer.find("exit") == 0) {
+        break;
         }
-        if (message.size() > 0) {
-            client.send(message);
-            std::cout << "answer: " << client.read() << std::endl;
-        }
-
     }
-    client.close();
+}
 
+void loop(boost::asio::deadline_timer &timer_, std::vector<boost::shared_ptr<Client>>& clients, boost::asio::ip::tcp::endpoint ep, std::string& message) {
+    if (message.size() > 0) {
+        clients.push_back(Client::start(ep, message));
+        message = "";
+    }
+    timer_.expires_from_now(boost::posix_time::millisec(50));
+    timer_.async_wait( boost::bind(loop, std::ref(timer_), std::ref(clients), ep, std::ref(message)));
+}
+
+void worker_thread()
+{
+    service.run();
+}
+
+int main() {
+    boost::asio::deadline_timer timer_(service);
+    boost::asio::ip::tcp::endpoint ep(boost::asio::ip::address::from_string("0.0.0.0"), 8082);
+    std::string message;
+    std::vector<boost::shared_ptr<Client>> clients;
+    loop(timer_, clients, ep, message);
+    service.post(boost::bind(input, std::ref(message)));
+    service.post(boost::bind(loop, std::ref(timer_), std::ref(clients), ep, std::ref(message)));
+    boost::thread_group threads;
+    threads.create_thread(worker_thread);
+    threads.create_thread(worker_thread);
+    threads.join_all();
     return 0;
 }

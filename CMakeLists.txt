@@ -50,7 +50,7 @@ file(
 add_executable(ci ${Project_SRC})
 add_executable(client Client/main.cpp)
 add_executable(server Client/server.cpp)
-target_link_libraries(client ${Boost_LIBRARIES} -lboost_system)
+target_link_libraries(client -lpthread -lboost_thread ${Boost_LIBRARIES} -lboost_system )
 target_link_libraries(server ${Boost_LIBRARIES} -lboost_system)
 
 
