@@ -33,7 +33,7 @@ static struct ResponseCode {
 
 
     static constexpr int invalidRequestType = -1;
-    static constexpr int cppRequestType =  0;
+    static constexpr int cppRequestType = 0;
     static constexpr int webRequestType = 1;
 
     inline static const std::string defaultHost = "Invalid host";
@@ -48,42 +48,53 @@ static struct ResponseCode {
 } codes;
 
 
-class Parser
-{
-    public:
-      Parser() = delete;
-      Parser(const Parser&) = delete;
-      Parser operator=(const Parser&) = delete;
+class Parser {
+public:
+    Parser() = delete;
 
-      Parser(std::shared_ptr<Queue<std::string>> _rque,
-      std::shared_ptr<Queue<TestCase*>> _wque,
-      std::shared_ptr<Queue<std::string>> _reque);
+    Parser(const Parser &) = delete;
 
-      ~Parser();
-      void workCycle();
-      void setStatus(bool newStatus);
+    Parser operator=(const Parser &) = delete;
 
-    private:
-      bool workStatus;
-      unsigned int maxPool;
+    Parser(std::shared_ptr <Queue<std::string>> _rque,
+           std::shared_ptr <Queue<TestCase *>> _wque,
+           std::shared_ptr <Queue<std::string>> _reque);
 
-      std::vector<std::thread> threadPool;
+    ~Parser();
 
-      std::string get_request() const;
-      void workThread(const std::string s);
-      bool validateRequest(const pt::ptree tree) const;
+    void workCycle();
 
-      bool validateHost(const std::string& s) const;
-      bool validateAdress(const std::string& s) const;
-      bool validateMethod(const std::string& s) const;
-      bool validateTarget(const std::string& s) const;
-      bool validateRequest(const std::string& s) const;
-      bool validateProtocol(const std::string& s) const;
-      bool validateReference(const std::string& s) const;
+    void setStatus(bool newStatus);
 
-      std::shared_ptr<Queue<std::string>> rque;
-      std::shared_ptr<Queue<TestCase*>> wque;
-      std::shared_ptr<Queue<std::string>> reque;
+private:
+    bool workStatus;
+    unsigned int maxPool;
+
+    std::vector <std::thread> threadPool;
+
+    std::string get_request() const;
+
+    void workThread(const std::string s);
+
+    bool validateRequest(const pt::ptree tree) const;
+
+    bool validateHost(const std::string &s) const;
+
+    bool validateAdress(const std::string &s) const;
+
+    bool validateMethod(const std::string &s) const;
+
+    bool validateTarget(const std::string &s) const;
+
+    bool validateRequest(const std::string &s) const;
+
+    bool validateProtocol(const std::string &s) const;
+
+    bool validateReference(const std::string &s) const;
+
+    std::shared_ptr <Queue<std::string>> rque;
+    std::shared_ptr <Queue<TestCase *>> wque;
+    std::shared_ptr <Queue<std::string>> reque;
 
 };
 

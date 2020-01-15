@@ -2,16 +2,15 @@
 #define TEST_CASE_CLASS_H
 
 
-
 #include <string>
 
-class TestCase
-{
+class TestCase {
 public:
-  //virtual TestCase() =0;
-  virtual ~TestCase() {}
-  std::string id;
-  int rtype;
+    //virtual TestCase() =0;
+    virtual ~TestCase() {}
+
+    std::string id;
+    int rtype;
 };
 
 #endif //TEST_CASE_CLASS_H
