@@ -28,7 +28,7 @@ namespace pt = boost::property_tree;
 
 static struct ResponseCode {
     inline static const std::string OK = "0";
-    inline static const std::string invalidRequestStructure = "Invalid structute";
+    inline static const std::string invalidRequestStructure = "Invalid structure";
     inline static const std::string defaultId = "Invalid ID";
 
 
@@ -42,7 +42,7 @@ static struct ResponseCode {
     inline static const std::string defaultReference = "Invalid Reference";
 
     inline static const std::string defaultTarget = "Invalid Target";
-    inline static const std::string defaultGit = "Invalid Git Adress";
+    inline static const std::string defaultGit = "Invalid Git Address";
 
     const std::string temporary = "Sorry";
 } codes;
@@ -56,9 +56,9 @@ public:
 
     Parser operator=(const Parser &) = delete;
 
-    Parser(std::shared_ptr <Queue<std::string>> _rque,
-           std::shared_ptr <Queue<TestCase *>> _wque,
-           std::shared_ptr <Queue<std::string>> _reque);
+    Parser(std::shared_ptr <Queue<std::string>> rque,
+           std::shared_ptr <Queue<TestCase *>> wque,
+           std::shared_ptr <Queue<std::string>> reque);
 
     ~Parser();
 
@@ -80,7 +80,7 @@ private:
 
     bool validateHost(const std::string &s) const;
 
-    bool validateAdress(const std::string &s) const;
+    bool validateAddress(const std::string &s) const;
 
     bool validateMethod(const std::string &s) const;
 

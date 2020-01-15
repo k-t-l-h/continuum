@@ -3,9 +3,8 @@
 
 namespace pt = boost::property_tree;
 
-WebTestGeneration::WebTestGeneration(const std::string _request, std::shared_ptr <Queue<TestCase *>> _wque) :
-
-        request(_request), wque(_wque) {};
+WebTestGeneration::WebTestGeneration(const std::string request, std::shared_ptr <Queue<TestCase *>> wque) :
+        request(request), wque(wque) {};
 
 void WebTestGeneration::convertToTestCase() {
     //пропарсить поля

@@ -9,8 +9,8 @@ class WebTestCase : public TestCase {
 public:
     WebTestCase();
 
-    WebTestCase(std::string _id, std::string _host, int _p, int _m, int _reference) :
-            id(_id), rtype(1), host(_host), p(_p), m(_m), reference(_reference) {};
+    WebTestCase(std::string id, std::string host, int p, int m, int reference) :
+            id(id), rtype(1), host(host), p(p), m(m), reference(reference) {};
 
     WebTestCase(const WebTestCase &) = delete;
 
@@ -30,8 +30,8 @@ public:
     };
 
     int p;
-    int m;
-    int reference;
 };
+int m;
+int reference;
 
 #endif //WEB_TEST_CASE_H

@@ -22,7 +22,7 @@ public:
 
     WebTestGeneration operator=(const WebTestGeneration &) = delete;
 
-    WebTestGeneration(const std::string request, std::shared_ptr <Queue<TestCase *>> _wque);
+    WebTestGeneration(const std::string request, std::shared_ptr <Queue<TestCase *>> wque);
 
     void convertToTestCase() override;
 

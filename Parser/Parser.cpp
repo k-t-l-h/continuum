@@ -13,10 +13,10 @@ extern bool notified;
 
 //парсер не должен быть владельцем базового ресурса,
 //владельцем является general
-Parser::Parser(std::shared_ptr <Queue<std::string>> _rque,
-               std::shared_ptr <Queue<TestCase *>> _wque,
-               std::shared_ptr <Queue<std::string>> _reque) :
-        rque(_rque), wque(_wque), reque(_reque), workStatus(false) {
+Parser::Parser(std::shared_ptr <Queue<std::string>> rque,
+               std::shared_ptr <Queue<TestCase *>> wque,
+               std::shared_ptr <Queue<std::string>> reque) :
+        rque(rque), wque(wque), reque(reque), workStatus(false) {
     maxPool = std::thread::hardware_concurrency();
     for (int i = 0; i < maxPool; i++) {
         threadPool.push_back(std::thread(std::bind(&Parser::workCycle, this)));
@@ -48,7 +48,7 @@ void Parser::workCycle() {
     }
 };
 
-void Parser::workThread(const std::string request) {
+void Parser::workThread(const std::string &request) {
 
     pt::ptree tree;
     std::stringstream ss;
@@ -79,7 +79,7 @@ std::string Parser::get_request() const {
     return rque->pop();
 };
 
-bool Parser::validateRequest(const pt::ptree tree) const {
+bool Parser::validateRequest(const pt::ptree &tree) const {
     //получаем тип заявки
     int request_type = tree.get("request.request_type", codes.invalidRequestType);
 
@@ -192,7 +192,7 @@ bool Parser::validateReference(const std::string &s) const {
 
 
 //CPP CASE
-bool Parser::validateAdress(const std::string &s) const {
+bool Parser::validateAddress(const std::string &s) const {
     static const boost::regex e("github\\.com\\/([a-zA-Z0-9\\_\\-]*)/([a-zA-Z0-9\\_\\-]*)");
     return regex_match(s, e);
 };
