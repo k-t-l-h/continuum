@@ -44,7 +44,8 @@ static struct ResponseCode {
     inline static const std::string defaultTarget = "Invalid Target";
     inline static const std::string defaultGit = "Invalid Git Address";
 
-    const std::string temporary = "Sorry";
+    inline static const std::string temporary = "Sorry";
+    inline static const std::string defaultAnswer = "Default";
 } codes;
 
 
@@ -76,7 +77,7 @@ private:
 
     void workThread(const std::string s);
 
-    bool validateRequest(const pt::ptree tree) const;
+    void validateRequest(const pt::ptree &tree, bool &parseStatus, stringFormatter &obj) const;
 
     bool validateHost(const std::string &s) const;
 

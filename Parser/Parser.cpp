@@ -55,7 +55,12 @@ void Parser::workThread(const std::string &request) {
     ss << request;
     pt::read_json(ss, tree);
 
-    if (validateRequest(tree)) {
+    stringFormatter obj{codes.defaultId, codes.defaultAnswer};
+    bool parseStatus = false;
+
+    validateRequest(tree, parseStatus, obj);
+
+    if (parseStatus) {
         int request_type = tree.get<int>("request.request_type");
         switch (request_type) {
             case codes.cppRequestType: {
@@ -70,8 +75,10 @@ void Parser::workThread(const std::string &request) {
                 wtg->sendToWorker();
                 break;
             }
-
         }
+    } else {
+        std::string response = to_json(obj);
+        reque->push(response);
     }
 }
 
@@ -79,25 +86,20 @@ std::string Parser::get_request() const {
     return rque->pop();
 };
 
-bool Parser::validateRequest(const pt::ptree &tree) const {
+void Parser::validateRequest(const pt::ptree &tree, bool &parseStatus, stringFormatter &obj) const {
     //получаем тип заявки
     int request_type = tree.get("request.request_type", codes.invalidRequestType);
 
     std::string id = tree.get("request.id", codes.defaultId);
 
     if (request_type == codes.invalidRequestType) {
-
-        stringFormatter obj{id, codes.invalidRequestStructure};
-        std::string response = to_json(obj);
-        reque->push(response);
-        return false;
+        obj.description = codes.invalidRequestStructure;
+        return;
     }
 
     if (id == codes.defaultId) {
-        stringFormatter obj{id, codes.defaultId};
-        std::string response = to_json(obj);
-        reque->push(response);
-        return false;
+        obj.description = codes.defaultId;
+        return;
     }
 
     switch (request_type) {
@@ -105,65 +107,54 @@ bool Parser::validateRequest(const pt::ptree &tree) const {
         case codes.webRequestType: {
             std::string host = tree.get("request.host", codes.defaultHost);
             if (!validateHost(host)) {
-                stringFormatter obj{id, codes.defaultHost};
-                std::string response = to_json(obj);
-                reque->push(response);
-
-                return false;
+                obj.description = codes.defaultHost;
+                return;
             }
 
             std::string p = tree.get("request.protocol", codes.defaultProtocol);
             if (!validateProtocol(p)) {
-                stringFormatter obj{id, codes.defaultProtocol};
-                std::string response = to_json(obj);
-                reque->push(response);
-                return false;
+                obj.description = codes.defaultProtocol;
+                return;
             }
 
             std::string m = tree.get("request.method", codes.defaultMethod);
             if (!validateMethod(m)) {
-                stringFormatter obj{id, codes.defaultMethod};
-                std::string response = to_json(obj);
-                reque->push(response);
-                return false;
+                obj.description = codes.defaultMethod;
+                return;
             }
 
             std::string ref = tree.get("request.reference", codes.defaultReference);
             if (!validateReference(ref)) {
-                stringFormatter obj{id, codes.defaultReference};
-                std::string response = to_json(obj);
-                reque->push(response);
-                return false;
+                obj.description = codes.defaultReference;
+                return;
             }
-            return true;
+            parseStatus = true;
+            return;
         }
-            //проверка валидности для си
+
         case codes.cppRequestType: {
             std::string git = tree.get("request.git_adress", codes.defaultGit);
             if (!validateAdress(git)) {
-                stringFormatter obj{id, codes.defaultGit};
-                std::string response = to_json(obj);
-                reque->push(response);
-                return false;
+                obj.description = codes.defaultGit;
+                return;
             }
 
             std::string target = tree.get("request.target", codes.defaultTarget);
             if (!validateTarget(target)) {
-                stringFormatter obj{id, codes.defaultTarget};
-                std::string response = to_json(obj);
-                reque->push(response);
-                return false;
+                obj.description = codes.defaultTarget;
+                return;
             }
-            return true;
+            parseStatus = true;
+            return;
         }
 
         default: {
             if (reque) {
-                stringFormatter obj{id, codes.temporary};
-                std::string response = to_json(obj);
-                reque->push(response);
+
+                obj.description = codes.temporary;
+                return;
             }
-            return false;
+            return;
         }
     }
 
