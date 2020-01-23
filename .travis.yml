@@ -1,29 +1,44 @@
-dist: bionic s
+dist: bionic  #с этого года по дефолту
 sudo: enabled
 
 language: cpp
 
 os:
   - linux
-  - osx
 
 compiler:
   - gcc
   - clang
 
-matrix:
-  exclude:
-  - os:       osx
-    compiler: gcc
+#before_install:
+#  - chmod +x ci/travis/install-linux.sh
+
+before_install:
+  - sudo apt update
+  - sudo apt install make
+  - sudo apt install libboost-all-dev
+  - sudo apt install sqlite3
+  - sudo apt install -qq cppcheck
+
+  - git clone https://github.com/abseil/googletest.git
+  - cd googletest/
+  - git submodule update --init
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j8
+  - sudo make install
+  - cd ../..
 
 install:
-- source ci/travis/install-$TRAVIS_OS_NAME.sh
+  - skip
 
 script:
   - mkdir build
   - cd build
   - cmake ..
   - make
+  - cppcheck --quiet --error-exitcode=1 .
 
 notifications:
   email:
