@@ -10,7 +10,7 @@ public:
 
     virtual void convertToTestCase() = 0;
 
-    virtual int sendToWorker() const = 0;
+    virtual void sendToWorker() const = 0;
 
 };
 

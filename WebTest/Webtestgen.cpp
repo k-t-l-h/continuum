@@ -27,7 +27,6 @@ void WebTestGeneration::convertToTestCase() {
 };
 
 
-int WebTestGeneration::sendToWorker() const {
+void WebTestGeneration::sendToWorker() const {
     wque->push(tcase);
-    return 0;
 };

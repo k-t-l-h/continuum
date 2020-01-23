@@ -27,7 +27,6 @@ void CTestGeneration::convertToTestCase() {
 };
 
 
-int CTestGeneration::sendToWorker() const {
+void CTestGeneration::sendToWorker() const {
     wque->push(tcase);
-    return 0;
 };

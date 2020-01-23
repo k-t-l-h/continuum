@@ -20,7 +20,7 @@ public:
  CTestGeneration(const std::string &request, std::shared_ptr<Queue<TestCase*>> wque);
 
  void convertToTestCase() override;
- int sendToWorker() const override;
+ void sendToWorker() const override;
 
   private:
     std::shared_ptr<Queue<TestCase*>> wque;
