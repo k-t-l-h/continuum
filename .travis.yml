@@ -19,6 +19,7 @@ before_install:
   - sudo apt install libboost-all-dev
   - sudo apt install sqlite3
   - sudo apt install -qq cppcheck
+  - sudo apt install valgrind
 
   - git clone https://github.com/abseil/googletest.git
   - cd googletest/
@@ -38,6 +39,7 @@ script:
   - cd build
   - cmake ..
   - make
+  - ls
   - cppcheck --quiet --force --error-exitcode=1 .
   - valgrind --leak-check=full ./*
 
