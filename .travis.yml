@@ -38,7 +38,8 @@ script:
   - cd build
   - cmake ..
   - make
-  - cppcheck --quiet --error-exitcode=1 .
+  - cppcheck --quiet --force --error-exitcode=1 .
+  - valgrind --leak-check=full ./*
 
 notifications:
   email:
