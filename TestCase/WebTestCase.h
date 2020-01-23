@@ -30,8 +30,9 @@ public:
     };
 
     int p;
+    int m;
+    int reference;
 };
-int m;
-int reference;
+
 
 #endif //WEB_TEST_CASE_H
