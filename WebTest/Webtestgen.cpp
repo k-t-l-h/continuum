@@ -3,7 +3,7 @@
 
 namespace pt = boost::property_tree;
 
-WebTestGeneration::WebTestGeneration(const std::string request, std::shared_ptr <Queue<TestCase *>> wque) :
+WebTestGeneration::WebTestGeneration(const std::string &request, std::shared_ptr <Queue<TestCase *>> wque) :
         request(request), wque(wque) {};
 
 void WebTestGeneration::convertToTestCase() {

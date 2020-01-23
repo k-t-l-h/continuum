@@ -8,7 +8,7 @@
 
 namespace pt = boost::property_tree;
 
-CTestGeneration::CTestGeneration(const std::string request, std::shared_ptr <Queue<TestCase *>> wque) :
+CTestGeneration::CTestGeneration(const std::string &request, std::shared_ptr <Queue<TestCase *>> wque) :
         request(request), wque(wque) {};
 
 void CTestGeneration::convertToTestCase() {
