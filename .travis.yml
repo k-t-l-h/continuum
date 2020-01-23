@@ -17,6 +17,7 @@ before_install:
   - sudo apt install make
   - sudo apt install libboost-all-dev
   - sudo apt install sqlite3
+  - sudo apt install -qq cppcheck
 
   - git clone https://github.com/abseil/googletest.git
   - cd googletest/
@@ -36,6 +37,7 @@ script:
   - cd build
   - cmake ..
   - make
+  - cppcheck --quiet --error-exitcode=1 .
 
 notifications:
   email:
