@@ -23,7 +23,7 @@ void WebTestGeneration::convertToTestCase() {
     int ref = tree.get<int>("request.reference", 200);
 
     //вызвать конструктор тест кейса
-    tcase = new WebTestCase(id, host, p, m, ref);
+    tcase = std::make_shared<WebTestCase>(id, host, p, m, ref);
 };
 
 

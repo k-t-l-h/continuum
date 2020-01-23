@@ -10,21 +10,23 @@
 #include <string>
 
 
-class CTestGeneration: public AbstractTestGeneration
-{
+class CTestGeneration : public AbstractTestGeneration {
 public:
- CTestGeneration() = delete;
- CTestGeneration(const CTestGeneration&) = delete;
- CTestGeneration operator=(const CTestGeneration&) = delete;
+    CTestGeneration() = delete;
 
- CTestGeneration(const std::string &request, std::shared_ptr<Queue<TestCase*>> wque);
+    CTestGeneration(const CTestGeneration &) = delete;
 
- void convertToTestCase() override;
- void sendToWorker() const override;
+    CTestGeneration operator=(const CTestGeneration &) = delete;
 
-  private:
-    std::shared_ptr<Queue<TestCase*>> wque;
-    CTestCase *tcase;
+    CTestGeneration(const std::string &request, std::shared_ptr <Queue<TestCase *>> wque);
+
+    void convertToTestCase() override;
+
+    void sendToWorker() const override;
+
+private:
+    std::shared_ptr <Queue<TestCase *>> wque;
+    std::shared_ptr <CTestCase> tcase;
     std::string request;
 };
 

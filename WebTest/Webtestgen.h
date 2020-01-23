@@ -30,7 +30,7 @@ public:
 
 private:
     std::shared_ptr <Queue<TestCase *>> wque;
-    WebTestCase *tcase;
+    std::shared_ptr <WebTestCase> tcase;
     std::string request;
 
 };

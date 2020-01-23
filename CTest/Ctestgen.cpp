@@ -23,7 +23,7 @@ void CTestGeneration::convertToTestCase() {
     std::string git = tree.get<std::string>("request.git_adress", "github.com/continuum");
     std::string target = tree.get<std::string>("request.target", "all");
     //вызвать конструктор тест кейса
-    tcase = new CTestCase(id, git, target);
+    tcase = std::make_shared<CTestCase>(id, git, target);
 };
 
 
