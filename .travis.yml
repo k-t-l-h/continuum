@@ -39,7 +39,7 @@ script:
   - cd build
   - cmake ..
   - make
-  - ls
+  - cd
   - cppcheck --quiet --force --error-exitcode=1 .
   - valgrind --leak-check=full ./*
 
