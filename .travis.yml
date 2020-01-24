@@ -41,7 +41,7 @@ script:
   - make
   - cd
   - cppcheck --quiet --force --error-exitcode=1 .
-  - valgrind --leak-check=full ./*
+  - valgrind --leak-check=full ./main.exe
 
 notifications:
   email:
