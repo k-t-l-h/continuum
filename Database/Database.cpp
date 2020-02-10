@@ -45,6 +45,7 @@ bool Database::select(int key, std::string& report) {
             report = row.report;
             return true;
         }
+        return false;
     }
     catch (sqlpp::exception e) {
         std::cerr << e.what() << std::endl;

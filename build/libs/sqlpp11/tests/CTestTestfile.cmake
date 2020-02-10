@@ -1,0 +1,38 @@
+# CMake generated Testfile for 
+# Source directory: /home/evgeny/CI-SERVER/libs/sqlpp11/tests
+# Build directory: /home/evgeny/CI-SERVER/build/libs/sqlpp11/tests
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(sqlpp11.tests.BooleanExpression "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "BooleanExpression")
+set_tests_properties(sqlpp11.tests.BooleanExpression PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.CustomQuery "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "CustomQuery")
+set_tests_properties(sqlpp11.tests.CustomQuery PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.DateTime "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "DateTime")
+set_tests_properties(sqlpp11.tests.DateTime PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Interpret "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Interpret")
+set_tests_properties(sqlpp11.tests.Interpret PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Insert "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Insert")
+set_tests_properties(sqlpp11.tests.Insert PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Remove "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Remove")
+set_tests_properties(sqlpp11.tests.Remove PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Update "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Update")
+set_tests_properties(sqlpp11.tests.Update PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Select "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Select")
+set_tests_properties(sqlpp11.tests.Select PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.SelectType "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "SelectType")
+set_tests_properties(sqlpp11.tests.SelectType PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Function "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Function")
+set_tests_properties(sqlpp11.tests.Function PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Prepared "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Prepared")
+set_tests_properties(sqlpp11.tests.Prepared PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Minimalistic "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Minimalistic")
+set_tests_properties(sqlpp11.tests.Minimalistic PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Result "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Result")
+set_tests_properties(sqlpp11.tests.Result PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Union "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Union")
+set_tests_properties(sqlpp11.tests.Union PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.With "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "With")
+set_tests_properties(sqlpp11.tests.With PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")
+add_test(sqlpp11.tests.Ppgen "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/sqlpp11_tests" "Ppgen")
+set_tests_properties(sqlpp11.tests.Ppgen PROPERTIES  _BACKTRACE_TRIPLES "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;68;add_test;/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CMakeLists.txt;0;")

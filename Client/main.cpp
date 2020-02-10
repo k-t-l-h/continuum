@@ -113,7 +113,7 @@ private:
     }
 
     void on_report(std::string msg) {
-        std::cout << "Id: " << id << "\n" << msg.substr(7, msg.size() - 1) << std::endl;
+        std::cout << "Id: " << id << "\n" << "Success!"/*msg.substr(7, msg.size() - 1)*/ << std::endl;
         stop();
     }
 
@@ -156,8 +156,49 @@ std::string createTest(const std::string& buffer) {
     if (fin.is_open()) {
         std::string line;
         std::string buf;
-        while (getline(fin, line))
+        while (getline(fin, line)) {
+            auto rt = line.find("web");
+            auto pr1 = line.find("HTTP");
+            auto pr2 = line.find("HTTPS");
+            auto mo = line.find("OPTIONS");
+            auto mg = line.find("GET");
+            auto mp = line.find("POST");
+            auto md = line.find("DELETE");
+            auto mpt = line.find("PUT");
+            if (rt < line.size()) {
+                line.erase(rt, rt + 3);
+                line.insert(rt, "1\",");
+            }
+            if (pr1 < line.size()) {
+                line.erase(pr1, pr1 + 4);
+                line.insert(pr1, "0\",");
+            }
+            if (pr2 < line.size()) {
+                line.erase(pr2, pr2 + 5);
+                line.insert(pr2, "1\",");
+            }
+            if (mo < line.size()) {
+                line.erase(mo, mo + 7);
+                line.insert(mo, "0\",");
+            }
+            if (mg < line.size()) {
+                line.erase(mg, mg + 3);
+                line.insert(mg, "1\",");
+            }
+            if (mp < line.size()) {
+                line.erase(mp, mp + 4);
+                line.insert(mp, "2\",");
+            }
+            if (mpt < line.size()) {
+                line.erase(mpt, mpt + 3);
+                line.insert(mpt, "3\",");
+            }
+            if (md < line.size()) {
+                line.erase(md, md + 6);
+                line.insert(md, "4\",");
+            }
             buf += line;
+        }
         fin.close();
         srand(time(NULL));
         /*int id = rand();

@@ -192,9 +192,9 @@ bool Parser::validateRequest(const pt::ptree tree) const
 	    if(reque){
 	      stringFormatter obj {id, codes.temporary};
 	      std::string response = to_json(obj);
-	      std::cout << "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" << std::endl;
+
 	      reque->push(response);
-	      std::cout << "hhhh22222222222222222222222222222222222222222222" << std::endl;
+
 	    }
 
 	    return false;}

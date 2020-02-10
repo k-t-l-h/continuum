@@ -1,0 +1,497 @@
+[
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/CTest/Ctestgen.cpp.o -c /home/evgeny/CI-SERVER/CTest/Ctestgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/CTest/Ctestgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/Container/Container.cpp.o -c /home/evgeny/CI-SERVER/Container/Container.cpp",
+  "file": "/home/evgeny/CI-SERVER/Container/Container.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/Database/Database.cpp.o -c /home/evgeny/CI-SERVER/Database/Database.cpp",
+  "file": "/home/evgeny/CI-SERVER/Database/Database.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/General/General.cpp.o -c /home/evgeny/CI-SERVER/General/General.cpp",
+  "file": "/home/evgeny/CI-SERVER/General/General.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/Manager/Manager.cpp.o -c /home/evgeny/CI-SERVER/Manager/Manager.cpp",
+  "file": "/home/evgeny/CI-SERVER/Manager/Manager.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/Parser/Parser.cpp.o -c /home/evgeny/CI-SERVER/Parser/Parser.cpp",
+  "file": "/home/evgeny/CI-SERVER/Parser/Parser.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/Reporter/Reporter.cpp.o -c /home/evgeny/CI-SERVER/Reporter/Reporter.cpp",
+  "file": "/home/evgeny/CI-SERVER/Reporter/Reporter.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/TestCase/CTestCase.cpp.o -c /home/evgeny/CI-SERVER/TestCase/CTestCase.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/CTestCase.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/TestCase/TestCaseClass.cpp.o -c /home/evgeny/CI-SERVER/TestCase/TestCaseClass.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/TestCaseClass.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/TestCase/WebTestCase.cpp.o -c /home/evgeny/CI-SERVER/TestCase/WebTestCase.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/WebTestCase.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/TestGeneration/Testgen.cpp.o -c /home/evgeny/CI-SERVER/TestGeneration/Testgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestGeneration/Testgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/WebTest/Webtestgen.cpp.o -c /home/evgeny/CI-SERVER/WebTest/Webtestgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/WebTest/Webtestgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/ci.dir/main.cpp.o -c /home/evgeny/CI-SERVER/main.cpp",
+  "file": "/home/evgeny/CI-SERVER/main.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include   -pthread   -std=gnu++17 -o CMakeFiles/client.dir/Client/main.cpp.o -c /home/evgeny/CI-SERVER/Client/main.cpp",
+  "file": "/home/evgeny/CI-SERVER/Client/main.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include   -pthread   -std=gnu++17 -o CMakeFiles/server.dir/Client/server.cpp.o -c /home/evgeny/CI-SERVER/Client/server.cpp",
+  "file": "/home/evgeny/CI-SERVER/Client/server.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Tests/TestsManager.cpp.o -c /home/evgeny/CI-SERVER/Tests/TestsManager.cpp",
+  "file": "/home/evgeny/CI-SERVER/Tests/TestsManager.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/CTest/Ctestgen.cpp.o -c /home/evgeny/CI-SERVER/CTest/Ctestgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/CTest/Ctestgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Container/Container.cpp.o -c /home/evgeny/CI-SERVER/Container/Container.cpp",
+  "file": "/home/evgeny/CI-SERVER/Container/Container.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Database/Database.cpp.o -c /home/evgeny/CI-SERVER/Database/Database.cpp",
+  "file": "/home/evgeny/CI-SERVER/Database/Database.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/General/General.cpp.o -c /home/evgeny/CI-SERVER/General/General.cpp",
+  "file": "/home/evgeny/CI-SERVER/General/General.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Manager/Manager.cpp.o -c /home/evgeny/CI-SERVER/Manager/Manager.cpp",
+  "file": "/home/evgeny/CI-SERVER/Manager/Manager.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Parser/Parser.cpp.o -c /home/evgeny/CI-SERVER/Parser/Parser.cpp",
+  "file": "/home/evgeny/CI-SERVER/Parser/Parser.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/Reporter/Reporter.cpp.o -c /home/evgeny/CI-SERVER/Reporter/Reporter.cpp",
+  "file": "/home/evgeny/CI-SERVER/Reporter/Reporter.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/TestCase/CTestCase.cpp.o -c /home/evgeny/CI-SERVER/TestCase/CTestCase.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/CTestCase.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/TestCase/TestCaseClass.cpp.o -c /home/evgeny/CI-SERVER/TestCase/TestCaseClass.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/TestCaseClass.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/TestCase/WebTestCase.cpp.o -c /home/evgeny/CI-SERVER/TestCase/WebTestCase.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestCase/WebTestCase.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/TestGeneration/Testgen.cpp.o -c /home/evgeny/CI-SERVER/TestGeneration/Testgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/TestGeneration/Testgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/WebTest/Webtestgen.cpp.o -c /home/evgeny/CI-SERVER/WebTest/Webtestgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/WebTest/Webtestgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/date/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -std=gnu++17 -o CMakeFiles/testing.dir/main.cpp.o -c /home/evgeny/CI-SERVER/main.cpp",
+  "file": "/home/evgeny/CI-SERVER/main.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/googletest/googlemock",
+  "command": "/usr/bin/c++   -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/evgeny/CI-SERVER/libs/googletest/googlemock/src/gmock_main.cc",
+  "file": "/home/evgeny/CI-SERVER/libs/googletest/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/googletest/googlemock",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googlemock/include -I/home/evgeny/CI-SERVER/libs/googletest/googlemock -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/evgeny/CI-SERVER/libs/googletest/googlemock/src/gmock-all.cc",
+  "file": "/home/evgeny/CI-SERVER/libs/googletest/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/googletest/googletest",
+  "command": "/usr/bin/c++   -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest/include -isystem /home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/evgeny/CI-SERVER/libs/googletest/googletest/src/gtest_main.cc",
+  "file": "/home/evgeny/CI-SERVER/libs/googletest/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/googletest/googletest",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/googletest/googletest   -pthread   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/evgeny/CI-SERVER/libs/googletest/googletest/src/gtest-all.cc",
+  "file": "/home/evgeny/CI-SERVER/libs/googletest/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/test_main.cpp.o -c /home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/test_main.cpp",
+  "file": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests/test_main.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/BooleanExpression.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/BooleanExpression.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/BooleanExpression.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/CustomQuery.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/CustomQuery.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/CustomQuery.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/DateTime.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/DateTime.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/DateTime.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Interpret.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Interpret.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Interpret.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Insert.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Insert.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Insert.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Remove.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Remove.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Remove.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Update.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Update.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Update.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Select.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Select.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Select.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/SelectType.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/SelectType.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/SelectType.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Function.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Function.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Function.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Prepared.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Prepared.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Prepared.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Minimalistic.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Minimalistic.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Minimalistic.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Result.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Result.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Result.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Union.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Union.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Union.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/With.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/With.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/With.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_tests.dir/Ppgen.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/tests/Ppgen.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/tests/Ppgen.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_types",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_result_row.dir/result_row.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_types/result_row.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_types/result_row.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/test_serializer_main.cpp.o -c /home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer/test_serializer_main.cpp",
+  "file": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer/test_serializer_main.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/As.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/As.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/As.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/Blob.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Blob.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Blob.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/CustomQuery.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/CustomQuery.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/CustomQuery.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/DynamicWhere.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/DynamicWhere.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/DynamicWhere.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/ForUpdate.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/ForUpdate.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/ForUpdate.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/From.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/From.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/From.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/In.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/In.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/In.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/Insert.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Insert.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Insert.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/TableAlias.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/TableAlias.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/TableAlias.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_serializer",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_test_serializer.dir/Where.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Where.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_serializer/Where.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_unwrapped_bool.dir/unwrapped_bool.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/unwrapped_bool.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/unwrapped_bool.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_no_self_compare.dir/no_self_compare.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/no_self_compare.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/no_self_compare.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_text.dir/text.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/text.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/text.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_where.dir/where.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/where.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/where.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_from.dir/from.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/from.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/from.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_aggregates.dir/aggregates.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/aggregates.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/aggregates.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_date.dir/date.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/date.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/date.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_date_time.dir/date_time.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/date_time.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/date_time.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_join.dir/join.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/join.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/join.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_case.dir/case.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/case.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/case.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_having.dir/having.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/having.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/having.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_update_list.dir/update_list.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/update_list.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/update_list.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_insert.dir/insert.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/insert.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/insert.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_static_asserts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_assert_in.dir/in.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/in.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_static_asserts/in.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_must_not_insert.dir/must_not_insert.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/must_not_insert.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/must_not_insert.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_max_of_max.dir/max_of_max.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/max_of_max.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/max_of_max.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_require_insert.dir/require_insert.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/require_insert.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/require_insert.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_must_not_update.dir/must_not_update.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/must_not_update.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/must_not_update.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_count_of_count.dir/count_of_count.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/count_of_count.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/count_of_count.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_constraints",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11/tests -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -Wall -Wextra -pedantic -std=gnu++17 -o CMakeFiles/sqlpp11_no_conversion_operator_if_null_not_trivial.dir/no_conversion_operator_if_null_not_trivial.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/no_conversion_operator_if_null_not_trivial.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_constraints/no_conversion_operator_if_null_not_trivial.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_scripts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_scripts -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/sqlpp.test.compiled.sample_identity_naming.dir/sample_identity_naming.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_scripts/sample_identity_naming.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_scripts/sample_identity_naming.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_scripts",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/build/libs/sqlpp11/test_scripts -isystem /home/evgeny/CI-SERVER/libs/date/include   -pthread   -std=gnu++17 -o CMakeFiles/sqlpp.test.compiled.sample.dir/sample.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11/test_scripts/sample.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11/test_scripts/sample.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/src",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/connection.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/connection.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/connection.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/src",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/bind_result.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/bind_result.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/bind_result.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/src",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/prepared_statement.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/prepared_statement.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/prepared_statement.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/src",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/sqlpp11-connector-sqlite3.dir/detail/connection_handle.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/detail/connection_handle.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/src/detail/connection_handle.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3WithTest.dir/WithTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/WithTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/WithTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3UnionTest.dir/UnionTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/UnionTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/UnionTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3DateTimeTest.dir/DateTimeTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/DateTimeTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/DateTimeTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3BlobTest.dir/BlobTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/BlobTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/BlobTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3SelectTest.dir/SelectTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/SelectTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/SelectTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3AttachTest.dir/AttachTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/AttachTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/AttachTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3DynamicSelectTest.dir/DynamicSelectTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/DynamicSelectTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/DynamicSelectTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3AutoIncrementTest.dir/AutoIncrementTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/AutoIncrementTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/AutoIncrementTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3TransactionTest.dir/TransactionTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/TransactionTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/TransactionTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3SampleTest.dir/SampleTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/SampleTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/SampleTest.cpp"
+},
+{
+  "directory": "/home/evgeny/CI-SERVER/build/libs/sqlpp11-connector-sqlite3/tests",
+  "command": "/usr/bin/c++   -I/home/evgeny/CI-SERVER/libs/googletest/googletest/include -I/home/evgeny/CI-SERVER/libs/date/include -I/home/evgeny/CI-SERVER/libs/date/include/date -I/home/evgeny/CI-SERVER/libs/sqlpp11/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/include -I/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/../sqlpp11/include   -pthread   -std=gnu++11 -o CMakeFiles/Sqlpp11Sqlite3FloatingPointTest.dir/FloatingPointTest.cpp.o -c /home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/FloatingPointTest.cpp",
+  "file": "/home/evgeny/CI-SERVER/libs/sqlpp11-connector-sqlite3/tests/FloatingPointTest.cpp"
+}
+]
